@@ -1,0 +1,82 @@
+[
+  {
+    "title": "banana",
+    "photo": "https://acdn.mitiendanube.com/stores/001/219/229/products/banana1-39d62a544fc16a2b8016025979095295-640-0.jpg",
+    "category": "fruit",
+    "price": 10,
+    "stock": 200,
+    "id": "6ff6f3d21830e2cd1d387e0e"
+  },
+  {
+    "title": "apple",
+    "photo": "https://static.libertyprim.com/files/varietes/pomme-dalinette-large.jpg?1589283082",
+    "category": "fruit",
+    "price": 8,
+    "stock": 47,
+    "id": "7a30261480c8423bd137d576"
+  },
+  {
+    "title": "carrot",
+    "photo": "https://cdn11.bigcommerce.com/s-kc25pb94dz/images/stencil/1280x1280/products/271/762/Carrot__40927.1634584458.jpg?c=2",
+    "category": "vegetable",
+    "price": 11,
+    "stock": 20,
+    "id": "434fc1605574885a733a5926"
+  },
+  {
+    "title": "potato",
+    "photo": "https://m.media-amazon.com/images/I/313dtY-LOEL._AC_UF1000,1000_QL80_.jpg",
+    "category": "vegetable",
+    "price": 9,
+    "stock": 400,
+    "id": "3bdf7c701594e6ec3a98f22b"
+  },
+  {
+    "title": "tomato",
+    "photo": "https://i5.walmartimages.com/seo/Fresh-Slicing-Tomato-Each_a1e8e44a-2b82-48ab-9c09-b68420f6954c.04f6e0e87807fc5457f57e3ec0770061.jpeg",
+    "category": "fruit",
+    "price": 8,
+    "stock": 50,
+    "id": "23e05518b6a886c867793948"
+  },
+  {
+    "title": "grapes",
+    "photo": "https://reimagineco.ca/cdn/shop/products/Untitleddesign-100_750x810.png?v=1667752249",
+    "category": "fruit",
+    "price": 12.5,
+    "stock": 32,
+    "id": "9d00fcc3b9eeab3ffc1950e8"
+  },
+  {
+    "title": "orange",
+    "photo": "https://www.heddensofwoodtown.co.uk/wp-content/uploads/2020/05/oranges_opt.jpg",
+    "category": "fruit",
+    "price": 14,
+    "stock": 70,
+    "id": "84999bec305710927e3a1561"
+  },
+  {
+    "title": "broccoli",
+    "photo": "https://cdn.britannica.com/25/78225-050-1781F6B7/broccoli-florets.jpg",
+    "category": "vegetable",
+    "price": 9,
+    "stock": 130,
+    "id": "401ceaf7700a7b1e7574186c"
+  },
+  {
+    "title": "corn",
+    "photo": "https://static.vecteezy.com/system/resources/previews/009/887/201/non_2x/sweet-corn-free-png.png",
+    "category": "vegetable",
+    "price": 17,
+    "stock": 221,
+    "id": "b4ee4bfddb88dbd87cb8e3ce"
+  },
+  {
+    "title": "watermelon",
+    "photo": "https://i5.walmartimages.com/asr/a83e3e11-9128-4d98-8f6f-8c144e0d8e5e.a5fafdef89b7430bd13cae9037294d87.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+    "category": "fruit",
+    "price": 20,
+    "stock": 54,
+    "id": "3273779eb23eca8988fb27f0"
+  }
+]
