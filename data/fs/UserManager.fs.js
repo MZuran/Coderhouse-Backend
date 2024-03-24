@@ -33,6 +33,7 @@ class UserManager {
       throw error;
     }
   }
+
   async read(r) {
     try {
       r = parseInt(r);
