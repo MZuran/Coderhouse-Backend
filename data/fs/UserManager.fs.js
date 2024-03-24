@@ -1,10 +1,10 @@
-const fs = require("fs");
-const crypto = require("crypto");
+import fs from "fs";
+import crypto from "crypto";
 
 class UserManager {
   static #users = [];
   constructor() {
-    this.path = "files/users.json";
+    this.path = "./data/fs/files/users.json";
     this.init();
   }
 
@@ -33,12 +33,18 @@ class UserManager {
       throw error;
     }
   }
-  async read() {
+  async read(r) {
     try {
-      const usersFileData = await fs.promises.readFile(this.path, "utf-8");
-      return JSON.parse(usersFileData);
+      r = parseInt(r);
+      let all = await fs.promises.readFile(this.path, "utf-8");
+      all = JSON.parse(all);
+      console.log(all);
+      r && (all = all.filter(user => user.role === r));
+      console.log(all);
+      return all;
     } catch (error) {
-      throw error;
+      console.log(error);
+      return error;
     }
   }
   async readOne(id) {
@@ -82,44 +88,5 @@ class User {
   }
 }
 
-const urls = {
-  matilda:
-    "https://www.shutterstock.com/shutterstock/photos/1552242206/display_1500/stock-photo-headshot-portrait-of-cute-teenage-girl-in-casual-clothes-wearing-glasses-posing-isolated-on-grey-1552242206.jpg",
-  ciro: "https://www.shutterstock.com/shutterstock/photos/1548802709/display_1500/stock-photo-headshot-portrait-of-happy-millennial-man-in-casual-clothes-isolated-on-grey-studio-background-1548802709.jpg",
-  ezequielito:
-    "https://www.shutterstock.com/shutterstock/photos/1768126784/display_1500/stock-photo-young-handsome-man-with-beard-wearing-casual-sweater-and-glasses-over-blue-background-happy-face-1768126784.jpg",
-  cubito:
-    "https://www.shutterstock.com/shutterstock/photos/1552242206/display_1500/stock-photo-headshot-portrait-of-cute-teenage-girl-in-casual-clothes-wearing-glasses-posing-isolated-on-grey-1552242206.jpg",
-};
 const userManagerInstance = new UserManager();
-
-const matilda = new User(
-  "Matilda Acevedo",
-  urls.matilda,
-  "matuacv@gmail.com",
-  "132134",
-  0
-);
-const ciro = new User("Ciro lich", urls.ciro, "cirito@gmail.com", "li8ch0", 0);
-const ezequielito = new User(
-  "Ezequielito More",
-  urls.ezequielito,
-  "morerivas@gmail.com",
-  "DiNo23",
-  0
-);
-const cubito = new User(
-  "Cubo Viña",
-  urls.cubito,
-  "cubito@gmail.com",
-  "Glayven",
-  0
-);
-
-async function test() {
-  await userManagerInstance.create(matilda);
-  await userManagerInstance.create(ciro);
-  await userManagerInstance.create(ezequielito);
-  await userManagerInstance.create(cubito);
-}
-test();
+export default userManagerInstance;
