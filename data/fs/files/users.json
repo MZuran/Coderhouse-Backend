@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Matilda Acevedo",
+    "photo": "https://www.shutterstock.com/shutterstock/photos/1552242206/display_1500/stock-photo-headshot-portrait-of-cute-teenage-girl-in-casual-clothes-wearing-glasses-posing-isolated-on-grey-1552242206.jpg",
+    "email": "matuacv@gmail.com",
+    "password": "132134",
+    "role": 1,
+    "id": "9c71794e7c2bb13726110538"
+  },
+  {
+    "name": "Ciro lich",
+    "photo": "https://www.shutterstock.com/shutterstock/photos/1548802709/display_1500/stock-photo-headshot-portrait-of-happy-millennial-man-in-casual-clothes-isolated-on-grey-studio-background-1548802709.jpg",
+    "email": "cirito@gmail.com",
+    "password": "li8ch0",
+    "role": 0,
+    "id": "921f0d5e0c591217045e4d7c"
+  },
+  {
+    "name": "Ezequielito More",
+    "photo": "https://www.shutterstock.com/shutterstock/photos/1768126784/display_1500/stock-photo-young-handsome-man-with-beard-wearing-casual-sweater-and-glasses-over-blue-background-happy-face-1768126784.jpg",
+    "email": "morerivas@gmail.com",
+    "password": "DiNo23",
+    "role": 0,
+    "id": "45177ba68cf17598f0ebc0c8"
+  },
+  {
+    "name": "Cubo Viña",
+    "photo": "https://www.shutterstock.com/shutterstock/photos/1552242206/display_1500/stock-photo-headshot-portrait-of-cute-teenage-girl-in-casual-clothes-wearing-glasses-posing-isolated-on-grey-1552242206.jpg",
+    "email": "cubito@gmail.com",
+    "password": "Glayven",
+    "role": 0,
+    "id": "77b30d05a778a109a3eebcb5"
+  }
+]

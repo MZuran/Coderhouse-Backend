@@ -90,3 +90,15 @@ const cabbage = new Product("cabbage", urls.cabbage, "vegetable", 7, 70);
 const tangerine = new Product("tangerine", urls.tangerine, "fruit", 13, 40);
 const strawberry = new Product("strawberry", urls.strawberry, "fruit", 11, 100);
 const pomegranate = new Product("pomegranate", urls.pomergranate, "fruit", 16, 35);
+
+fruitManager.create(banana);
+fruitManager.create(apple);
+fruitManager.create(carrot);
+fruitManager.create(potato);
+fruitManager.create(tomato);
+fruitManager.create(grapes);
+fruitManager.create(orange);
+fruitManager.create(broccoli);
+fruitManager.create(corn);
+fruitManager.create(watermelon);
+console.log(fruitManager.read())

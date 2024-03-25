@@ -34,7 +34,6 @@ class ProductManager {
             throw error
         }
     }
-
     async read(category) {
         try {
             let productFileData = await fs.promises.readFile(this.path, "utf-8")
