@@ -78,5 +78,77 @@
     "price": 20,
     "stock": 54,
     "id": "3273779eb23eca8988fb27f0"
+  },
+  {
+    "title": "pear",
+    "photo": "https://cdn.mos.cms.futurecdn.net/jpbi7xXH22fAxKvrF4bzzd-415-80.jpg",
+    "category": "fruit",
+    "price": 9,
+    "stock": 60,
+    "id": "897f14d44f33d067be144af5"
+  },
+  {
+    "title": "cauliflower",
+    "photo": "https://domf5oio6qrcr.cloudfront.net/medialibrary/5299/h1018g16207257715328.jpg",
+    "category": "vegetable",
+    "price": 10,
+    "stock": 80,
+    "id": "5e903fa14a728e0a440b241f"
+  },
+  {
+    "title": "spinach",
+    "photo": "https://freshji.in/wp-content/uploads/2020/09/Spinach-1.jpg",
+    "category": "vegetable",
+    "price": 6,
+    "stock": 90,
+    "id": "7fc1a46a5fc83f979de97b3c"
+  },
+  {
+    "title": "dragonfruit",
+    "photo": "https://www.shutterstock.com/image-photo/dragon-fruit-isolated-on-white-600nw-422354869.jpg",
+    "category": "fruit",
+    "price": 25,
+    "stock": 15,
+    "id": "bb1e1d6e57c6f7b6a770e79e"
+  },
+  {
+    "title": "coconut",
+    "photo": "https://www.shutterstock.com/image-photo/coconut-half-leaves-on-white-600nw-393850891.jpg",
+    "category": "fruit",
+    "price": 18,
+    "stock": 25,
+    "id": "8b08f3aa40b978582abaa71f"
+  },
+  {
+    "title": "cabbage",
+    "photo": "https://4.imimg.com/data4/EV/MV/MY-2/green-cabbage-500x500.jpg",
+    "category": "vegetable",
+    "price": 7,
+    "stock": 70,
+    "id": "08f6b458cd4e72e10c7b1b4e"
+  },
+  {
+    "title": "tangerine",
+    "photo": "https://www.shutterstock.com/image-photo/tangerine-on-white-ground-600nw-92668441.jpg",
+    "category": "fruit",
+    "price": 13,
+    "stock": 40,
+    "id": "64d2f9a7b6a07f2f64ebadef"
+  },
+  {
+    "title": "strawberry",
+    "photo": "https://www.collinsdictionary.com/images/full/strawberry_227472010.jpg",
+    "category": "fruit",
+    "price": 11,
+    "stock": 100,
+    "id": "1d7aa43400a9a7bca4b5b5e7"
+  },
+  {
+    "title": "pomegranate",
+    "photo": "https://5.imimg.com/data5/KC/BK/MY-41645336/fresh-pomegranate-fruit.jpg",
+    "category": "fruit",
+    "price": 16,
+    "stock": 35,
+    "id": "b934c7f17ff84c15b1e8313f"
   }
 ]
