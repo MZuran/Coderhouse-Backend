@@ -10,6 +10,7 @@ const port = 8080
 const ready = () => console.log("server ready on port " + port);
 server.listen(port, ready);
 
+server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 server.get("/", async (req, res) => {
