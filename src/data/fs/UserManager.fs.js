@@ -25,9 +25,15 @@ class UserManager {
       if (data instanceof User) {
         usersList.push({ ...data, id: assignedId });
         this.writeToFile(usersList);
-        console.log("user added to the list");
+        console.log("user added to the list (class)");
       } else {
-        console.error("wrong user format");
+        const { name, photo, email, password, role } = data;
+        const userInstance = new User(name, photo, email, password, role);
+        const userToAdd = { ...userInstance, id: assignedId };
+      usersList.push(userToAdd);
+      this.writeToFile(usersList);
+      console.log("user added to the list (object)");
+      return userToAdd;
       }
     } catch (error) {
       throw error;
@@ -64,6 +70,28 @@ class UserManager {
       throw error;
     }
   }
+
+  async update(id, data) {
+    try {
+      let all = await this.read();
+      let one = all.find((each) => each.id === id);
+      if (one) {
+        for (let prop in data) {
+          one[prop] = data[prop];
+        }
+        all = JSON.stringify(all, null, 2);
+        await fs.promises.writeFile(this.path, all);
+        return one;
+      } else {
+        const error = new Error("Not found!");
+        error.statusCode = 404;
+        throw error;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async destroy(id) {
     try {
       const userList = await this.read();
