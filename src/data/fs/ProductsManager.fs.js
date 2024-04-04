@@ -5,7 +5,7 @@ import crypto from "crypto";
 class ProductManager {
     static #products = [];
     constructor() {
-        this.path = "./data/fs/files/products.json"
+        this.path = "./src/data/fs/files/products.json"
         this.init()
     }
 
@@ -24,11 +24,15 @@ class ProductManager {
             const productsList = await this.read()
             const assignedId = crypto.randomBytes(12).toString("hex")
 
-            if (data instanceof Product) {
+            if (data instanceof Product || haveSameProps(new Product, data)) {
                 productsList.push({ ...data, id: assignedId })
                 this.writeToFile(productsList)
                 console.log("Product successfully added to the list")
-            } else { console.error("Wrong product format"); }
+            } else {
+                const error = new Error("Invalid Product")
+                console.log(data)
+                throw error
+            }
 
         } catch (error) {
             throw error
@@ -68,6 +72,30 @@ class ProductManager {
         }
     }
 
+    async update(id, data) {
+        try {
+            let productList = await this.read()
+            let updatedProduct = await this.readOne(id)
+            const {title, photo, category, price, stock} = data
+
+            title && title !== "" ? updatedProduct.title = title : null
+            photo && photo !== "" ? updatedProduct.photo = photo : null
+            category && category !== "" ? updatedProduct.category = category : null
+            price && price !== "" ? updatedProduct.price = price : null
+            stock && stock !== "" ? updatedProduct.stock = stock : null
+
+            for (let i = 0; i < productList.length; i++) {
+                if (productList[i].id == id) {
+                    productList[i] = updatedProduct
+                }
+            }
+
+            await this.writeToFile(productList)
+        } catch (error) {
+            throw error
+        }
+    }
+
     //Auxiliary Methods
     writeToFile(data) {
         const parsedData = JSON.stringify(data, null, 2)
@@ -77,12 +105,16 @@ class ProductManager {
 //************************************************************
 class Product {
     constructor(title, photo, category, price, stock) {
-        this.title = title,
+            this.title = title,
             this.photo = photo,
             this.category = category,
             this.price = price,
             this.stock = stock
     }
+}
+
+function haveSameProps(objA, objB) {
+    return JSON.stringify(Object.getOwnPropertyNames(objA)) == JSON.stringify(Object.getOwnPropertyNames(objB))
 }
 
 export const fruitManager = new ProductManager();
