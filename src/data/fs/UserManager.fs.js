@@ -14,7 +14,7 @@ class UserManager {
       const stringData = JSON.stringify([], null, 2);
       fs.writeFileSync(this.path, stringData);
     } else {
-      console.log("File already exists");
+      //console.log("File already exists");
     }
   }
 
