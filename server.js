@@ -20,6 +20,10 @@ server.engine("handlebars", engine())
 server.set("view engine", "handlebars")
 server.set("views", __dirname + "/src/views");
 
+//Sockets
+import { Server } from "socket.io";
+export const socketServer = new Server(server)
+
 //Routes
 import { apiRootRoute } from "./src/routers/index.router.js";
 import indexRouter from "./src/routers/index.router.js";
