@@ -22,7 +22,9 @@ server.set("views", __dirname + "/src/views");
 
 //Sockets
 import { Server } from "socket.io";
+import { socketCallback } from "./src/socketCallback.js";
 export const socketServer = new Server(server)
+socketServer.on("connection", socketCallback)
 
 //Routes
 import { apiRootRoute } from "./src/routers/index.router.js";
