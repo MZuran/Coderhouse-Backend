@@ -1,11 +1,11 @@
 import express from "express";
-import __dirname from "./utils.js"
+import { createServer } from "http";
+import __dirname from "./utils.js";
 
 //Server Setup
 const server = express();
 const port = 8080;
 const ready = () => console.log("server ready on port " + port);
-server.listen(port, ready);
 
 //Middlewares
 import morgan from "morgan";
@@ -23,7 +23,9 @@ server.set("views", __dirname + "/src/views");
 //Sockets
 import { Server } from "socket.io";
 import { socketCallback } from "./src/socketCallback.js";
-export const socketServer = new Server(server)
+const nodeServer = createServer(server);
+nodeServer.listen(port, ready);
+export const socketServer = new Server(nodeServer)
 socketServer.on("connection", socketCallback)
 
 //Routes
