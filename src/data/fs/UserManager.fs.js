@@ -45,9 +45,9 @@ class UserManager {
       r = parseInt(r);
       let all = await fs.promises.readFile(this.path, "utf-8");
       all = JSON.parse(all);
-      console.log(all);
+      //console.log(all);
       r && (all = all.filter(user => user.role === r));
-      console.log(all);
+      //console.log(all);
       return all;
     } catch (error) {
       console.log(error);

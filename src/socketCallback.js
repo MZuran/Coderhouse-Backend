@@ -18,9 +18,10 @@ export async function socketCallback(socket) {
 
     socket.on("productManager_create", async (data) => {
         try {
+            //console.log("Received data:", data)
             await fruitManager.create(data);
         } catch (error) {
-            socket.emit("socketError", error)
+            socket.emit("socketError", error.message)
         }
     });
 

@@ -150,5 +150,13 @@
     "price": 16,
     "stock": 35,
     "id": "b934c7f17ff84c15b1e8313f"
+  },
+  {
+    "title": "green apple",
+    "price": "10",
+    "category": "fruit",
+    "stock": "5",
+    "photo": "https://hips.hearstapps.com/hmg-prod/images/close-up-of-green-apple-against-white-background-royalty-free-image-1659450368.jpg?crop=0.706xw:0.708xh;0.161xw,0.143xh&resize=980:*",
+    "id": "308c95737aec00fdb1dad6c3"
   }
 ]
