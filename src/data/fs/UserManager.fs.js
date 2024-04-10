@@ -107,6 +107,7 @@ class UserManager {
     fs.writeFileSync(this.path, parsedData);
   }
 }
+
 class User {
   constructor(name, photo, email, password, role) {
     this.name = name;
@@ -117,5 +118,4 @@ class User {
   }
 }
 
-const userManagerInstance = new UserManager();
-export default userManagerInstance;
+export const userManagerInstance = new UserManager();

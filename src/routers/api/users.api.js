@@ -1,5 +1,5 @@
 import { Router } from "express";
-import userManagerInstance from "../../data/fs/UserManager.fs.js";
+import { userManagerInstance } from "../../data/fs/UserManager.fs.js";
 
 const usersRouter = Router();
 
