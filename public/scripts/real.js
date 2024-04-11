@@ -19,4 +19,4 @@ document.querySelector("#submit").addEventListener("click", (event) => {
   socket.emit("productManager_create", { title, price, category, stock, photo })
 })
 
-socket.on("socketError", async (data) => console.log("Error received!:", data))
+socket.on("socketError", async (data) => {console.log("Error received!:", data); console.log(data)})

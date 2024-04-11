@@ -24,7 +24,7 @@ class ProductManager {
             const productsList = await this.read()
             const assignedId = crypto.randomBytes(12).toString("hex")
 
-            if ((data instanceof Product || haveSameProps(new Product, data) && hasValidProps(data))) {
+            if ((data instanceof Product || haveSameProps(new Product, data)) && hasValidProps(data)) {
                 productsList.push({ ...data, id: assignedId })
                 this.writeToFile(productsList)
                 console.log("Product successfully added to the list")
@@ -115,7 +115,7 @@ class Product {
 
 function hasValidProps(obj) {
     const values = Object.values(obj)
-    const invalidValues = values.filter(value => value == null || value == undefined).length
+    const invalidValues = values.filter(value => value == null || value == undefined || value == '').length
     return invalidValues == 0
 }
 
