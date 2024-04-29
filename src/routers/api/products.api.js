@@ -1,6 +1,8 @@
 import { Router } from "express";
-import { fruitManager } from "../../data/fs/ProductsManager.fs.js   ";
+import { fruitManager } from "../../data/fs/ProductsManager.fs.js";
+import productManagerMongo from "../../data/mongo/managers/productManager.mongo.js";
 
+const selectedManager = productManagerMongo
 const productsRouter = Router();
 
 productsRouter.get("/", read);
@@ -12,7 +14,7 @@ productsRouter.delete("/:pid", destroy);
 async function read(req, res, next) {
     try {
         const { category } = req.query;
-        const productList = await fruitManager.read(category);
+        const productList = await selectedManager.read(category);
         if (productList.length !== 0) {
             return res.status(200).json({
                 response: productList,
@@ -31,7 +33,7 @@ async function read(req, res, next) {
 async function readOne(req, res, next) {
     try {
         const { pid } = req.params;
-        const productList = await fruitManager.readOne(pid);
+        const productList = await selectedManager.readOne(pid);
         if (productList.length !== 0) {
             return res.status(200).json({
                 response: productList,
@@ -58,7 +60,7 @@ async function create(req, res, next) {
             throw error;
         }
 
-        const newProduct = await fruitManager.create({title,photo,category,price,stock})
+        const newProduct = await selectedManager.create({title,photo,category,price,stock})
 
         res.status(201).json({
             message: "Product created successfully",
@@ -74,7 +76,7 @@ async function update(req, res, next) {
     try {
         const { title, photo, category, price, stock } = req.body;
         const { pid } = req.params;
-        const updatedProduct = await fruitManager.update(pid, { title, photo, category, price, stock });
+        const updatedProduct = await selectedManager.update(pid, { title, photo, category, price, stock });
 
         res.status(200).json({
             message: "Product updated successfully",
@@ -89,7 +91,7 @@ async function destroy(req, res, next) {
     try {
         const { pid } = req.params;
 
-        const remainingProducts = await fruitManager.destroy(pid);
+        const remainingProducts = await selectedManager.destroy(pid);
 
         res.status(200).json({
             message: "Product deleted successfully",

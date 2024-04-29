@@ -1,11 +1,13 @@
+import "dotenv/config.js";
 import express from "express";
-import { createServer } from "http";
 import __dirname from "./utils.js";
 
 //Server Setup
+import dbConnection from "./src/utils/dbConnection.util.js";
 const server = express();
 const port = 8080;
-const ready = () => console.log("server ready on port " + port);
+const ready = () => {console.log("Server ready on port " + port); dbConnection()};
+server.listen(port, ready)
 
 //Middlewares
 import morgan from "morgan";
@@ -21,12 +23,14 @@ server.set("view engine", "handlebars")
 server.set("views", __dirname + "/src/views");
 
 //Sockets
-import { Server } from "socket.io";
+/* 
+import { createServer } from "http";import { Server } from "socket.io";
 import { socketCallback } from "./src/socketCallback.js";
 const nodeServer = createServer(server);
 nodeServer.listen(port, ready);
 export const socketServer = new Server(nodeServer)
-socketServer.on("connection", socketCallback)
+socketServer.on("connection", socketCallback) 
+*/
 
 //Routes
 import { apiRootRoute } from "./src/routers/index.router.js";
