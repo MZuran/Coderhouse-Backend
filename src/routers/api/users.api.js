@@ -1,5 +1,8 @@
 import { Router } from "express";
 import { userManagerInstance } from "../../data/fs/UserManager.fs.js";
+import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
+
+const selectedManager = userManagerMongo
 
 const usersRouter = Router();
 
@@ -12,7 +15,7 @@ usersRouter.delete("/:nid", destroy);
 async function read(req, res, next) {
   try {
     const { role } = req.query;
-    const all = await userManagerInstance.read(role);
+    const all = await selectedManager.read(role);
     if (all.length !== 0) {
       return res.status(200).json({
         response: all,
@@ -32,7 +35,7 @@ async function read(req, res, next) {
 async function readOne(req, res, next) {
   try {
     const { nid } = req.params;
-    const one = await userManagerInstance.readOne(nid);
+    const one = await selectedManager.readOne(nid);
     if (one) {
       return res.status(200).json({
         response: one,
@@ -51,10 +54,10 @@ async function readOne(req, res, next) {
 async function create(req, res, next) {
   try {
     const data = req.body;
-    const one = await userManagerInstance.create(data);
+    const one = await selectedManager.create(data);
     return res.json({
       statusCode: 201,
-      message: "User created with id: " + one.id,
+      message: "User created with id: " + one._id,
     });
   } catch (error) {
     return next(error);
@@ -65,7 +68,7 @@ async function update(req, res, next) {
   try {
     const { nid } = req.params;
     const data = req.body;
-    const one = await userManagerInstance.update(nid, data);
+    const one = await selectedManager.update(nid, data);
     return res.json({
       statusCode: 200,
       message: "User modified with id: " + one.id,
@@ -79,7 +82,7 @@ async function update(req, res, next) {
 async function destroy(req, res, next) {
   try {
     const { nid } = req.params;
-    const one = await userManagerInstance.destroy(nid);
+    const one = await selectedManager.destroy(nid);
     return res.json({
       statusCode: 200,
       message: "User deleted with id: " + nid,
