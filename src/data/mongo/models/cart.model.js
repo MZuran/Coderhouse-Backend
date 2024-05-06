@@ -1,10 +1,10 @@
-import {Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const cartCollection = "carts";
-const schema = new Schema(
+const cartsSchema = new Schema(
   {
-    user_id: { type: String, required: true },
-    product_id: { type: String, required: true },
+    user_id: { type: Types.ObjectId, required: true, ref: "users", index: true },
+    product_id: { type: Types.ObjectId, required: true, ref: "products" },
     quantity: { type: Number, required: true },
     state: {
       type: String,
@@ -14,5 +14,19 @@ const schema = new Schema(
   },
   { timestamps: true }
 );
-const Cart = model(cartCollection, schema);
+
+cartsSchema.pre(['find', 'findOne'], function() {
+  this.populate("user_id", "-_id");
+});
+
+cartsSchema.pre(['find', 'findOne'], function() {
+  this.populate("product_id", "-_id");
+});
+
+cartsSchema.pre(['find', 'findOne'], function() {
+  this.lean();
+});
+
+const Cart = model(cartCollection, cartsSchema);
+
 export default Cart;
