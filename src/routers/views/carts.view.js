@@ -1,39 +1,20 @@
 import { Router } from "express"
-import productManagerMongo from "../../data/mongo/managers/cartsManager.mongo.js";
+import cartManagerMongo from "../../data/mongo/managers/cartsManager.mongo.js";
 
-const selectedManager = productManagerMongo
+const selectedManager = cartManagerMongo
 
-export const productsViewRouter = Router();
+export const cartsViewRouter = Router();
 
-productsViewRouter.get("/", productsView);
-productsViewRouter.get("/real", productsViewReal);
-productsViewRouter.get("/:nid", productsViewOne);
+cartsViewRouter.get("/:uid", cartsView);
 
 
 
-async function productsView(req, res, next) {
+async function cartsView(req, res, next) {
     try {
-        const fruits = await selectedManager.read();
-        return res.render("products", { title: "PRODUCTS", products: fruits });
+        const { uid } = req.params; 
+        const products = await selectedManager.read({uid});
+        return res.render("cart", { title: "CART", cart: products });
     } catch (error) {
         next(error)
     }
 }
-
- async function productsViewOne(req, res, next) {
-    try {
-      const { nid } = req.params;
-      const one = await selectedManager.readOne(nid);
-      return res.render("details", { title: "DETAILS", fruit: one });
-    } catch (error) {
-      return next(error);
-    }
-  }
-
-  async function productsViewReal(req, res, next) {
-    try {
-      return res.render("real", { title: "REAL" });
-    } catch (error) {
-      return next(error);
-    }
-  }
