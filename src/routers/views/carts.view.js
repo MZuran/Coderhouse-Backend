@@ -7,12 +7,12 @@ export const cartsViewRouter = Router();
 
 cartsViewRouter.get("/:uid", cartsView);
 
-
-
 async function cartsView(req, res, next) {
     try {
         const { uid } = req.params; 
-        const products = await selectedManager.read({uid});
+        //console.log("My uid is", uid)
+        const products = await selectedManager.readOne(uid);
+        //console.log("My products are", products)
         return res.render("cart", { title: "CART", cart: products });
     } catch (error) {
         next(error)

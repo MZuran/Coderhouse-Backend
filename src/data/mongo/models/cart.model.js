@@ -16,16 +16,17 @@ const cartsSchema = new Schema(
 );
 
 cartsSchema.pre(['find', 'findOne'], function() {
-  this.populate("user_id", "-_id");
-});
-
-cartsSchema.pre(['find', 'findOne'], function() {
-  this.populate("product_id", "-_id");
-});
-
-cartsSchema.pre(['find', 'findOne'], function() {
   this.lean();
 });
+
+cartsSchema.pre(['find', 'findOne'], function() {
+  this.populate("user_id", "-_id").lean();
+});
+
+cartsSchema.pre(['find', 'findOne'], function() {
+  this.populate("product_id", "-_id").lean();
+});
+
 
 const Cart = model(cartCollection, cartsSchema);
 
