@@ -12,7 +12,7 @@ productsViewRouter.get("/:nid", productsViewOne);
 
 
 
-async function productsView(req, res, next) {
+export async function productsView(req, res, next) {
     try {
         const fruits = await selectedManager.read();
         return res.render("products", { title: "PRODUCTS", products: fruits });
