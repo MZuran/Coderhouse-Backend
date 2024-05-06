@@ -1,123 +1,45 @@
+import "dotenv/config.js";
 import express from "express";
-          
-import usersManagers from "./data/fs/UserManager.fs.js";
-import userManagerInstance from "./data/fs/UserManager.fs.js";
-        
-import { fruitManager } from "./data/fs/ProductsManager.fs.js"
-          
-const server = express()
-const port = 8080
-const ready = () => console.log("server ready on port " + port);
-server.listen(port, ready);
+import __dirname from "./utils.js";
 
+//Server Setup
+import dbConnection from "./src/utils/dbConnection.util.js";
+const server = express();
+const port = 8080;
+const ready = () => {console.log("Server ready on port " + port); dbConnection()};
+server.listen(port, ready)
+
+//Middlewares
+import morgan from "morgan";
+server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+server.use(express.static(__dirname + "/public"));
+server.use(morgan("dev"));
 
-server.get("/", async (req, res) => {
-    try {
-        return res.status(200).json({
-            response: "Hello welcome to the API",
-            success: true
-        })
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            response: "CATRASTROPHICAL ERROR",
-            success: false
-        })
-    }
-})
+//Handlebars
+import { engine } from "express-handlebars";
+server.engine("handlebars", engine())
+server.set("view engine", "handlebars")
+server.set("views", __dirname + "/src/views");
 
-server.get("/api/users", async (req, res) => {
-    try {
-        const { role } = req.query;
-        const all = await userManagerInstance.read(role);
-        if (all.length !== 0) {
-            return res.status(200).json({
-                response: all,
-                role,
-                success: true
-            })
-        } else {
-            const error = new Error("ERROR 404 NOT FOUND")
-            error.statusCode = 404
-            throw error
-        }
-    } catch (error) {
-        console.log(error);
-        return res.status(error.statusCode).json({
-            response: error.message,
-            statusCode: error.statusCode,
-            success: false
-        })
-    }
-})
-          
-server.get("/api/products", async (req, res) => {
-    try {
-        const { category } = req.query
-        const productList = await fruitManager.read(category)
-        if (productList.length !== 0) {
-            return res.status(200).json({
-                response: productList,
-                statusCode: res.statusCode
-            })
-        } else {
-            const error = new Error("No matching Products")
-            error.statusCode = 404
-            throw error
-        }
-    } catch (error) {
-        console.log(error);
-        return res.status(error.statusCode).json({
-            response: error.message,
-            statusCode: error.statusCode
-        })
-    }
-})
+//Sockets
+/* 
+import { createServer } from "http";import { Server } from "socket.io";
+import { socketCallback } from "./src/socketCallback.js";
+const nodeServer = createServer(server);
+nodeServer.listen(port, ready);
+export const socketServer = new Server(nodeServer)
+socketServer.on("connection", socketCallback) 
+*/
 
-server.get("/api/products/:pid", async (req, res) => {
-    try {
-        const { pid } = req.params
-        const productList = await fruitManager.readOne(pid)
-        if (productList.length !== 0) {
-            return res.status(200).json({
-                response: productList,
-                statusCode: res.statusCode
-            })
-        } else {
-            const error = new Error("No matching Products")
-            error.statusCode = 404
-            throw error
-        }
-    } catch (error) {
-        console.log(error);
-        return res.status(error.statusCode).json({
-            response: error.message,
-            statusCode: error.statusCode
-        })
-    }
-})
+//Routes
+import { apiRootRoute } from "./src/routers/index.router.js";
+import indexRouter from "./src/routers/index.router.js";
+server.get("/", async (req, res) => { apiRootRoute(req, res) });
+server.use("/", indexRouter);
 
-server.get("/api/users/:nid", async (req, res) => {
-    try {
-        const { nid } = req.params
-        const one = await userManagerInstance.readOne(nid)
-        if (one) {
-            return res.status(200).json({
-                response: one,
-                success: true
-            })
-        } else {
-            const error = new Error("ERROR 404 NOT FOUND")
-            error.statusCode = 404
-            throw error
-        }
-    } catch (error) {
-        console.log(error);
-        return res.status(error.statusCode).json({
-            response: error.message,
-            statusCode: error.statusCode
-        })
-    }
-})
-            
+//Route Middlewares
+import errorHandler from "./src/middlewares/errorHandler.mid.js";
+import pathHandler from "./src/middlewares/pathHandler.mid.js";
+server.use(errorHandler);
+server.use(pathHandler);

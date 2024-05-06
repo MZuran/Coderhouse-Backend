@@ -4,7 +4,7 @@ import crypto from "crypto";
 class UserManager {
   static #users = [];
   constructor() {
-    this.path = "./data/fs/files/users.json";
+    this.path = "./src/data/fs/files/users.json";
     this.init();
   }
 
@@ -14,7 +14,7 @@ class UserManager {
       const stringData = JSON.stringify([], null, 2);
       fs.writeFileSync(this.path, stringData);
     } else {
-      console.log("File already exists");
+      //console.log("File already exists");
     }
   }
 
@@ -25,9 +25,15 @@ class UserManager {
       if (data instanceof User) {
         usersList.push({ ...data, id: assignedId });
         this.writeToFile(usersList);
-        console.log("user added to the list");
+        console.log("user added to the list (class)");
       } else {
-        console.error("wrong user format");
+        const { name, photo, email, password, role } = data;
+        const userInstance = new User(name, photo, email, password, role);
+        const userToAdd = { ...userInstance, id: assignedId };
+      usersList.push(userToAdd);
+      this.writeToFile(usersList);
+      console.log("user added to the list (object)");
+      return userToAdd;
       }
     } catch (error) {
       throw error;
@@ -39,9 +45,9 @@ class UserManager {
       r = parseInt(r);
       let all = await fs.promises.readFile(this.path, "utf-8");
       all = JSON.parse(all);
-      console.log(all);
+      //console.log(all);
       r && (all = all.filter(user => user.role === r));
-      console.log(all);
+      //console.log(all);
       return all;
     } catch (error) {
       console.log(error);
@@ -64,6 +70,28 @@ class UserManager {
       throw error;
     }
   }
+
+  async update(id, data) {
+    try {
+      let all = await this.read();
+      let one = all.find((each) => each.id === id);
+      if (one) {
+        for (let prop in data) {
+          one[prop] = data[prop];
+        }
+        all = JSON.stringify(all, null, 2);
+        await fs.promises.writeFile(this.path, all);
+        return one;
+      } else {
+        const error = new Error("Not found!");
+        error.statusCode = 404;
+        throw error;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async destroy(id) {
     try {
       const userList = await this.read();
@@ -79,6 +107,7 @@ class UserManager {
     fs.writeFileSync(this.path, parsedData);
   }
 }
+
 class User {
   constructor(name, photo, email, password, role) {
     this.name = name;
@@ -89,5 +118,4 @@ class User {
   }
 }
 
-const userManagerInstance = new UserManager();
-export default userManagerInstance;
+export const userManagerInstance = new UserManager();
