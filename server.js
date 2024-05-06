@@ -35,7 +35,7 @@ socketServer.on("connection", socketCallback)
 //Routes
 import { apiRootRoute } from "./src/routers/index.router.js";
 import indexRouter from "./src/routers/index.router.js";
-server.get("/", async (req, res) => { apiRootRoute(req, res) });
+//server.get("/", async (req, res) => { apiRootRoute(req, res) });
 server.use("/", indexRouter);
 
 //Route Middlewares

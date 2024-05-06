@@ -5,7 +5,7 @@ import viewsRouter from "./views/index.views.js";
 const indexRouter = Router();
 
 indexRouter.use("/api", apiRouter);
-indexRouter.use("/views", viewsRouter)
+indexRouter.use("/", viewsRouter)
 
 export async function apiRootRoute(req, res) {
     try {
