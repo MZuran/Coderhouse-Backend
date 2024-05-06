@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { usersViewRouter } from "./users.view.js";
 import { productsViewRouter } from "./products.view.js";
-import { fruitManager } from "../../data/fs/ProductsManager.fs.js";
 
 const viewsRouter = Router();
 

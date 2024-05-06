@@ -1,0 +1,30 @@
+<h1>
+  PRODUCTOS
+</h1>
+<div class='d-flex flex-row justify-content-center' style='width: 100%;' >
+  {{!-- {{log data}} --}}
+  {{#each products}}
+    <div class='card' style='width: 20vw; height 40vh; margin: 2vh;'>
+      <div class='card-body d-flex flex-column justify-content-between'>
+        <img src="{{this.photo}}" class='card-img-top' alt='...' />
+        <div>
+          <h5 class='card-title'>
+            {{this.title}}
+          </h5>
+          <p class='card-text'>
+            Price: {{this.price}}
+            <br />
+            Stock: {{this.stock}}
+          </p>
+          <a href="/views/products/{{this.id}}" class='btn btn-primary'> Details </a>
+          <a href='#' class='btn btn-success'> Add to cart <i class='bi bi-basket2-fill'></i> </a>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<div style="width: 100%" class="d-flex flex-row justify-content-center">
+  {{#if data.hasPrevPage}} <a href="/?page={{prevPage}}" class='btn btn-primary' style="margin: 1rem;"> Prev </a> {{/if}}
+  {{#if data.hasNextPage}} <a href="/?page={{nextPage}}" class='btn btn-primary' style="margin: 1rem;"> Next </a> {{/if}}
+</div>
