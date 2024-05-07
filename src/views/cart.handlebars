@@ -11,16 +11,16 @@
                 <h5 class='card-title'> {{this.product_id.title}} </h5>
                 <p class='card-text'> Amount: {{this.quantity}}</p>
 
-                <label for="numericInput">Quantity:</label>
-                <input style="margin: 0.5rem;" type="number" id="numericInput" name="numericInput" min="0" max="100" step="1">
+                <label>Quantity:</label>
+                <input id="numericInput{{this._id}}" style="margin: 0.5rem;" type="number" name="numericInput" min="0" max="100" step="1">
 
                 <div>
-                <a id="addButton" style="margin: 0.2rem;" class='btn btn-primary' onclick="{{addQuantity}}"> Add</a>
-                <a id="removeButton" style="margin: 0.2rem;" href="#" class='btn btn-danger'> Remove <i class="bi bi-trash3"></i> </a>
+                <a style="margin: 0.2rem;" class='btn btn-primary' onclick="addQuantity('{{this._id}}', document.getElementById('numericInput{{this._id}}').value)"> Add</a>
+                <a style="margin: 0.2rem;" href="#" class='btn btn-danger' onclick="deleteCart('{{this._id}}')"> Remove <i class="bi bi-trash3"></i> </a>
                 </div>
             </div>
         </div>
     </div>
     {{/each}}
 </div>
-<script src="scripts/cart.js"></script>
+<script src="/scripts/cart.js"></script>

@@ -16,6 +16,7 @@ cartRouter.post("/", async (req, res, next) => {
     return next(error);
   }
 });
+
 cartRouter.get("/", async (req, res, next) => {
   try {
     const { user_id } = req.query;
@@ -36,4 +37,39 @@ cartRouter.get("/", async (req, res, next) => {
     return next(error);
   }
 });
+
+cartRouter.put("/:cid", update);
+cartRouter.delete("/:cid", destroy);
+
+async function update(req, res, next) {
+  try {
+      const { user_id, product_id, quantity, state } = req.body;
+      const { cid } = req.params;
+      const updatedCart = await cartsManager.update(cid, { user_id, product_id, quantity, state });
+
+      res.status(200).json({
+          message: "Cart updated successfully",
+          product: updatedCart,
+      });
+
+  }catch(error){
+      next(error)
+  }
+}
+
+async function destroy(req, res, next) {
+  try {
+      const { cid } = req.params;
+
+      const remainingProducts = await cartsManager.destroy(cid);
+
+      res.status(200).json({
+          message: "Product deleted successfully",
+          product: remainingProducts,
+      });
+  }catch(error){
+      next(error)
+  }
+}
+
 export default cartRouter;
