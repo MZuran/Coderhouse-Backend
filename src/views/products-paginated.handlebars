@@ -17,7 +17,7 @@
             Stock: {{this.stock}}
           </p>
           <a href="/products/{{this._id}}" class='btn btn-primary'> Details </a>
-          <a href='#' class='btn btn-success'> Add to cart <i class='bi bi-basket2-fill'></i> </a>
+          <a href='http://localhost:8080/cart/662fa88f544e3f48527f06d2' class='btn btn-success' onclick="addToCart('{{this._id}}')"> Add to cart <i class='bi bi-basket2-fill'></i> </a>
         </div>
       </div>
     </div>
@@ -28,3 +28,5 @@
   {{#if data.hasPrevPage}} <a href="/?page={{prevPage}}" class='btn btn-primary' style="margin: 1rem;"> Prev </a> {{/if}}
   {{#if data.hasNextPage}} <a href="/?page={{nextPage}}" class='btn btn-primary' style="margin: 1rem;"> Next </a> {{/if}}
 </div>
+
+<script src="/scripts/cart.js"></script>

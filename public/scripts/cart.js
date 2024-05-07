@@ -33,3 +33,27 @@ async function deleteCart(cart_id) {
         throw error;
     }
 }
+
+async function addToCart(product_id) {
+    const sentData = {
+        user_id: "662fa88f544e3f48527f06d2",
+        product_id: product_id,
+        quantity: 1,
+        state: "reserved",
+    }
+
+    try {
+        const response = await fetch(`http://localhost:8080/api/carts/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(sentData)
+        });
+        const data = await response.json();
+        console.log(data.message, data.product); // Log the message from the server
+        return data.product; // Return the updated product
+    } catch (error) {
+        throw error;
+    }
+}
