@@ -1,0 +1,35 @@
+{{> modal-fade-navbar}}
+
+<nav class='navbar navbar-expand-lg navbar-light bg-light'>
+  <a class='navbar-brand margin-1-rem' href='/' > Rincon Natural </a>
+
+  <button
+    class='navbar-toggler'
+    type='button'
+    data-toggle='collapse'
+    data-target='#navbarSupportedContent'
+    aria-controls='navbarSupportedContent'
+    aria-expanded='false'
+    aria-label='Toggle navigation'
+  >
+
+    <span class='navbar-toggler-icon'></span>
+  </button>
+
+  <div class='collapse navbar-collapse d-flex flex-row justify-content-between' id='navbarSupportedContent'>
+    <ul class='navbar-nav mr-auto'>
+      <li class='nav-item'> <a class='nav-link' href='/products'> Products </a> </li>
+      <li class='nav-item'> <a class='nav-link' href='/products/real'> Add product </a> </li>
+      <li class='nav-item'> <a class='nav-link' href='/users'> Users </a> </li>
+    </ul>
+
+    <ul class='navbar-nav mr-auto'>
+        <li class='nav-item margin-1-rem'>
+            <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#loginModal' > login </button>
+        </li> 
+        <li class='nav-item margin-1-rem'> 
+            <a href='#' class='btn btn-success'> Cart <i class='bi bi-basket2-fill'></i> </a> 
+        </li>
+    </ul>
+  </div>
+</nav>

@@ -32,7 +32,9 @@ server.use(
 
 //Handlebars
 import { engine } from "express-handlebars";
-server.engine("handlebars", engine())
+server.engine("handlebars", engine({
+  partialsDir: __dirname + "/src/views/partials"
+}))
 server.set("view engine", "handlebars")
 server.set("views", __dirname + "/src/views");
 
