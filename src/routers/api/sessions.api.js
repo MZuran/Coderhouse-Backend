@@ -1,9 +1,9 @@
 import { Router } from "express";
-import usersManager from "../../data/mongo/usersManager.mongo.js";
+import usersManager from "../../data/mongo/managers/userManager.mongo.js";
 import isValidData from "../../middlewares/isValidData.mid.js";
 import isValidEmail from "../../middlewares/isValidEmail.mid.js";
 import isValidUser from "../../middlewares/isValidUser.mid.js";
-import isValidPassword from "../../middlewares/isValidPasword.mid.js";
+import isValidPassword from "../../middlewares/isValidPassword.mid.js";
 
 const sessionsRouter = Router();
 
