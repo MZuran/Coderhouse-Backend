@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { userManagerInstance } from "../../data/fs/UserManager.fs.js";
+import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
 
 export const usersViewRouter = Router();
 
@@ -10,7 +10,8 @@ usersViewRouter.get("/register", registerView);
 
 async function usersView(req, res, next) {
     try {
-        const users = await userManagerInstance.read();
+        const users = await userManagerMongo.read();
+        console.log(users)
         return res.render("users", { title: "Users", users });
     } catch (error) {
         next(error)
