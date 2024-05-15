@@ -13,6 +13,7 @@ class Manager {
   }
 
   async read(filter) {
+    if (!filter) {filter = {}} 
     try {
       const all = await this.Model.find(filter);
       return all;

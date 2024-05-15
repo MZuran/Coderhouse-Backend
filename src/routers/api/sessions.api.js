@@ -7,6 +7,18 @@ import isValidPassword from "../../middlewares/isValidPassword.mid.js";
 
 const sessionsRouter = Router();
 
+sessionsRouter.get(
+  "/",
+  async (req, res, next) => {
+    try {
+      const data = await usersManager.read();
+      return res.json({ statusCode: 200, message: "Fetched Data", payload: data });
+    } catch (error) {
+      return next(error);
+    }
+  }
+);
+
 sessionsRouter.post(
   "/register",
   isValidData,
@@ -21,6 +33,7 @@ sessionsRouter.post(
     }
   }
 );
+
 sessionsRouter.post(
   "/login",
   isValidUser,
