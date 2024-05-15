@@ -63,6 +63,15 @@ class Manager {
       throw error;
     }
   }
+
+  async paginate(filterObj = {}, paginationObj = { limit: 4, page: 1 }) {
+    try {
+      const all = await this.Model.paginate(filterObj, paginationObj)
+      return all
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Manager;

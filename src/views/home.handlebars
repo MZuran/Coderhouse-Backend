@@ -1,4 +1,4 @@
-<h1>"Rincón Natural"</h1>
+<h1>Rincón Natural</h1>
 <div
   class='d-flex flex-row flex-wrap justify-content-center'
   style='width: 100%;'
@@ -10,7 +10,8 @@
         <div>
           <h5 class='card-title'> {{this.title}} </h5>
           <p class='card-text'> Price: {{this.price}} <br /> Stock: {{this.stock}} </p>
-          <a href="/views/products/{{this.id}}" class='btn btn-primary'> Details </a>
+          <a href="/products/{{this._id}}" class='btn btn-primary'> Details </a>
+                    <a href="#" class='btn btn-success'> Add to cart <i class="bi bi-basket2-fill"></i> </a>
         </div>
       </div>
     </div>

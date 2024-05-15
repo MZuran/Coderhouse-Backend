@@ -12,8 +12,8 @@ server.listen(port, ready)
 //Middlewares
 import morgan from "morgan";
 server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
 server.use(express.static(__dirname + "/public"));
+server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
 
 //Handlebars
@@ -35,7 +35,7 @@ socketServer.on("connection", socketCallback)
 //Routes
 import { apiRootRoute } from "./src/routers/index.router.js";
 import indexRouter from "./src/routers/index.router.js";
-server.get("/", async (req, res) => { apiRootRoute(req, res) });
+//server.get("/", async (req, res) => { apiRootRoute(req, res) });
 server.use("/", indexRouter);
 
 //Route Middlewares
