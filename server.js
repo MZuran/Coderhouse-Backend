@@ -19,14 +19,14 @@ server.use(express.json());
 server.use(express.static(__dirname + "/public"));
 server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
-server.use(cookieParser("secretCookie")); // TODO: Change this!
+server.use(cookieParser(process.env.SESSION_KEY));
 server.use(
   session({
     store: new MongoStore({ mongoUrl: process.env.MONGO_URI, ttl: 60 * 60 }),
-    secret:"secretPassword", // TODO: Change also this!!1
+    secret: process.env.SESSION_KEY, 
     resave: true,
     saveUninitialized: true,
-    //cookie: { maxAge: 60 * 60 * 1000 },
+    cookie: { maxAge: 60 * 60 * 1000 * 2 }, //2 Hours
   })
 );
 
@@ -47,9 +47,7 @@ socketServer.on("connection", socketCallback)
 */
 
 //Routes
-import { apiRootRoute } from "./src/routers/index.router.js";
 import indexRouter from "./src/routers/index.router.js";
-//server.get("/", async (req, res) => { apiRootRoute(req, res) });
 server.use("/", indexRouter);
 
 //Route Middlewares
