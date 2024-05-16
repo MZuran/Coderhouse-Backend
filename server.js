@@ -29,8 +29,10 @@ server.use(
     cookie: { maxAge: 60 * 60 * 1000 * 2 }, //2 Hours
   })
 );
+//Middleware to make session available to all reqs. Used for handlebars.
 server.use(function (req, res, next) {
   res.locals.session = req.session;
+  res.locals.dirname = __dirname;
   next();
 });
 
