@@ -1,7 +1,7 @@
 async function addQuantity(cart_id, quantity) {
     if (!quantity || quantity == "") {return}
     try {
-        const response = await fetch(`http://localhost:8080/api/carts/${cart_id}`, {
+        const response = await fetch(`/api/carts/${cart_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ async function addQuantity(cart_id, quantity) {
 
 async function deleteCart(cart_id) {
     try {
-        const response = await fetch(`http://localhost:8080/api/carts/${cart_id}`, {
+        const response = await fetch(`/api/carts/${cart_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ async function addToCart(product_id) {
     }
 
     try {
-        const response = await fetch(`http://localhost:8080/api/carts/`, {
+        const response = await fetch(`/api/carts/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

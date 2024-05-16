@@ -17,7 +17,7 @@ async function submitForm() {
 
     console.log(formData)
 
-    await fetch('http://localhost:8080/api/sessions/register', {
+    await fetch('/api/sessions/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
