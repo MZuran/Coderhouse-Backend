@@ -1,16 +1,27 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>Users</h1>
-            {{#each users}}
+            {{#if user.online}}
+            <div class="w-75">
+            <h1>Welcome back, {{user.name}}</h1>
+
+            <img src="{{user.photo}}" class="card-img-top w-25 margin-1-rem" alt="...">
+
             <div class="card mb-3">
-                <img src="{{this.photo}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">{{this.name}}</h5>
-                    <a href="mailto:{{this.email}}">{{this.email}}</a>
-                    <p class="card-text"><small class="text-muted">{{this.role}}</small></p>
+                    <h5 class="card-title">{{user.name}}</h5>
+                    <a href="mailto:{{user.email}}">{{user.email}}</a>
+                    <p class="card-text"><small class="text-muted">Role: {{user.role}}</small></p>
                 </div>
             </div>
-            {{/each}}
+            </div>
+            {{> logout-button}}
+            {{else}}
+
+            <h1>You need to log in!</h1>
+
+            {{> login-form}}
+
+            {{/if}}
         </div>
     </div>

@@ -10,9 +10,9 @@ usersViewRouter.get("/register", registerView);
 
 async function usersView(req, res, next) {
     try {
-        const users = await userManagerMongo.read();
-        console.log(users)
-        return res.render("users", { title: "Users", users });
+        const user = req.session
+        console.log(user)
+        return res.render("users", { title: "Users", user });
     } catch (error) {
         next(error)
     }

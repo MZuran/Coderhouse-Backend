@@ -47,12 +47,14 @@ sessionsRouter.post(
       req.session.role = one.role;
       req.session.photo = one.photo;
       req.session.user_id = one._id;
+      req.session.name = one.name;
       return res.json({ statusCode: 200, message: "Logged in!" });
     } catch (error) {
       return next(error);
     }
   }
 );
+
 sessionsRouter.get("/online", async (req, res, next) => {
   try {
     if (req.session.online) {

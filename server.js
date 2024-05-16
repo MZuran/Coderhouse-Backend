@@ -29,6 +29,10 @@ server.use(
     cookie: { maxAge: 60 * 60 * 1000 * 2 }, //2 Hours
   })
 );
+server.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 
 //Handlebars
 import { engine } from "express-handlebars";

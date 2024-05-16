@@ -1,23 +1,13 @@
 async function submitForm() {
-    var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-    var photo = document.getElementById('photo').value;
-    var role = document.getElementById('role').value;
-
-    if (!photo) {photo = null}
 
     var formData = {
-        name: name,
         email: email,
         password: password,
-        photo: photo,
-        role: role
     };
 
-    console.log(formData)
-
-    await fetch('http://localhost:8080/api/sessions/register', {
+    await fetch('http://localhost:8080/api/sessions/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -25,7 +15,7 @@ async function submitForm() {
         body: JSON.stringify(formData)
     })
     .then(data => {
-        window.location.replace("/users/login")
+        window.location.replace("/")
     })
     .catch(error => {
         alert("error")
