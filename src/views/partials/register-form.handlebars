@@ -1,0 +1,36 @@
+<div class="col">
+            <h2>Join us</h2>
+            <form>
+                <div class="form-group">
+                    <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="name" class="form-control" id="name" placeholder="Your Name">
+                    </div>
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                        placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="photo">Photo</label>
+                    <input type="text" class="form-control" id="photo" placeholder="photo">
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input type="text" class="form-control" id="role" placeholder="role">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" onclick="submitForm()">Submit</button>
+                <div class="d-flex flex-row">
+                    <p class="fw-lighter margin-y-1-rem fst-italic">Already have an account?</p>
+                    <a href="/users/login" class="fw-lighter margin-y-1-rem fst-italic margin-x-half-rem">Log In</a>
+                </div>
+            </form>
+        </div>
+
+<script src="/scripts/register.js"></script>

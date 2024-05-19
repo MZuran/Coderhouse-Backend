@@ -13,6 +13,7 @@ class Manager {
   }
 
   async read(filter) {
+    if (!filter) {filter = {}} 
     try {
       const all = await this.Model.find(filter);
       return all;
@@ -68,6 +69,15 @@ class Manager {
     try {
       const all = await this.Model.paginate(filterObj, paginationObj)
       return all
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async readByEmail(email) {
+    try {
+      const one = await this.Model.findOne({ email });
+      return one;
     } catch (error) {
       throw error;
     }

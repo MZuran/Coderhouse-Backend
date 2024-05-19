@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { usersViewRouter } from "./users.view.js";
 import { productsViewRouter } from "./products.view.js";
 import { cartsViewRouter } from "./carts.view.js";
+import { usersViewRouter } from "./users.view.js";
 
 const viewsRouter = Router();
 
