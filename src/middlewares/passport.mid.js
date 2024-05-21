@@ -1,14 +1,14 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import userManagerMongo from "../data/mongo/managers/userManager.mongo";
-import { createHash } from "../utils/hash.util";
+import userManagerMongo from "../data/mongo/managers/userManager.mongo.js";
+import { createHash, verifyHash } from "../utils/hash.util.js"; 
 
 passport.use('register', new LocalStrategy({
     passReqToCallback: true,
     usernameField: 'email'
 },
-    async (req, username, password, done) => {
-        const { email, password } = req.body;
+    async (req, email, password, done) => {
+        //const { email, password } = req.body;
 
         try {
             //Check if email or password are missing
@@ -19,7 +19,7 @@ passport.use('register', new LocalStrategy({
             }
 
             //Check if email is already used for another user
-            const one = await usersManager.readByEmail(email);
+            const one = await userManagerMongo.readByEmail(email);
             if (one) {
                 const error = new Error("Bad auth from register!");
                 error.statusCode = 401;
@@ -27,7 +27,7 @@ passport.use('register', new LocalStrategy({
             }
 
             //Hash the password
-            const hashPassword = createHash(pasword);
+            const hashPassword = createHash(password);
 
             //Replace the password by the encrypted one
             req.body.password = hashPassword;
@@ -44,8 +44,8 @@ passport.use('login', new LocalStrategy({
     passReqToCallback: true,
     usernameField: 'email'
 },
-    async (req, username, password, done) => {
-        const { email, password } = req.body;
+    async (req, email, password, done) => {
+        //const { email, password } = req.body;
 
         try {
             //Check if email or password are missing
@@ -56,7 +56,7 @@ passport.use('login', new LocalStrategy({
             }
 
             //Check if user with given email exists
-            const one = await usersManager.readByEmail(email);
+            const one = await userManagerMongo.readByEmail(email);
             if (!one) {
                 const error = new Error("Bad auth from login!");
                 error.statusCode = 401;
@@ -73,6 +73,8 @@ passport.use('login', new LocalStrategy({
                 req.session.photo = one.photo;
                 req.session.user_id = one._id;
                 req.session.name = one.name;
+
+                return done(null, one)
             }
 
             const error = new Error('Invalid Credentials')
@@ -82,4 +84,5 @@ passport.use('login', new LocalStrategy({
             return done('error' + error)
         }
     }))
+
 export default passport

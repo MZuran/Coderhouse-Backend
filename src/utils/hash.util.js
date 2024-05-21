@@ -5,4 +5,7 @@ import { hashSync, genSaltSync, compareSync } from "bcrypt";
 
 export const createHash = password => hashSync(password, genSaltSync(10))
 
-export const isValidPassword = (user,password) => compareSync.apply(password, user.password)
+export const verifyHash = (reqBodyPass, mongoPass) => {
+    const verify = compareSync(reqBodyPass, mongoPass);
+    return verify;
+  };

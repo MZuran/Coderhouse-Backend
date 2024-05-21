@@ -1,9 +1,7 @@
 import { Router } from "express";
-import usersManager from "../../data/mongo/managers/userManager.mongo.js";
-import isValidData from "../../middlewares/isValidData.mid.js";
-import isValidEmail from "../../middlewares/isValidEmail.mid.js";
-import isValidUser from "../../middlewares/isValidUser.mid.js";
-import isValidPassword from "../../middlewares/isValidPassword.mid.js";
+import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
+
+import passport from "../../middlewares/passport.mid.js";
 
 const sessionsRouter = Router();
 
@@ -11,7 +9,7 @@ sessionsRouter.get(
   "/",
   async (req, res, next) => {
     try {
-      const data = await usersManager.read();
+      const data = await userManagerMongo.read();
       return res.json({ statusCode: 200, message: "Fetched Data", payload: data });
     } catch (error) {
       return next(error);
@@ -21,12 +19,11 @@ sessionsRouter.get(
 
 sessionsRouter.post(
   "/register",
-  isValidData,
-  isValidEmail,
+  passport.authenticate("register", { session: false }),
   async (req, res, next) => {
     try {
       const data = req.body;
-      await usersManager.create(data);
+      await userManagerMongo.create(data);
       return res.json({ statusCode: 201, message: "Registered!" });
     } catch (error) {
       return next(error);
@@ -36,18 +33,9 @@ sessionsRouter.post(
 
 sessionsRouter.post(
   "/login",
-  isValidUser,
-  isValidPassword,
+  passport.authenticate("login", { session: false }),
   async (req, res, next) => {
     try {
-      const { email } = req.body;
-      const one = await usersManager.readByEmail(email);
-      req.session.email = email;
-      req.session.online = true;
-      req.session.role = one.role;
-      req.session.photo = one.photo;
-      req.session.user_id = one._id;
-      req.session.name = one.name;
       return res.json({ statusCode: 200, message: "Logged in!" });
     } catch (error) {
       return next(error);
