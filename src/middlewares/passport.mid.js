@@ -1,7 +1,10 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import { Strategy as GoogleStrategy } from "passport-google-oauth2";
 import userManagerMongo from "../data/mongo/managers/userManager.mongo.js";
 import { createHash, verifyHash } from "../utils/hash.util.js"; 
+//import { createToken } from "../utils/token.util.js";
+
 
 passport.use('register', new LocalStrategy({
     passReqToCallback: true,
@@ -84,5 +87,40 @@ passport.use('login', new LocalStrategy({
             return done('error' + error)
         }
     }))
+
+    passport.use(
+        "google",
+        new GoogleStrategy(
+          {
+            clientID: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            callbackURL: "http://localhost:8080/api/sessions/google/callback",
+            passReqToCallback: true,
+          },
+          async (req, accessToken, refreshToken, profile, done) => {
+            try {
+              const { id, picture } = profile;
+              console.log(profile);
+              let user = await userManagerMongo.readByEmail(id);
+              if (!user) {
+                user = {
+                  email: id,
+                  password: createHash(id),
+                  photo: picture,
+                };
+                user = await userManagerMongo.create(user);
+              }
+              req.session.email = user.email;
+              req.session.online = true;
+              req.session.role = user.role;
+              req.session.photo = user.photo;
+              req.session.user_id = user._id;
+              return done(null, user);
+            } catch (error) {
+              return done(error);
+            }
+          }
+        )
+      );
 
 export default passport
