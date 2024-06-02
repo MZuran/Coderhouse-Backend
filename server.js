@@ -44,17 +44,7 @@ server.engine("handlebars", engine({
 server.set("view engine", "handlebars")
 server.set("views", __dirname + "/src/views");
 
-//Sockets
-/* 
-import { createServer } from "http";import { Server } from "socket.io";
-import { socketCallback } from "./src/socketCallback.js";
-const nodeServer = createServer(server);
-nodeServer.listen(port, ready);
-export const socketServer = new Server(nodeServer)
-socketServer.on("connection", socketCallback) 
-*/
-
-//Routes
+//Routes;
 import indexRouter from "./src/routers/index.router.js";
 server.use("/", indexRouter);
 
