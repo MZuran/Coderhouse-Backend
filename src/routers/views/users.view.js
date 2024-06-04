@@ -1,12 +1,17 @@
 import { Router } from "express";
 import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
+import CustomRouter from "../customRouter.js";
 
-export const usersViewRouter = Router();
+class usersViewRouterClass extends CustomRouter{
+    init(){
+        this.read("/", ["PUBLIC"], usersView);
+        this.read("/login", ["PUBLIC"], loginView);
+        this.read("/register", ["PUBLIC"], registerView);
+    }
+}
 
-usersViewRouter.get("/", usersView);
-usersViewRouter.get("/login", loginView);
-usersViewRouter.get("/register", registerView);
-
+const usersViewRouter = new usersViewRouterClass();
+export default usersViewRouter.getRouter()
 
 async function usersView(req, res, next) {
     try {

@@ -1,16 +1,20 @@
 import { Router } from "express"
 import { fruitManager } from "../../data/fs/ProductsManager.fs.js";
 import productManagerMongo from "../../data/mongo/managers/productManager.mongo.js";
+import CustomRouter from "../customRouter.js";
 
 const selectedManager = productManagerMongo
 
-export const productsViewRouter = Router();
+class productsViewRouterClass extends CustomRouter{
+  init(){
+    this.read("/", ["PUBLIC"], productsView);
+    this.read("/real", ["ADMIN"], productsViewReal);
+    this.read("/:nid", ["PUBLIC"], productsViewOne);
+  }
+}
 
-productsViewRouter.get("/", productsView);
-productsViewRouter.get("/real", productsViewReal);
-productsViewRouter.get("/:nid", productsViewOne);
-
-
+const productsViewRouter = new productsViewRouterClass();
+export default productsViewRouter.getRouter()
 
 export async function productsView(req, res, next) {
   try {
@@ -37,7 +41,7 @@ async function productsViewOne(req, res, next) {
 
 async function productsViewReal(req, res, next) {
   try {
-    return res.render("real", { title: "REAL" });
+    return res.render("add-product", { title: "ADD PRODUCTS" });
   } catch (error) {
     return next(error);
   }

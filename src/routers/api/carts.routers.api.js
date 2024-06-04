@@ -1,9 +1,14 @@
-import { Router, response } from "express";
+import { Router } from "express";
 import cartsManager from "../../data/mongo/managers/cartsManager.mongo.js";
 
 const cartRouter = Router();
 
-cartRouter.post("/", async (req, res, next) => {
+cartRouter.post("/", createCart);
+cartRouter.get("/", readCart);
+cartRouter.put("/:cid", updateCart);
+cartRouter.delete("/:cid", deleteCart);
+
+async function createCart(req, res, next) {
   try {
     const data = req.body;
     const one = await cartsManager.create(data);
@@ -15,9 +20,9 @@ cartRouter.post("/", async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
-});
+}
 
-cartRouter.get("/", async (req, res, next) => {
+async function readCart(req, res, next) {
   try {
     const { user_id } = req.query;
     if (user_id) {
@@ -36,39 +41,34 @@ cartRouter.get("/", async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
-});
+}
 
-cartRouter.put("/:cid", update);
-cartRouter.delete("/:cid", destroy);
-
-async function update(req, res, next) {
+async function updateCart(req, res, next) {
   try {
-      const { user_id, product_id, quantity, state } = req.body;
-      const { cid } = req.params;
-      const updatedCart = await cartsManager.update(cid, { user_id, product_id, quantity, state });
+    const { user_id, product_id, quantity, state } = req.body;
+    const { cid } = req.params;
+    const updatedCart = await cartsManager.update(cid, { user_id, product_id, quantity, state });
 
-      res.status(200).json({
-          message: "Cart updated successfully",
-          product: updatedCart,
-      });
-
-  }catch(error){
-      next(error)
+    res.status(200).json({
+      message: "Cart updated successfully",
+      product: updatedCart,
+    });
+  } catch (error) {
+    next(error);
   }
 }
 
-async function destroy(req, res, next) {
+async function deleteCart(req, res, next) {
   try {
-      const { cid } = req.params;
+    const { cid } = req.params;
+    const remainingProducts = await cartsManager.destroy(cid);
 
-      const remainingProducts = await cartsManager.destroy(cid);
-
-      res.status(200).json({
-          message: "Product deleted successfully",
-          product: remainingProducts,
-      });
-  }catch(error){
-      next(error)
+    res.status(200).json({
+      message: "Product deleted successfully",
+      product: remainingProducts,
+    });
+  } catch (error) {
+    next(error);
   }
 }
 

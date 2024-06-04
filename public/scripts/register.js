@@ -1,7 +1,7 @@
 async function submitForm() {
     var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
+    var email = document.getElementById('registerEmailField').value;
+    var password = document.getElementById('registerPasswordField').value;
     var photo = document.getElementById('photo').value;
     var role = document.getElementById('role').value;
 
@@ -31,4 +31,22 @@ async function submitForm() {
         alert("error")
         console.error('Error:', error);
     });
+}
+
+function testValues() {
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('registerEmailField').value;
+    var password = document.getElementById('registerPasswordField').value;
+    var photo = document.getElementById('photo').value;
+    var role = document.getElementById('role').value;
+
+    var formData = {
+        name: name,
+        email: email,
+        password: password,
+        photo: photo,
+        role: role
+    };
+
+    console.log(formData)
 }

@@ -54,7 +54,7 @@ class CustomRouter {
     policies = (policies) => async (req, res, next) => {
         if (policies.includes('PUBLIC')) return next()
 
-        let token = req.cookies(['token'])
+        let token = req.cookies['token']
         if (!token) return res.error401()
 
         console.log("The token is", verifyToken(token))
