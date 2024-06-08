@@ -10,8 +10,12 @@ class ticketsRouterClass extends CustomRouter {
 async function cartTotal(req, res, next) {
     try {
         const list = await cartsManager.read({user_id: req.session.user_id});
+        let total = 0
+        list.forEach(element => {
+            total =+ element.product_id.price * element.quantity
+        });
 
-        return res.response200(list)
+        return res.response200(total)
     } catch (error) {
         next(error)
     }
