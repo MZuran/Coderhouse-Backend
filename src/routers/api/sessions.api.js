@@ -1,21 +1,26 @@
 import { Router } from "express";
 import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
 import passport from "../../middlewares/passport.mid.js";
+import CustomRouter from "../customRouter.js";
+import passportCb from "../../middlewares/passportCb.mid.js";
 
-const sessionsRouter = Router();
-
-sessionsRouter.get("/", readSessions);
-sessionsRouter.post("/register", passport.authenticate("register", { session: false }), registerSession);
-sessionsRouter.post("/login", passport.authenticate("login", { session: false }), loginSession);
-sessionsRouter.get("/online", checkOnlineStatus);
-sessionsRouter.post("/signout", signOutSession);
-sessionsRouter.get("/google", passport.authenticate("google", { scope: ["email", "profile"] }));
-sessionsRouter.get("/google/callback", passport.authenticate("google", { session: false }), googleCallback);
+class sessionsRouterClass extends CustomRouter {
+  init() {
+    this.read("/", readSessions);
+    this.create("/register", ["PUBLIC"], passport.authenticate("register", { session: false }), registerSession);
+    this.create("/login", ["PUBLIC"], passportCb("login"), loginSession);
+    this.read("/online", ["PUBLIC"], checkOnlineStatus);
+    this.create("/signout", ["USER"], signOutSession);
+    this.read("/google", ["PUBLIC"], passport.authenticate("google", { scope: ["email", "profile"] }));
+    this.read("/google/callback", ["PUBLIC"], passport.authenticate("google", { session: false }), googleCallback);
+  }
+}
+const sessionsRouter = new sessionsRouterClass();
 
 async function readSessions(req, res, next) {
   try {
     const data = await userManagerMongo.read();
-    return res.json({ statusCode: 200, message: "Fetched Data", payload: data });
+    return res.response200({message: "Fetched Data", payload: data})
   } catch (error) {
     return next(error);
   }
@@ -25,7 +30,7 @@ async function registerSession(req, res, next) {
   try {
     const data = req.body;
     await userManagerMongo.create(data);
-    return res.json({ statusCode: 201, message: "Registered!" });
+    return res.message201("Registered!")
   } catch (error) {
     return next(error);
   }
@@ -33,7 +38,10 @@ async function registerSession(req, res, next) {
 
 async function loginSession(req, res, next) {
   try {
-    return res.json({ statusCode: 200, message: "Logged in!" });
+    //console.log("My req.user is", req.user)
+    return res
+      .cookie("token", req.user, { signedCookie: true })
+      .response200("Logged in!");
   } catch (error) {
     return next(error);
   }
@@ -46,6 +54,7 @@ async function checkOnlineStatus(req, res, next) {
         statusCode: 200,
         message: "Is online!",
         user_id: req.session.user_id,
+        req_session: req.session
       });
     }
     return res.json({
@@ -74,4 +83,4 @@ function googleCallback(req, res, next) {
   }
 }
 
-export default sessionsRouter;
+export default sessionsRouter.getRouter();
