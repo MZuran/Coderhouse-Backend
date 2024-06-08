@@ -57,21 +57,22 @@ class CustomRouter {
         let token = req.cookies['token']
         if (!token) return res.error401()
 
-        console.log("The token is", verifyToken(token))
-
         try {
-            const {role, email} = verifyToken(token)
+            const { role, email } = verifyToken(token)
+            console.log("The role is", role)
+            console.log("The policies are", policies)
             if (
                 policies.includes('USER') && role === 0 ||
                 policies.includes('ADMIN') && role === 1
                 //Add more here if needed
-            ) 
-            {
+            ) {
                 const user = await userManagerMongo.readByEmail(email)
                 req.user = user
                 return next()
+            } else {
+                return res.error401()
             }
-        } catch(error) {
+        } catch (error) {
             return res.error401()
         }
     }

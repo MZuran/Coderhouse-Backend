@@ -3,7 +3,7 @@ import cartsManager from "../../data/mongo/managers/cartsManager.mongo.js";
 
 class ticketsRouterClass extends CustomRouter {
     init() {
-        this.read("/", ["PUBLIC"], cartTotal);
+        this.read("/", ["USER", "ADMIN"], cartTotal);
     }
 }
 

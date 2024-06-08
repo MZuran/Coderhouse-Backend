@@ -3,6 +3,7 @@ import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
 import passport from "../../middlewares/passport.mid.js";
 import CustomRouter from "../customRouter.js";
 import passportCb from "../../middlewares/passportCb.mid.js";
+import { createToken } from "../../utils/token.util.js";
 
 class sessionsRouterClass extends CustomRouter {
   init() {
@@ -40,7 +41,7 @@ async function loginSession(req, res, next) {
   try {
     //console.log("My req.user is", req.user)
     return res
-      .cookie("token", req.user, { signedCookie: true })
+      .cookie("token", createToken(req.user), { signedCookie: true })
       .response200("Logged in!");
   } catch (error) {
     return next(error);
