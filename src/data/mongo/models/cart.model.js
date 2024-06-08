@@ -15,7 +15,7 @@ const cartsSchema = new Schema(
   { timestamps: true }
 );
 
-cartsSchema.pre(['find', 'findOne'], function() {
+cartsSchema.pre(['find', 'findOne', 'update'], function() {
   this.lean();
 });
 

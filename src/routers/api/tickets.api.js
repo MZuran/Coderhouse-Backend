@@ -9,7 +9,7 @@ class ticketsRouterClass extends CustomRouter {
 
 async function cartTotal(req, res, next) {
     try {
-        const list = await cartsManager.read();
+        const list = await cartsManager.read({user_id: req.session.user_id});
 
         return res.response200(list)
     } catch (error) {

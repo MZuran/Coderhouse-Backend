@@ -13,19 +13,24 @@ async function createCart(req, res, next) {
     const data = req.body;
     data.user_id = req.session.user_id;
 
-    const one = await cartsManager.create(data);
+    const list = await cartsManager.read({user_id: data.user_id, product_id: data.product_id});
+    const alreadyExistingCart = list[0]
 
-    return res.json({
-      statusCode: 201,
-      message: "CREATED NEW CART",
-      data: one
-    })
-    
-    /*return res.json({
-      statusCode: 201,
-      message: "CREATED NEW CART",
-      response: one,
-    });*/
+    if (!alreadyExistingCart) {
+      const one = await cartsManager.create(data);
+      return res.json({
+        statusCode: 201,
+        message: "CREATED NEW CART",
+        data: one
+      })
+    } else { 
+      const updatedOne = await cartsManager.update(alreadyExistingCart._id, {quantity: alreadyExistingCart.quantity + 1})
+      return res.json({
+        statusCode: 201,
+        message: "UPDATED EXISTING CART",
+        data: updatedOne
+      })
+    }
   } catch (error) {
     return next(error);
   }
