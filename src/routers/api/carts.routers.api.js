@@ -1,12 +1,18 @@
 import { Router } from "express";
 import cartsManager from "../../data/mongo/managers/cartsManager.mongo.js";
+import CustomRouter from "../customRouter.js";
 
-const cartRouter = Router();
+class cartRouterClass extends CustomRouter {
+  init() {
+    this.create("/", ["USER", "ADMIN"], createCart);
+    this.read("/", ["USER", "ADMIN"], readCart);
+    this.update("/:cid", ["USER", "ADMIN"], updateCart);
+    this.destroy("/one/:cid", ["USER", "ADMIN"], deleteCart);
+    this.destroy("/all", ["USER", "ADMIN"], deleteAllCarts);
+  }
+}
 
-cartRouter.post("/", createCart);
-cartRouter.get("/", readCart);
-cartRouter.put("/:cid", updateCart);
-cartRouter.delete("/:cid", deleteCart);
+const cartRouter = new cartRouterClass();
 
 async function createCart(req, res, next) {
   try {
@@ -86,4 +92,26 @@ async function deleteCart(req, res, next) {
   }
 }
 
-export default cartRouter;
+async function deleteAllCarts(req, res, next) {
+  try {
+    const userCartList = await cartsManager.read({user_id: req.session.user_id});
+    let idList = []
+
+    userCartList.forEach(cart => {
+      idList.push(cart._id)
+    });
+
+    idList.forEach(async id => {
+      await cartsManager.destroy(id)
+    });
+
+    res.status(200).json({
+      message: "Carts deleted successfully",
+      idList: idList
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default cartRouter.getRouter();

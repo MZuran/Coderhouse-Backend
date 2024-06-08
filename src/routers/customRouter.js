@@ -33,6 +33,10 @@ class CustomRouter {
         this.router.delete(path, this.response, this.policies(policies), this.applyCbs(callbacks))
     }
 
+    update(path, policies, ...callbacks) {
+        this.router.put(path, this.response, this.policies(policies), this.applyCbs(callbacks))
+    }
+
     use(path, ...callbacks) {
         this.router.use(path, this.response, this.applyCbs(callbacks))
     }
