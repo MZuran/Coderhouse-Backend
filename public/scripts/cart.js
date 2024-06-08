@@ -34,9 +34,8 @@ async function deleteCart(cart_id) {
     }
 }
 
-async function addToCart(product_id) {
+async function addToCart(product_id, user_id) {
     const sentData = {
-        user_id: "662fa88f544e3f48527f06d2",
         product_id: product_id,
         quantity: 1,
         state: "reserved",

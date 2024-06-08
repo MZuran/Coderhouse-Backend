@@ -11,12 +11,21 @@ cartRouter.delete("/:cid", deleteCart);
 async function createCart(req, res, next) {
   try {
     const data = req.body;
+    data.user_id = req.session.user_id;
+
     const one = await cartsManager.create(data);
+
     return res.json({
       statusCode: 201,
       message: "CREATED NEW CART",
+      data: one
+    })
+    
+    /*return res.json({
+      statusCode: 201,
+      message: "CREATED NEW CART",
       response: one,
-    });
+    });*/
   } catch (error) {
     return next(error);
   }
