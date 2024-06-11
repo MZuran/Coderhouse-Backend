@@ -1,11 +1,17 @@
 import { Router } from "express"
 import cartManagerMongo from "../../data/mongo/managers/cartsManager.mongo.js";
+import CustomRouter from "../customRouter.js";
+
+class cartsViewRouterClass extends CustomRouter {
+    init() {
+        this.read("/:uid", ["USER"], cartsView);
+    }
+}
+
+const cartsViewRouter = new cartsViewRouterClass();
+export default cartsViewRouter.getRouter()
 
 const selectedManager = cartManagerMongo
-
-export const cartsViewRouter = Router();
-
-cartsViewRouter.get("/:uid", cartsView);
 
 async function cartsView(req, res, next) {
     try {

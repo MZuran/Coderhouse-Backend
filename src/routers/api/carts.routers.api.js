@@ -1,23 +1,48 @@
-import { Router, response } from "express";
+import { Router } from "express";
 import cartsManager from "../../data/mongo/managers/cartsManager.mongo.js";
+import CustomRouter from "../customRouter.js";
 
-const cartRouter = Router();
+class cartRouterClass extends CustomRouter {
+  init() {
+    this.create("/", ["USER", "ADMIN"], createCart);
+    this.read("/", ["USER", "ADMIN"], readCart);
+    this.update("/:cid", ["USER", "ADMIN"], updateCart);
+    this.destroy("/one/:cid", ["USER", "ADMIN"], deleteCart);
+    this.destroy("/all", ["USER", "ADMIN"], deleteAllCarts);
+  }
+}
 
-cartRouter.post("/", async (req, res, next) => {
+const cartRouter = new cartRouterClass();
+
+async function createCart(req, res, next) {
   try {
     const data = req.body;
-    const one = await cartsManager.create(data);
-    return res.json({
-      statusCode: 201,
-      message: "CREATED NEW CART",
-      response: one,
-    });
+    data.user_id = req.session.user_id;
+
+    const list = await cartsManager.read({user_id: data.user_id, product_id: data.product_id});
+    const alreadyExistingCart = list[0]
+
+    if (!alreadyExistingCart) {
+      const one = await cartsManager.create(data);
+      return res.json({
+        statusCode: 201,
+        message: "CREATED NEW CART",
+        data: one
+      })
+    } else { 
+      const updatedOne = await cartsManager.update(alreadyExistingCart._id, {quantity: alreadyExistingCart.quantity + 1})
+      return res.json({
+        statusCode: 201,
+        message: "UPDATED EXISTING CART",
+        data: updatedOne
+      })
+    }
   } catch (error) {
     return next(error);
   }
-});
+}
 
-cartRouter.get("/", async (req, res, next) => {
+async function readCart(req, res, next) {
   try {
     const { user_id } = req.query;
     if (user_id) {
@@ -36,40 +61,57 @@ cartRouter.get("/", async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
-});
+}
 
-cartRouter.put("/:cid", update);
-cartRouter.delete("/:cid", destroy);
-
-async function update(req, res, next) {
+async function updateCart(req, res, next) {
   try {
-      const { user_id, product_id, quantity, state } = req.body;
-      const { cid } = req.params;
-      const updatedCart = await cartsManager.update(cid, { user_id, product_id, quantity, state });
+    const { user_id, product_id, quantity, state } = req.body;
+    const { cid } = req.params;
+    const updatedCart = await cartsManager.update(cid, { user_id, product_id, quantity, state });
 
-      res.status(200).json({
-          message: "Cart updated successfully",
-          product: updatedCart,
-      });
-
-  }catch(error){
-      next(error)
+    res.status(200).json({
+      message: "Cart updated successfully",
+      product: updatedCart,
+    });
+  } catch (error) {
+    next(error);
   }
 }
 
-async function destroy(req, res, next) {
+async function deleteCart(req, res, next) {
   try {
-      const { cid } = req.params;
+    const { cid } = req.params;
+    const remainingProducts = await cartsManager.destroy(cid);
 
-      const remainingProducts = await cartsManager.destroy(cid);
-
-      res.status(200).json({
-          message: "Product deleted successfully",
-          product: remainingProducts,
-      });
-  }catch(error){
-      next(error)
+    res.status(200).json({
+      message: "Product deleted successfully",
+      product: remainingProducts,
+    });
+  } catch (error) {
+    next(error);
   }
 }
 
-export default cartRouter;
+async function deleteAllCarts(req, res, next) {
+  try {
+    const userCartList = await cartsManager.read({user_id: req.session.user_id});
+    let idList = []
+
+    userCartList.forEach(cart => {
+      idList.push(cart._id)
+    });
+
+    idList.forEach(async id => {
+      await cartsManager.destroy(id)
+    });
+
+    res.status(200).json({
+      message: "Carts deleted successfully",
+      idList: idList
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default cartRouter.getRouter();

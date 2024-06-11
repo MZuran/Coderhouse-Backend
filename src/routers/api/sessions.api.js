@@ -1,67 +1,61 @@
 import { Router } from "express";
-import usersManager from "../../data/mongo/managers/userManager.mongo.js";
-import isValidData from "../../middlewares/isValidData.mid.js";
-import isValidEmail from "../../middlewares/isValidEmail.mid.js";
-import isValidUser from "../../middlewares/isValidUser.mid.js";
-import isValidPassword from "../../middlewares/isValidPassword.mid.js";
+import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
+import passport from "../../middlewares/passport.mid.js";
+import CustomRouter from "../customRouter.js";
+import passportCb from "../../middlewares/passportCb.mid.js";
+import { createToken } from "../../utils/token.util.js";
 
-const sessionsRouter = Router();
-
-sessionsRouter.get(
-  "/",
-  async (req, res, next) => {
-    try {
-      const data = await usersManager.read();
-      return res.json({ statusCode: 200, message: "Fetched Data", payload: data });
-    } catch (error) {
-      return next(error);
-    }
+class sessionsRouterClass extends CustomRouter {
+  init() {
+    this.read("/", readSessions);
+    this.create("/register", ["PUBLIC"], passport.authenticate("register", { session: false }), registerSession);
+    this.create("/login", ["PUBLIC"], passportCb("login"), loginSession);
+    this.read("/online", ["PUBLIC"], checkOnlineStatus);
+    this.create("/signout", ["USER"], signOutSession);
+    this.read("/google", ["PUBLIC"], passport.authenticate("google", { scope: ["email", "profile"] }));
+    this.read("/google/callback", ["PUBLIC"], passport.authenticate("google", { session: false }), googleCallback);
   }
-);
+}
+const sessionsRouter = new sessionsRouterClass();
 
-sessionsRouter.post(
-  "/register",
-  isValidData,
-  isValidEmail,
-  async (req, res, next) => {
-    try {
-      const data = req.body;
-      await usersManager.create(data);
-      return res.json({ statusCode: 201, message: "Registered!" });
-    } catch (error) {
-      return next(error);
-    }
+async function readSessions(req, res, next) {
+  try {
+    const data = await userManagerMongo.read();
+    return res.response200({message: "Fetched Data", payload: data})
+  } catch (error) {
+    return next(error);
   }
-);
+}
 
-sessionsRouter.post(
-  "/login",
-  isValidUser,
-  isValidPassword,
-  async (req, res, next) => {
-    try {
-      const { email } = req.body;
-      const one = await usersManager.readByEmail(email);
-      req.session.email = email;
-      req.session.online = true;
-      req.session.role = one.role;
-      req.session.photo = one.photo;
-      req.session.user_id = one._id;
-      req.session.name = one.name;
-      return res.json({ statusCode: 200, message: "Logged in!" });
-    } catch (error) {
-      return next(error);
-    }
+async function registerSession(req, res, next) {
+  try {
+    const data = req.body;
+    await userManagerMongo.create(data);
+    return res.message201("Registered!")
+  } catch (error) {
+    return next(error);
   }
-);
+}
 
-sessionsRouter.get("/online", async (req, res, next) => {
+async function loginSession(req, res, next) {
+  try {
+    //console.log("My req.user is", req.user)
+    return res
+      .cookie("token", createToken(req.user), { signedCookie: true })
+      .response200("Logged in!");
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function checkOnlineStatus(req, res, next) {
   try {
     if (req.session.online) {
       return res.json({
         statusCode: 200,
         message: "Is online!",
         user_id: req.session.user_id,
+        req_session: req.session
       });
     }
     return res.json({
@@ -71,14 +65,23 @@ sessionsRouter.get("/online", async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
-});
-sessionsRouter.post("/signout", (req, res, next) => {
+}
+
+function signOutSession(req, res, next) {
   try {
     req.session.destroy();
     return res.json({ statusCode: 200, message: "Signed out!" });
   } catch (error) {
     return next(error);
   }
-});
+}
 
-export default sessionsRouter;
+function googleCallback(req, res, next) {
+  try {
+    return res.json({ statusCode: 200, message: "Logged in with google!" });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+export default sessionsRouter.getRouter();
