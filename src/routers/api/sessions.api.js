@@ -11,7 +11,7 @@ class sessionsRouterClass extends CustomRouter {
     this.create("/register", ["PUBLIC"], passport.authenticate("register", { session: false }), registerSession);
     this.create("/login", ["PUBLIC"], passportCb("login"), loginSession);
     this.read("/online", ["PUBLIC"], checkOnlineStatus);
-    this.create("/signout", ["USER"], signOutSession);
+    this.create("/signout", ["PUBLIC"], signOutSession);
     this.read("/google", ["PUBLIC"], passport.authenticate("google", { scope: ["email", "profile"] }));
     this.read("/google/callback", ["PUBLIC"], passport.authenticate("google", { session: false }), googleCallback);
   }
@@ -70,6 +70,7 @@ async function checkOnlineStatus(req, res, next) {
 function signOutSession(req, res, next) {
   try {
     req.session.destroy();
+    res.clearCookie("token");
     return res.json({ statusCode: 200, message: "Signed out!" });
   } catch (error) {
     return next(error);
