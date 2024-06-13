@@ -1,11 +1,13 @@
 import "dotenv/config.js";
+import environment from "./src/utils/env.util.js";
+import argsUtil from "./src/utils/args.utils.js";
 import express from "express";
 import __dirname from "./utils.js";
 
 //Server Setup
 import dbConnection from "./src/utils/dbConnection.util.js";
 const server = express();
-const port = 8080;
+const port = environment.PORT || argsUtil.p;
 const ready = () => {console.log("Server ready on port " + port); dbConnection()};
 server.listen(port, ready)
 
