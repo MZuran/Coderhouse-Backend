@@ -1,60 +1,16 @@
-import { Router } from "express";
+import CustomRouter from "../customRouter.js";
+import { setCookie, getCookies, destroyCookie, setSignedCookie, getSignedCookies } from "../../controllers/cookies.controller.js";
 
-const cookiesRouter = Router();
-
-cookiesRouter.get("/set", setCookie);
-cookiesRouter.get("/", getCookies);
-cookiesRouter.get("/destroy/:cookie", destroyCookie);
-cookiesRouter.get("/signed", setSignedCookie);
-cookiesRouter.get("/get-signed", getSignedCookies);
-
-function setCookie(req, res, next) {
-  try {
-    return res
-      .cookie("online", "true", { maxAge: 60 * 60 * 1000 })
-      .json({ message: "Cookie will expire in one hour" });
-  } catch (error) {
-    return next(error);
+class cookiesRouterClass extends CustomRouter {
+  init() {
+    this.read("/set", ["PUBLIC"], setCookie);
+    this.read("/", ["PUBLIC"], getCookies);
+    this.read("/destroy/:cookie", ["PUBLIC"], destroyCookie);
+    this.read("/signed", ["PUBLIC"], setSignedCookie);
+    this.read("/get-signed", ["PUBLIC"], getSignedCookies);
   }
 }
 
-function getCookies(req, res, next) {
-  try {
-    const cookies = req.cookies;
-    const online = req.cookies.online;
-    return res.json({ cookies, online });
-  } catch (error) {
-    return next(error);
-  }
-}
+const cookiesRouter = new cookiesRouterClass();
 
-function destroyCookie(req, res, next) {
-  try {
-    const { cookie } = req.params;
-    return res
-      .clearCookie(cookie)
-      .json({ message: "cookie " + cookie + " removed" });
-  } catch (error) {
-    return next(error);
-  }
-}
-
-function setSignedCookie(req, res, next) {
-  try {
-    return res
-      .cookie("role", "admin", { signed: true })
-      .json({ message: "Cookie signed with user role" });
-  } catch (error) {
-    return next(error);
-  }
-}
-
-function getSignedCookies(req, res, next) {
-  try {
-    return res.json({ message: req.signedCookies });
-  } catch (error) {
-    return next(error);
-  }
-}
-
-export default cookiesRouter;
+export default cookiesRouter.getRouter();
