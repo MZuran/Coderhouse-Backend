@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { userManagerInstance } from "../../data/fs/UserManager.fs.js";
-import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
+import { userManagerInstance } from "../../dao/fs/UserManager.fs.js";
+import userManagerMongo from "../../dao/mongo/managers/userManager.mongo.js";
 
 const selectedManager = userManagerMongo
 

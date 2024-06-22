@@ -1,5 +1,5 @@
 import { createToken } from "../utils/token.util.js";
-import userManagerMongo from "../data/mongo/managers/userManager.mongo.js";
+import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
 
 class SessionsController {
     async readSessions(req, res, next) {

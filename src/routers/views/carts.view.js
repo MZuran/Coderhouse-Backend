@@ -1,5 +1,5 @@
 import { Router } from "express"
-import cartManagerMongo from "../../data/mongo/managers/cartsManager.mongo.js";
+import cartManagerMongo from "../../dao/mongo/managers/cartsManager.mongo.js";
 import CustomRouter from "../customRouter.js";
 
 class cartsViewRouterClass extends CustomRouter {

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
+import userManagerMongo from "../../dao/mongo/managers/userManager.mongo.js";
 import CustomRouter from "../customRouter.js";
 
 class usersViewRouterClass extends CustomRouter{

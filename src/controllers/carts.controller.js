@@ -1,4 +1,4 @@
-import cartsManager from "../data/mongo/managers/cartsManager.mongo.js";
+import cartsManager from "../dao/mongo/managers/cartsManager.mongo.js";
 
 class CartsController {
     async createCart(req, res, next) {

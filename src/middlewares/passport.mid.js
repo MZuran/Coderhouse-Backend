@@ -1,7 +1,7 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as GoogleStrategy } from "passport-google-oauth2";
-import userManagerMongo from "../data/mongo/managers/userManager.mongo.js";
+import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
 import { createHash, verifyHash } from "../utils/hash.util.js"; 
 //import { createToken } from "../utils/token.util.js";
 
