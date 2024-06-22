@@ -3,11 +3,11 @@ import {read, readOne, create, update, destroy} from "../../controllers/products
 
 class ProductsRouterClass extends CustomRouter {
     init() {
-        this.read("/", read);
-        this.read("/:pid", readOne);
-        this.create("/", create);
-        this.update("/:pid", update);
-        this.destroy("/:pid", destroy);
+        this.read("/", ["PUBLIC"], read);
+        this.read("/:pid", ["PUBLIC"], readOne);
+        this.create("/", ["ADMIN"], create);
+        this.update("/:pid", ["ADMIN"], update);
+        this.destroy("/:pid", ["ADMIN"], destroy);
     }
 }
 
