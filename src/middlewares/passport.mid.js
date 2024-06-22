@@ -77,6 +77,8 @@ passport.use('login', new LocalStrategy({
                 req.session.user_id = one._id;
                 req.session.name = one.name;
 
+                
+                //.cookie("token", createToken(req.user), { signedCookie: true })
                 return done(null, one)
             }
 
