@@ -14,7 +14,8 @@ export default usersViewRouter.getRouter()
 
 async function usersView(req, res, next) {
     try {
-        const user = verifyToken(req.cookies['token'])
+        let user
+        req.cookies['token'] ? user = verifyToken(req.cookies['token']) : user = null
         return res.render("users", { title: "Users", user });
     } catch (error) {
         next(error)

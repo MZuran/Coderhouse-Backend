@@ -1,8 +1,8 @@
 import { verifyToken } from "../utils/token.util.js";
 
 function setLocals(req, res, next) {
-    const token = verifyToken(req.cookies['token']);
-    if (token) {
+    if (req.cookies['token']) {
+        const token = verifyToken(req.cookies['token']);
         res.locals.localUser = {
             online: true,
             name: token.name,

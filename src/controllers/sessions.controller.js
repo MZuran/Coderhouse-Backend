@@ -46,8 +46,8 @@ class SessionsController {
 
     signOutSession(req, res, next) {
         try {
-            req.session.destroy();
             res.clearCookie("token");
+            //res.cookie("token", createToken({}), { signedCookie: true })
             return res.json({ statusCode: 200, message: "Signed out!" });
         } catch (error) {
             return next(error);
