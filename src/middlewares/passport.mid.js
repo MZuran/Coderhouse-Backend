@@ -1,9 +1,10 @@
+import enviroment from "../utils/env.util.js";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as GoogleStrategy } from "passport-google-oauth2";
 import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
 import { createHash, verifyHash } from "../utils/hash.util.js"; 
-//import { createToken } from "../utils/token.util.js";
+import { createToken } from "../utils/token.util.js";
 
 
 passport.use('register', new LocalStrategy({
@@ -70,16 +71,10 @@ passport.use('login', new LocalStrategy({
             const verify = verifyHash(password, one.password)
 
             if (verify) {
-                req.session.email = email;
-                req.session.online = true;
-                req.session.role = one.role;
-                req.session.photo = one.photo;
-                req.session.user_id = one._id;
-                req.session.name = one.name;
-
-                
-                //.cookie("token", createToken(req.user), { signedCookie: true })
-                return done(null, one)
+              delete one.password
+              //const token = createToken({ email: one.email, role: one.role })
+              //req.token = token
+              return done(null, one)
             }
 
             const error = new Error('Invalid Credentials')
@@ -94,8 +89,8 @@ passport.use('login', new LocalStrategy({
         "google",
         new GoogleStrategy(
           {
-            clientID: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            clientID: enviroment.GOOGLE_CLIENT_ID,
+            clientSecret: enviroment.GOOGLE_CLIENT_SECRET,
             callbackURL: "http://localhost:8080/api/sessions/google/callback",
             passReqToCallback: true,
           },

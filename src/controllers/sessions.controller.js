@@ -1,4 +1,4 @@
-import { createToken } from "../utils/token.util.js";
+import { createToken, verifyToken } from "../utils/token.util.js";
 import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
 
 class SessionsController {
@@ -34,17 +34,10 @@ class SessionsController {
 
     async checkOnlineStatus(req, res, next) {
         try {
-            if (req.session.online) {
-                return res.json({
-                    statusCode: 200,
-                    message: "Is online!",
-                    user_id: req.session.user_id,
-                    req_session: req.session
-                });
-            }
             return res.json({
-                statusCode: 401,
-                message: "Bad auth!",
+                statusCode: 100,
+                message: "Testing",
+                token: verifyToken(req.cookies['token'])
             });
         } catch (error) {
             return next(error);
