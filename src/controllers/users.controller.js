@@ -1,11 +1,17 @@
 
-import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
+import {
+    createService,
+    readService,
+    readOneService,
+    updateService,
+    destroyService,
+  } from "../services/users.service.js";
 
 class UserController {
     async read(req, res, next) {
         try {
             const { role } = req.query;
-            const all = await userManagerMongo.read(role);
+            const all = await readService(role);
             if (all.length !== 0) {
                 return res.status(200).json({
                     response: all,
@@ -25,7 +31,7 @@ class UserController {
     async readOne(req, res, next) {
         try {
             const { nid } = req.params;
-            const one = await userManagerMongo.readOne(nid);
+            const one = await readOneService(nid);
             if (one) {
                 return res.status(200).json({
                     response: one,
@@ -44,7 +50,7 @@ class UserController {
     async create(req, res, next) {
         try {
             const data = req.body;
-            const one = await userManagerMongo.create(data);
+            const one = await createService(data);
             return res.json({
                 statusCode: 201,
                 message: "User created with id: " + one._id,
@@ -58,7 +64,7 @@ class UserController {
         try {
             const { nid } = req.params;
             const data = req.body;
-            const one = await userManagerMongo.update(nid, data);
+            const one = await updateService(nid, data);
             return res.json({
                 statusCode: 200,
                 message: "User modified with id: " + one.id,
@@ -72,7 +78,7 @@ class UserController {
     async destroy(req, res, next) {
         try {
             const { nid } = req.params;
-            const one = await userManagerMongo.destroy(nid);
+            const one = await destroyService(nid);
             return res.json({
                 statusCode: 200,
                 message: "User deleted with id: " + nid,

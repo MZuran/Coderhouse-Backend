@@ -1,7 +1,6 @@
 import fs from "fs";
 import crypto from "crypto";
 
-//crypto.randomBytes(12).toString("hex")
 class ProductManager {
     static #products = [];
     constructor() {

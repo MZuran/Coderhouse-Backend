@@ -1,4 +1,10 @@
-import productManagerMongo from "../dao/mongo/managers/productManager.mongo.js";
+import {
+    createService,
+    readService,
+    readOneService,
+    updateService,
+    destroyService,
+  } from "../services/products.service.js";
 
 class ProductsController {
     init() {
@@ -7,7 +13,7 @@ class ProductsController {
     async read(req, res, next) {
         try {
             const { category } = req.query;
-            const productList = await productManagerMongo.read(category);
+            const productList = await readService(category);
             if (productList.length !== 0) {
                 return res.status(200).json({
                     response: productList,
@@ -26,7 +32,7 @@ class ProductsController {
     async readOne(req, res, next) {
         try {
             const { pid } = req.params;
-            const productList = await productManagerMongo.readOne(pid);
+            const productList = await readOneService(pid);
             if (productList.length !== 0) {
                 return res.status(200).json({
                     response: productList,
@@ -52,7 +58,7 @@ class ProductsController {
                 throw error;
             }
     
-            const newProduct = await productManagerMongo.create({title,photo,category,price,stock})
+            const newProduct = await createService({title,photo,category,price,stock})
     
             res.status(201).json({
                 message: "Product created successfully",
@@ -68,7 +74,7 @@ class ProductsController {
         try {
             const { title, photo, category, price, stock } = req.body;
             const { pid } = req.params;
-            const updatedProduct = await productManagerMongo.update(pid, { title, photo, category, price, stock });
+            const updatedProduct = await updateService(pid, { title, photo, category, price, stock });
     
             res.status(200).json({
                 message: "Product updated successfully",
@@ -83,7 +89,7 @@ class ProductsController {
         try {
             const { pid } = req.params;
     
-            const remainingProducts = await productManagerMongo.destroy(pid);
+            const remainingProducts = await destroyService(pid);
     
             res.status(200).json({
                 message: "Product deleted successfully",
