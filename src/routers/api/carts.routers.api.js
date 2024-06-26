@@ -14,6 +14,4 @@ import { format } from "morgan";
 
 const cartRouter = new cartRouterClass();
 
-
-
 export default cartRouter.getRouter();
