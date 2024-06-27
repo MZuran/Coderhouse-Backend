@@ -1,4 +1,4 @@
-import dao from "../data/dao.factory.js";
+import dao from "../dao/dao.factory.js";
 import UsersDTO from "../dto/users.dto.js";
 const { users } = dao;
 

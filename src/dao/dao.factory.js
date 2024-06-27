@@ -1,5 +1,5 @@
 import argsUtil from "../utils/args.util.js";
-import dbConnect from "../utils/dbConnect.util.js";
+import dbConnect from "../utils/dbConnection.util.js";
 
 const persistence = argsUtil.persistence;
 let dao = {};
@@ -33,10 +33,10 @@ switch (persistence) {
     console.log("connected to database");
     dbConnect();
     const { default: productsManagerMongo } = await import(
-      "./mongo/ProductsManager.mongo.js"
+      "./mongo/managers/productManager.mongo.js"
     );
     const { default: usersManagerMongo } = await import(
-      "./mongo/UserManager.mongo.js"
+      "./mongo/managers/userManager.mongo.js"
     );
     dao = {
       users: usersManagerMongo,
