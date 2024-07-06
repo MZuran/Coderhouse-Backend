@@ -2,21 +2,10 @@ import { config } from "dotenv";
 import args from "./args.util.js";
 
 const { env } = args
-let path = ''
 
 //Make sure it's a valid enviroment file type
-switch (env) {
-    case 'prod':
-    case 'dev':
-        path = `./env.${env}`
-    break;
-
-    default:
-        path = `./env.dev`
-    break;
-}
-
-config(path)
+const path = env === "prod" ? "./.env.prod" : "./.env.dev";
+config({ path });
 
 const enviroment = {
     PORT: process.env.PORT,
