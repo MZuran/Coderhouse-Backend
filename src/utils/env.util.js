@@ -26,7 +26,9 @@ const enviroment = {
     GEN_SALT_VAL: process.env.GEN_SALT_VAL,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-    SECRET_JWT: process.env.SECRET_JWT
+    SECRET_JWT: process.env.SECRET_JWT,
+    GOOGLE_EMAIL: process.env.GOOGLE_EMAIL,
+    GOOGLE_PASSWORD: process.env.GOOGLE_PASSWORD
 }
 
 export default enviroment
