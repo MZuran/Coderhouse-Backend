@@ -10,6 +10,7 @@ import indexRouter from "./src/routers/index.router.js";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
 import setLocals from "./src/middlewares/locals.mid.js";
+import compression from "express-compression";
 
 const server = express();
 const port = enviroment.PORT;
@@ -22,6 +23,11 @@ server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
 server.use(cookieParser(enviroment.SESSION_KEY));
 server.use(cors({ origin: true, credentials: true }));
+server.use(
+  compression({
+    brotli: { enabled: true, zlib: {} },
+  })
+);
 
 //Middleware to make online status, name and photo available to all reqs via storing it in res.locals
 //Used for handlebars, so that there is no need to explicitly pass these parameters to res.render every time
