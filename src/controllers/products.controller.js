@@ -51,9 +51,15 @@ class ProductsController {
 
     async create(req, res, next) {
         try {
-            const {title, photo = this.defaultImageValue, category = "default", price = 1, stock = 1} = req.body
+            const {title, photo = this.defaultImageValue, category, price = 1, stock = 1} = req.body
             if (!title) {
                 const error = new Error("Missing Title");
+                error.statusCode = 400; // Bad request
+                throw error;
+            }
+            if(!category)
+            {
+                const error = new Error("Missing Category!");
                 error.statusCode = 400; // Bad request
                 throw error;
             }

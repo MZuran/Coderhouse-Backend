@@ -2,7 +2,7 @@ import { Command } from "commander";
 
 const args = new Command()
 args.option('-p <port>', 'port', 8080)
-args.option("--env <env>", "environment", "prod")
+args.option("--env <env>", "environment", "dev")
 args.option("--persistence <pers>", "persistence", "mongo")
 
 args.parse()

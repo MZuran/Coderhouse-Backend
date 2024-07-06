@@ -10,6 +10,7 @@ class ProductsDTO {
     persistence !== "mongo" &&
       (this._id = crypto.randomBytes(12).toString("hex"));
     this.title = data.title;
+    this.category = data.category;
     this.price = data.price || 1;
     this.stock = data.stock || 10;
     this.photo = data.photo || defaultPicture;
