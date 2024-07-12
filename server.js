@@ -11,6 +11,7 @@ import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
 import setLocals from "./src/middlewares/locals.mid.js";
 import compression from "express-compression";
+import winston from "./src/middlewares/winston.mid.js";
 
 const server = express();
 const port = enviroment.PORT;
@@ -28,6 +29,7 @@ server.use(
     brotli: { enabled: true, zlib: {} },
   })
 );
+server.use(winston)
 
 //Middleware to make online status, name and photo available to all reqs via storing it in res.locals
 //Used for handlebars, so that there is no need to explicitly pass these parameters to res.render every time

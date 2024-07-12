@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { verifyToken } from "../utils/token.util.js";
 import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
+import winstonErrorMessage from "../utils/winstonMessage.util.js";
 
 class CustomRouter {
     /*-----------Setup-----------*/
@@ -46,11 +47,11 @@ class CustomRouter {
         res.response200 = (response) => { res.json({ statuscode: 200, response }) }
         res.paginate = (response, info) => { res.json({ statuscode: 200, response, info }) }
         res.message201 = (message) => res.json({ statusCode: 201, message });
-        res.error400 = (message) => res.json({ statusCode: 400, message });
-        res.error401 = () => res.json({ statusCode: 401, message: "Bad Auth" });
-        res.error403 = () => res.json({ statusCode: 403, message: "Forbidden" });
-        res.error404 = () => res.json({ statusCode: 404, message: "Not found" });
-        res.error500 = () => res.json({ statusCode: 500, message: "Internal server error" });
+        res.error400 = (message) => winstonErrorMessage(req, res, { statusCode: 400, message });
+        res.error401 = () => winstonErrorMessage(req, res, { statusCode: 401, message: "Bad Auth" });
+        res.error403 = () => winstonErrorMessage(req, res, { statusCode: 403, message: "Forbidden" });
+        res.error404 = () => winstonErrorMessage(req, res, { statusCode: 404, message: "Not Found" });
+        res.error500 = () => winstonErrorMessage(req, res, { statusCode: 500, message: "Internal Server Error" });
         return next()
     }
 
