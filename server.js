@@ -1,43 +1,42 @@
-import "dotenv/config.js";
+import enviroment from "./src/utils/env.util.js";
 import express from "express";
-import __dirname from "./utils.js";
-
-//Server Setup
-import dbConnection from "./src/utils/dbConnection.util.js";
-const server = express();
-const port = 8080;
-const ready = () => {console.log("Server ready on port " + port); dbConnection()};
-server.listen(port, ready)
-
-//Middlewares
+import __dirname from "./dirname.js";
+import cors from 'cors'
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
-import session from "express-session";
-import MongoStore from "connect-mongo";
+import { engine } from "express-handlebars";
+import dbConnection from "./src/utils/dbConnection.util.js";
+import indexRouter from "./src/routers/index.router.js";
+import errorHandler from "./src/middlewares/errorHandler.mid.js";
+import pathHandler from "./src/middlewares/pathHandler.mid.js";
+import setLocals from "./src/middlewares/locals.mid.js";
+import compression from "express-compression";
+import winston from "./src/middlewares/winston.mid.js";
+
+const server = express();
+const port = enviroment.PORT;
+const ready = () => { console.log("Server ready on port " + port); dbConnection() };
+server.listen(port, ready)
 
 server.use(express.json());
 server.use(express.static(__dirname + "/public"));
 server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
-server.use(cookieParser(process.env.SESSION_KEY));
+server.use(cookieParser(enviroment.SESSION_KEY));
+server.use(cors({ origin: true, credentials: true }));
 server.use(
-  session({
-    store: new MongoStore({ mongoUrl: process.env.MONGO_URI, ttl: 60 * 60 }),
-    secret: process.env.SESSION_KEY, 
-    resave: true,
-    saveUninitialized: true,
-    cookie: { maxAge: 60 * 60 * 1000 * 2 }, //2 Hours
+  compression({
+    brotli: { enabled: true, zlib: {} },
   })
 );
-//Middleware to make session available to all reqs. Used for handlebars.
-server.use(function (req, res, next) {
-  res.locals.session = req.session;
-  res.locals.dirname = __dirname;
-  next();
-});
+server.use(winston)
+
+//Middleware to make online status, name and photo available to all reqs via storing it in res.locals
+//Used for handlebars, so that there is no need to explicitly pass these parameters to res.render every time
+//More data can be added in res.locals if needed
+server.use(setLocals);
 
 //Handlebars
-import { engine } from "express-handlebars";
 server.engine("handlebars", engine({
   partialsDir: __dirname + "/src/views/partials"
 }))
@@ -45,11 +44,20 @@ server.set("view engine", "handlebars")
 server.set("views", __dirname + "/src/views");
 
 //Routes;
-import indexRouter from "./src/routers/index.router.js";
 server.use("/", indexRouter);
 
 //Route Middlewares
-import errorHandler from "./src/middlewares/errorHandler.mid.js";
-import pathHandler from "./src/middlewares/pathHandler.mid.js";
 server.use(errorHandler);
 server.use(pathHandler);
+
+/*
+server.use(
+  session({
+    store: new MongoStore({ mongoUrl: enviroment.MONGO_URI, ttl: 60 * 60 }),
+    secret: enviroment.SESSION_KEY, 
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 * 2 }, //2 Hours
+  })
+);
+*/

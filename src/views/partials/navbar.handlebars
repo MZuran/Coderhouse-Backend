@@ -24,9 +24,9 @@
     </ul>
 
     <div class="d-flex flex-row centered-content">
-       {{#if session.online}}<p>Welcome back {{session.name}}</p>{{/if}}
+       {{#if localUser.online}}<p>Welcome back {{localUser.name}}</p>{{/if}}
        <ul class='navbar-nav mr-auto'>
-        {{#if session.online}}
+        {{#if localUser.online}}
         <li class='nav-item margin-1-rem'> {{>logout-button}} </li> 
         {{else}}
         <li class='nav-item margin-1-rem'> {{>login-navbar-modal-button}} </li> 

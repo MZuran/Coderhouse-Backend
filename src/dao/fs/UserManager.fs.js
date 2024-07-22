@@ -4,7 +4,7 @@ import crypto from "crypto";
 class UserManager {
   static #users = [];
   constructor() {
-    this.path = "./src/data/fs/files/users.json";
+    this.path = "./src/dao/fs/files/users.json";
     this.init();
   }
 

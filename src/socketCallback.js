@@ -1,5 +1,5 @@
-import { fruitManager } from "./data/fs/ProductsManager.fs.js";
-import { userManagerInstance } from "./data/fs/UserManager.fs.js";
+import { fruitManager } from "./dao/fs/ProductsManager.fs.js";
+import { userManagerInstance } from "./dao/fs/UserManager.fs.js";
 
 export async function socketCallback(socket) {
     console.log("A client has connected!");

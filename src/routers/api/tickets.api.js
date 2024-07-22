@@ -1,23 +1,9 @@
 import CustomRouter from "../customRouter.js";
-import cartsManager from "../../data/mongo/managers/cartsManager.mongo.js";
+import { cartTotal } from "../../controllers/tickets.controller.js";
 
 class ticketsRouterClass extends CustomRouter {
     init() {
         this.read("/", ["USER", "ADMIN"], cartTotal);
-    }
-}
-
-async function cartTotal(req, res, next) {
-    try {
-        const list = await cartsManager.read({user_id: req.session.user_id});
-        let total = 0
-        list.forEach(element => {
-            total =+ element.product_id.price * element.quantity
-        });
-
-        return res.response200(total)
-    } catch (error) {
-        next(error)
     }
 }
 

@@ -1,5 +1,4 @@
-import { Router } from "express";
-import userManagerMongo from "../../data/mongo/managers/userManager.mongo.js";
+import { verifyToken } from "../../utils/token.util.js";
 import CustomRouter from "../customRouter.js";
 
 class usersViewRouterClass extends CustomRouter{
@@ -15,8 +14,8 @@ export default usersViewRouter.getRouter()
 
 async function usersView(req, res, next) {
     try {
-        const user = req.session
-        console.log(user)
+        let user
+        req.cookies['token'] ? user = verifyToken(req.cookies['token']) : user = null
         return res.render("users", { title: "Users", user });
     } catch (error) {
         next(error)
