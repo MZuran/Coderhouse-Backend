@@ -61,8 +61,30 @@ class SessionsController {
             return next(error);
         }
     }
+// tarea sprint 12 revisar que este ok
+    async sendPasswordResetEmail(req, res, next) {
+        try {
+            const { email } = req.body;
+            // Code to send password reset email
+            return res.response200({ message: "Password reset email sent!" });
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async updatePassword(req, res, next) {
+        try {
+            const { email, password } = req.body;
+            // Code to update password
+            return res.response200({ message: "Password updated!" });
+        } catch (error) {
+            return next(error);
+        }
+    }
+// fin tarea sprint 12
+
 }
 
 const sessionsController = new SessionsController();
-const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback } = sessionsController;
-export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback };
+const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail } = sessionsController;
+export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail };
