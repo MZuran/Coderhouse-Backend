@@ -2,7 +2,7 @@ import __dirname from '../../utils.js';
 
 const options = {
     definition: {
-        openapi: "1.0.0",
+        openapi: "3.1.0",
         info: { 
             title: "Express API with Swagger",
             description: "Documentation of Green Groceries API" },
