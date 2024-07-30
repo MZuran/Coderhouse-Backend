@@ -1,4 +1,4 @@
-import __dirname from '../utils/path.util.js';
+import __dirname from '../../utils.js';
 
 const options = {
     definition: {
