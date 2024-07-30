@@ -9,3 +9,5 @@ const options = {
     },
     apis: [`${__dirname} + "/src/docs/*.yaml"`],
 };
+
+export default options;
