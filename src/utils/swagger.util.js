@@ -4,7 +4,7 @@ const options = {
     definition: {
         openapi: "3.1.0",
         info: { 
-            title: "Express API with Swagger",
+            title: "Green Groceries API",
             description: "Documentation of Green Groceries API" },
     },
     apis: [`${__dirname} + "/src/docs/*.yaml"`],
