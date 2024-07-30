@@ -11,13 +11,13 @@ import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
 import setLocals from "./src/middlewares/locals.mid.js";
 import compression from "express-compression";
-import swaggerOptions from "./src/config/swagger.js";
+import swaggerOptions from "./src/utils/swagger.util.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import { serve, setup } from "swagger-ui-express";
 import winston from "./src/middlewares/winston.mid.js";
-import config from "./src/utils/swagger.util.js";
 
-const specs = swaggerJSDoc(configs);
+
+const specs = swaggerJSDoc(swaggerOptions);
 const server = express();
 const port = enviroment.PORT;
 const ready = () => { console.log("Server ready on port " + port); dbConnection() };
