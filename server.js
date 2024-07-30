@@ -17,7 +17,7 @@ import { serve, setup } from "swagger-ui-express";
 import winston from "./src/middlewares/winston.mid.js";
 import config from "./src/utils/swagger.util.js";
 
-const specs = swaggerJSDoc(swaggerOptions);
+const specs = swaggerJSDoc(configs);
 const server = express();
 const port = enviroment.PORT;
 const ready = () => { console.log("Server ready on port " + port); dbConnection() };
