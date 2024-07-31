@@ -18,6 +18,7 @@ import winston from "./src/middlewares/winston.mid.js";
 
 
 const specs = swaggerJSDoc(swaggerOptions);
+console.log(swaggerOptions);
 const server = express();
 const port = enviroment.PORT;
 const ready = () => { console.log("Server ready on port " + port); dbConnection() };
@@ -55,15 +56,3 @@ server.use("/", indexRouter);
 //Route Middlewares
 server.use(errorHandler);
 server.use(pathHandler);
-
-/*
-server.use(
-  session({
-    store: new MongoStore({ mongoUrl: enviroment.MONGO_URI, ttl: 60 * 60 }),
-    secret: enviroment.SESSION_KEY, 
-    resave: true,
-    saveUninitialized: true,
-    cookie: { maxAge: 60 * 60 * 1000 * 2 }, //2 Hours
-  })
-);
-*/

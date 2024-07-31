@@ -1,0 +1,26 @@
+components:
+  schemas: 
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre del usuario que quiere registrarse
+        photo:
+          type: string
+          description: URL de la foto que el usuario usará como perfil
+        email:
+          type: string
+          description: Email del usuario que quiere registrarse
+        password:
+          type: string
+          description: Contraseña del usuario que quiere registrarse
+        role:
+          type: number
+          description: Para definir los permisos según el rol
+      example:
+        name: Victoria Navarro
+        photo: https://www.mifoto.com/vic.png
+        email: vic@greengroceries.com
+        password: hola1234
+        role: 0
