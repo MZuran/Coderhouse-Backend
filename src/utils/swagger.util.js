@@ -13,7 +13,7 @@ const options = {
             description: "Documentation of Green Groceries API"
         },
     },
-    apis: [path.join(__dirname, "..\\docs\\users.doc.yaml")], // Ajusta la ruta según la ubicación real de tus archivos YAML
+    apis: [path.join(__dirname, "..\\docs\\users.doc.yaml")],
     debug: {
         dirName: __dirname
     }
