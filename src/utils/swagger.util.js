@@ -13,7 +13,7 @@ const options = {
             description: "Documentation of Green Groceries API"
         },
     },
-    apis: [path.join(__dirname, "..\\docs\\users.doc.yaml")],
+    apis: [path.join(__dirname, "..\\docs\\users.doc.yaml"), path.join(__dirname, "..\\docs\\product.doc.yaml")],
     debug: {
         dirName: __dirname
     }
