@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: greengroceries
+spec:
+  selector:
+    app: app
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greengroceries
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: greengroceries
+  template:
+    metadata:
+      labels:
+        app: greengroceries
+    spec:
+      containers:
+      - name: app
+        image: vicnav/greengroceries:1.0.0
+        ports:
+          - containerPort: 8080
+        imagePullPolicy: Always

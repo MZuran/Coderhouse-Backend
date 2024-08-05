@@ -11,8 +11,14 @@ import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
 import setLocals from "./src/middlewares/locals.mid.js";
 import compression from "express-compression";
+import swaggerOptions from "./src/utils/swagger.util.js";
+import swaggerJSDoc from "swagger-jsdoc";
+import { serve, setup } from "swagger-ui-express";
 import winston from "./src/middlewares/winston.mid.js";
 
+
+const specs = swaggerJSDoc(swaggerOptions);
+console.log(swaggerOptions);
 const server = express();
 const port = enviroment.PORT;
 const ready = () => { console.log("Server ready on port " + port); dbConnection() };
@@ -24,6 +30,7 @@ server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
 server.use(cookieParser(enviroment.SESSION_KEY));
 server.use(cors({ origin: true, credentials: true }));
+server.use("/api/docs", serve, setup(specs));
 server.use(
   compression({
     brotli: { enabled: true, zlib: {} },
@@ -49,15 +56,3 @@ server.use("/", indexRouter);
 //Route Middlewares
 server.use(errorHandler);
 server.use(pathHandler);
-
-/*
-server.use(
-  session({
-    store: new MongoStore({ mongoUrl: enviroment.MONGO_URI, ttl: 60 * 60 }),
-    secret: enviroment.SESSION_KEY, 
-    resave: true,
-    saveUninitialized: true,
-    cookie: { maxAge: 60 * 60 * 1000 * 2 }, //2 Hours
-  })
-);
-*/
