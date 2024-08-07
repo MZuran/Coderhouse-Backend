@@ -1,2 +1,14 @@
 [33mERROR[39m: POST / 401 - 11:32:56 - Bad Auth
 [33mERROR[39m: GET /real 401 - 20:39:40 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:37:29 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:38:21 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:39:00 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:46:06 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:47:45 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:49:20 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:49:57 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:50:48 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:52:21 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:54:27 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:55:44 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 21:56:20 - Bad Auth
