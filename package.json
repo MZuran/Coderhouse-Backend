@@ -7,7 +7,8 @@
     "users": "node ./src/mocks/users.mock.js",
     "mocha": "mocha ./test/mocha",
     "chai": "mocha ./test/chai",
-    "supertest": "mocha ./test/superTest"
+    "supertest": "mocha ./test/superTest",
+    "productUpdatingTest": "mocha ./test/assign"
   },
   "name": "coderhouse-backend",
   "description": "",

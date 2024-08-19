@@ -12,3 +12,214 @@
 [33mERROR[39m: POST /signout 401 - 21:54:27 - Bad Auth
 [33mERROR[39m: POST /signout 401 - 21:55:44 - Bad Auth
 [33mERROR[39m: POST /signout 401 - 21:56:20 - Bad Auth
+[33mERROR[39m: POST /api/sessions/login 401 - 8:59:15 - Invalid Credentials
+[33mERROR[39m: POST /api/sessions/login undefined - 8:59:50 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 9:00:19 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 9:01:03 - undefined
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 9:32:38 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 9:32:55 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 9:34:56 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 9:35:07 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 9:35:11 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 9:35:13 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 9:35:40 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 9:36:09 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: GET /api/tickets/ undefined - 9:36:51 - Cannot read properties of undefined (reading 'user_id')
+[33mERROR[39m: GET /api/tickets/ undefined - 9:37:39 - Cannot read properties of undefined (reading 'user_id')
+[33mERROR[39m: GET /api/tickets/ undefined - 9:38:19 - Cannot read properties of undefined (reading 'user_id')
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 9:40:12 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 15:44:01 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail/ undefined - 15:44:58 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail/ undefined - 15:45:53 - Cast to ObjectId failed for value "updateByEmail" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail/ undefined - 15:47:04 - one is not defined
+[33mERROR[39m: PUT /api/users/update undefined - 15:47:32 - Cast to ObjectId failed for value "update" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /updateByEmail 401 - 15:50:02 - Bad Auth
+[33mERROR[39m: PUT /updateByEmail 401 - 15:50:03 - Bad Auth
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 15:50:10 - Cast to ObjectId failed for value "user@user.com" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 15:50:18 - Cast to ObjectId failed for value "user@user.com" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 15:50:53 - Cast to ObjectId failed for value "user@user.com" (type string) at path "_id" for model "users"
+[33mERROR[39m: PUT /api/users/updateByEmail undefined - 15:52:51 - Parameter "filter" to find() must be an object, got "user@user.com" (type string)
+[33mERROR[39m: POST /api/sessions/register undefined - 16:10:55 - undefined
+[33mERROR[39m: GET /api/products/get undefined - 16:16:02 - Cast to ObjectId failed for value "get" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /online 401 - 16:29:50 - Bad Auth
+[33mERROR[39m: GET /online 401 - 16:29:52 - Bad Auth
+[33mERROR[39m: GET /online 401 - 16:30:36 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 16:30:48 - Bad Auth
+[33mERROR[39m: PUT /updateByEmail 401 - 16:31:15 - Bad Auth
+[33mERROR[39m: GET /api/sessions/online undefined - 16:31:45 - jwt must be provided
+[33mERROR[39m: PUT /662fa852544e3f48527f06bc 401 - 17:28:28 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bc 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bd 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06be 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c0 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c1 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c4 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c7 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cc 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ce 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bf 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c6 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c8 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c2 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c5 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ca 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cd 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cf 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06d0 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c9 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cb 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /6645fad1016ef3881ba75438 401 - 17:28:55 - Bad Auth
+[33mERROR[39m: PUT /api/products/662fa852544e3f48527f06bc 400 - 17:29:52 - Unexpected string in JSON at position 23
+[33mERROR[39m: PUT /api/products/662fa852544e3f48527f06bc undefined - 17:34:22 - Cast to ObjectId failed for value "1" (type string) at path "supplier_id" because of "BSONError"
+[33mERROR[39m: PUT /api/products/662fa852544e3f48527f06bc undefined - 17:34:25 - Cast to ObjectId failed for value "1" (type string) at path "supplier_id" because of "BSONError"
+[33mERROR[39m: PUT /api/products/662fa852544e3f48527f06bc undefined - 17:34:37 - Cast to ObjectId failed for value "1" (type number) at path "supplier_id" because of "BSONError"
+[33mERROR[39m: PUT /662fa852544e3f48527f06bc 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bd 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06be 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c0 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c1 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c4 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c7 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cc 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ce 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bf 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c6 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c8 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c2 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c5 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ca 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cd 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cf 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06d0 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c9 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cb 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /6645fad1016ef3881ba75438 401 - 17:34:49 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bc 401 - 17:37:30 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bd 401 - 17:37:30 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06be 401 - 17:37:30 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c0 401 - 17:37:30 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c1 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c4 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c7 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cc 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ce 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bf 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c6 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c8 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c2 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c5 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ca 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cd 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cf 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06d0 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c9 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cb 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /6645fad1016ef3881ba75438 401 - 17:37:31 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bc 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bd 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06be 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c0 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c1 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c4 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c7 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cc 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ce 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bf 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c6 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c8 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c2 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c5 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ca 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cd 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cf 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06d0 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c9 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cb 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /6645fad1016ef3881ba75438 401 - 17:38:06 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bc 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bd 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06be 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c0 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c1 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c4 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c7 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cc 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ce 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bf 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c6 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c8 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c2 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c5 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ca 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cd 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cf 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06d0 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c9 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cb 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /6645fad1016ef3881ba75438 401 - 17:38:36 - Bad Auth
+[33mERROR[39m: PUT /api/products/662fa852544e3f48527f06bc undefined - 17:39:53 - Cast to ObjectId failed for value "1" (type number) at path "supplier_id" because of "BSONError"
+[33mERROR[39m: PUT /662fa852544e3f48527f06bc 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bd 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06be 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c0 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c1 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c4 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c7 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cc 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ce 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bf 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c6 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c8 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c2 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c5 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ca 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cd 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cf 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06d0 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c9 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cb 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /6645fad1016ef3881ba75438 401 - 17:41:43 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bc 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bd 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06be 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c0 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c1 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c4 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c7 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cc 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ce 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06bf 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c6 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c8 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c2 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c5 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06ca 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cd 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cf 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06d0 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c9 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06cb 401 - 17:42:48 - Bad Auth
+[33mERROR[39m: PUT /6645fad1016ef3881ba75438 401 - 17:42:49 - Bad Auth
+[33mERROR[39m: GET / 401 - 8:22:12 - Bad Auth
+[33mERROR[39m: GET /me 401 - 10:20:21 - Bad Auth
+[33mERROR[39m: GET /api/products/me undefined - 10:26:22 - Parameter "filter" to find() must be an object, got "66c247a30218e4dd797ae7df" (type string)
+[33mERROR[39m: GET /api/products/me undefined - 10:26:24 - Parameter "filter" to find() must be an object, got "66c247a30218e4dd797ae7df" (type string)
+[33mERROR[39m: GET /api/products/ 404 - 10:39:44 - No matching Products
+[33mERROR[39m: GET /api/products/ 404 - 10:39:46 - No matching Products
+[33mERROR[39m: GET /api/products/ 404 - 10:45:49 - No matching Products
+[33mERROR[39m: GET /api/products/ 404 - 10:45:50 - No matching Products
+[33mERROR[39m: GET /api/products/ undefined - 10:47:12 - Cast to ObjectId failed for value "false" (type boolean) at path "supplier_id" for model "products"
+[33mERROR[39m: GET /api/products/ undefined - 10:47:14 - Cast to ObjectId failed for value "false" (type boolean) at path "supplier_id" for model "products"
+[33mERROR[39m: GET /api/products/ 404 - 10:48:07 - No matching Products
+[33mERROR[39m: GET /api/products/ 404 - 10:48:08 - No matching Products
+[33mERROR[39m: GET /api/products/ 404 - 10:48:14 - No matching Products
+[33mERROR[39m: GET /api/products/ 404 - 10:48:27 - No matching Products
+[33mERROR[39m: GET /api/products/fruit undefined - 10:49:14 - Cast to ObjectId failed for value "fruit" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /api/products/fruit undefined - 10:49:16 - Cast to ObjectId failed for value "fruit" (type string) at path "_id" for model "products"

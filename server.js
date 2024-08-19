@@ -18,7 +18,7 @@ import winston from "./src/middlewares/winston.mid.js";
 
 
 const specs = swaggerJSDoc(swaggerOptions);
-console.log(swaggerOptions);
+//console.log(swaggerOptions);
 const server = express();
 const port = enviroment.PORT;
 const ready = () => { console.log("Server ready on port " + port); dbConnection() };

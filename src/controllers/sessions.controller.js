@@ -1,6 +1,8 @@
 import { createToken, verifyToken } from "../utils/token.util.js";
 import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
 
+
+
 class SessionsController {
     async readSessions(req, res, next) {
         try {
@@ -36,7 +38,6 @@ class SessionsController {
         try {
             return res.json({
                 statusCode: 100,
-                message: "Testing",
                 token: verifyToken(req.cookies['token'])
             });
         } catch (error) {
@@ -81,8 +82,21 @@ class SessionsController {
             return next(error);
         }
     }
-// fin tarea sprint 12
 
+    async update(req, res, next) {
+        try {
+            const { title, photo, category, price, stock } = req.body;
+            const { pid } = req.params;
+            const updatedProduct = await updateService(pid, { title, photo, category, price, stock });
+    
+            res.status(200).json({
+                message: "Product updated successfully",
+                product: updatedProduct,
+            });
+        }catch(error){
+            next(error)
+        }
+    }
 }
 
 const sessionsController = new SessionsController();
