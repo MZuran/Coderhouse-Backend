@@ -3,7 +3,7 @@ import { cartTotal } from "../../controllers/tickets.controller.js";
 
 class ticketsRouterClass extends CustomRouter {
     init() {
-        this.read("/", ["USER", "ADMIN"], cartTotal);
+        this.read("/", ["USER", "ADMIN"], cartTotal); 
     }
 }
 

@@ -16,7 +16,12 @@ const productSchema = new Schema({
         required: true
     },
     price: {type: Number, required: true},
-    stock: {type: Number, required: true}
+    stock: {type: Number, required: true},
+    supplier_id: {
+        type: Schema.Types.ObjectId,
+        ref: "users", // Name of the model you're referencing
+        required: true
+    }
 })
 
 productSchema.plugin(mongoosePaginate);

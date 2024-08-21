@@ -1,6 +1,8 @@
 import { createToken, verifyToken } from "../utils/token.util.js";
 import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
 
+
+
 class SessionsController {
     async readSessions(req, res, next) {
         try {
@@ -36,7 +38,6 @@ class SessionsController {
         try {
             return res.json({
                 statusCode: 100,
-                message: "Testing",
                 token: verifyToken(req.cookies['token'])
             });
         } catch (error) {
@@ -61,8 +62,43 @@ class SessionsController {
             return next(error);
         }
     }
+// tarea sprint 12 revisar que este ok
+    async sendPasswordResetEmail(req, res, next) {
+        try {
+            const { email } = req.body;
+            // Code to send password reset email
+            return res.response200({ message: "Password reset email sent!" });
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async updatePassword(req, res, next) {
+        try {
+            const { email, password } = req.body;
+            // Code to update password
+            return res.response200({ message: "Password updated!" });
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async update(req, res, next) {
+        try {
+            const { title, photo, category, price, stock } = req.body;
+            const { pid } = req.params;
+            const updatedProduct = await updateService(pid, { title, photo, category, price, stock });
+    
+            res.status(200).json({
+                message: "Product updated successfully",
+                product: updatedProduct,
+            });
+        }catch(error){
+            next(error)
+        }
+    }
 }
 
 const sessionsController = new SessionsController();
-const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback } = sessionsController;
-export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback };
+const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail } = sessionsController;
+export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail };

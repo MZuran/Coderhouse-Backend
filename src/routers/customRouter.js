@@ -44,8 +44,8 @@ class CustomRouter {
 
     /*-----------Responses-----------*/
     response = (req, res, next) => {
-        res.response200 = (response) => { res.json({ statuscode: 200, response }) }
-        res.paginate = (response, info) => { res.json({ statuscode: 200, response, info }) }
+        res.response200 = (response) => { res.json({ statusCode: 200, response }) }
+        res.paginate = (response, info) => { res.json({ statusCode: 200, response, info }) }
         res.message201 = (message) => res.json({ statusCode: 201, message });
         res.error400 = (message) => winstonErrorMessage(req, res, { statusCode: 400, message });
         res.error401 = () => winstonErrorMessage(req, res, { statusCode: 401, message: "Bad Auth" });
@@ -60,15 +60,17 @@ class CustomRouter {
         if (policies.includes('PUBLIC')) return next()
 
         let token = req.cookies['token']
+        //console.log(req.cookies['token'])
         if (!token) return res.error401()
 
         try {
             const { role, email } = verifyToken(token)
-            console.log("The role is", role)
-            console.log("The policies are", policies)
+            //console.log("The role is", role)
+           // console.log("The policies are", policies)
             if (
                 policies.includes('USER') && role === 0 ||
-                policies.includes('ADMIN') && role === 1
+                policies.includes('ADMIN') && role === 1 ||
+                policies.includes('PREM') && role === 2
                 //Add more here if needed
             ) {
                 const user = await userManagerMongo.readByEmail(email)

@@ -3,8 +3,8 @@ import ProductsDTO from "../dto/products.dto.js";
 const { products } = dao;
 
 class ProductsRepository {
-    constructor(manager) {
-      this.model = manager;
+    constructor() {
+      this.model = products;
     }
     createRepository = async (data) => {
       try {
@@ -57,5 +57,5 @@ class ProductsRepository {
     };
   }
   
-const productsRepository = new ProductsRepository(products);
+const productsRepository = new ProductsRepository();
 export default productsRepository;

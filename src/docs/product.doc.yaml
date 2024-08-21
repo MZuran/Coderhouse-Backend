@@ -1,0 +1,285 @@
+openapi: 3.0.0
+info:
+  title: API de Productos
+  version: 1.0.0
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Título del producto
+        photo:
+          type: string
+          description: URL de la foto del producto
+        category:
+          type: string
+          description: Categoría del producto (fruit o vegetable)
+          enum:
+            - fruit
+            - vegetable
+        price:
+          type: number
+          format: float
+          description: Precio del producto
+        stock:
+          type: integer
+          description: Cantidad de stock disponible del producto
+      example:
+        title: Manzana
+        photo: https://example.com/apple.jpg
+        category: fruit
+        price: 1.99
+        stock: 100
+    Message201:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al éxito en la creación
+        message:
+          type: string
+          description: Texto descriptivo con el éxito en la creación
+      example:
+        statusCode: 201
+        message: Product created successfully!
+    Message200:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al éxito en la solicitud
+        message:
+          type: string
+          description: Texto descriptivo con el éxito en la solicitud
+      example:
+        statusCode: 200
+        message: Product deleted successfully!
+    Response200all:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al éxito en la solicitud devolviendo datos
+        response:
+          type: array
+          description: Array de objetos del recurso solicitado
+      example:
+        statusCode: 200
+        response:
+          - title: Manzana
+            photo: https://example.com/apple.jpg
+            category: fruit
+            price: 1.99
+            stock: 100
+          - title: Zanahoria
+            photo: https://example.com/carrot.jpg
+            category: vegetable
+            price: 0.99
+            stock: 150
+    Error400:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al fracaso por problemas del cliente
+        message:
+          type: string
+          description: Texto descriptivo con mensaje de error por parte del cliente
+      example:
+        statusCode: 400
+        message: Missing required fields
+    Error404:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al fracaso por no encontrar el recurso
+        message:
+          type: string
+          description: Texto descriptivo con mensaje de error de no encontrado el recurso
+      example:
+        statusCode: 404
+        message: No matching Products
+    Error500:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al fracaso por error fatal en el servidor
+        message:
+          type: string
+          description: Texto descriptivo con mensaje de error por parte del servidor
+      example:
+        statusCode: 500
+        message: Server error
+paths:
+  /api/products:
+    post:
+      summary: Crea un nuevo producto
+      tags:
+        - Product
+      requestBody:
+        required: true
+        description: Datos para crear un nuevo producto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        201:
+          description: Éxito en la creación del producto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message201'
+        400:
+          description: Error por datos incompletos o mal pasados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+    get:
+      summary: Obtiene todos los productos (opcionalmente filtrados por categoría)
+      tags:
+        - Product
+      parameters:
+        - name: category
+          in: query
+          description: Filtro por categoría de producto (fruit o vegetable)
+          required: false
+          schema:
+            type: string
+            enum:
+              - fruit
+              - vegetable
+      responses:
+        200:
+          description: Éxito en la obtención de los productos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200all'
+        404:
+          description: No se encontraron productos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/products/{pid}:
+    get:
+      summary: Obtiene un producto por su ID
+      tags:
+        - Product
+      parameters:
+        - name: pid
+          in: path
+          description: ID del producto
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Éxito en la obtención del producto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+    put:
+      summary: Actualiza un producto por su ID
+      tags:
+        - Product
+      parameters:
+        - name: pid
+          in: path
+          description: ID del producto
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Datos para actualizar un producto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        200:
+          description: Producto actualizado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+    delete:
+      summary: Elimina un producto por su ID
+      tags:
+        - Product
+      parameters:
+        - name: pid
+          in: path
+          description: ID del producto
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Producto eliminado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        404:
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
