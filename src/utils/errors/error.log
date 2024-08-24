@@ -223,3 +223,36 @@
 [33mERROR[39m: GET /api/products/ 404 - 10:48:27 - No matching Products
 [33mERROR[39m: GET /api/products/fruit undefined - 10:49:14 - Cast to ObjectId failed for value "fruit" (type string) at path "_id" for model "products"
 [33mERROR[39m: GET /api/products/fruit undefined - 10:49:16 - Cast to ObjectId failed for value "fruit" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products undefined - 11:19:32 - callback.apply is not a function
+[33mERROR[39m: GET /products/products/?page=2 undefined - 11:23:48 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/products/?page=2 undefined - 11:23:52 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/products?page=2 undefined - 11:24:15 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/products?page=2 undefined - 11:24:16 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/products?page=2 undefined - 11:24:17 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/products?page=2 undefined - 11:24:34 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/products undefined - 11:25:04 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET / undefined - 11:35:46 - Missing helper: "eq"
+[33mERROR[39m: GET / undefined - 11:35:48 - Missing helper: "eq"
+[33mERROR[39m: GET /products/real undefined - 11:43:02 - Cast to ObjectId failed for value "real" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/real undefined - 11:43:06 - Cast to ObjectId failed for value "real" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/real undefined - 11:43:06 - Cast to ObjectId failed for value "real" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /new 401 - 11:43:12 - Bad Auth
+[33mERROR[39m: GET /new 401 - 11:43:14 - Bad Auth
+[33mERROR[39m: GET /new 401 - 11:45:05 - Bad Auth
+[33mERROR[39m: GET / undefined - 13:01:54 - verifyToken is not defined
+[33mERROR[39m: GET / undefined - 13:06:29 - Cannot destructure property 'role' of 'getTokenFromReq(...)' as it is null.
+[33mERROR[39m: GET / undefined - 13:06:42 - Cannot destructure property 'role' of 'getTokenFromReq(...)' as it is undefined.
+[33mERROR[39m: GET / undefined - 13:06:43 - Cannot destructure property 'role' of 'getTokenFromReq(...)' as it is undefined.
+[33mERROR[39m: GET / undefined - 13:12:22 - Cannot read properties of undefined (reading 'paginate')
+[33mERROR[39m: GET /products/products?page=2 undefined - 13:20:24 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/products?page=2 undefined - 13:20:31 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/products?page=2 undefined - 16:44:57 - Cast to ObjectId failed for value "products" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products undefined - 16:45:01 - Cannot read properties of undefined (reading 'originalUrl')
+[33mERROR[39m: GET /products/ME undefined - 16:45:04 - Cannot read properties of undefined (reading 'originalUrl')
+[33mERROR[39m: GET /products/ME undefined - 16:45:07 - Cannot read properties of undefined (reading 'originalUrl')
+[33mERROR[39m: GET /products/edit/662fa852544e3f48527f06d0 undefined - 18:58:04 - Missing helper: "equals"
+[33mERROR[39m: GET /products/edit/662fa852544e3f48527f06d0 undefined - 18:58:05 - Missing helper: "equals"
+[33mERROR[39m: GET /products/edit/662fa852544e3f48527f06d0 undefined - 18:58:06 - Missing helper: "equals"
+[33mERROR[39m: GET /products/edit/662fa852544e3f48527f06d0 undefined - 18:58:52 - #if requires exactly one argument
+[33mERROR[39m: GET /products/edit/662fa852544e3f48527f06d0 undefined - 18:58:53 - #if requires exactly one argument
+[33mERROR[39m: GET /products/edit/662fa852544e3f48527f06d0 undefined - 18:58:54 - #if requires exactly one argument

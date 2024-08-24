@@ -3,7 +3,7 @@ import productsViewRouter from "./products.view.js";
 import cartsViewRouter from "./carts.view.js";
 import usersViewRouter from "./users.view.js";
 import CustomRouter from "../customRouter.js";
-import { productsView } from "./products.view.js";
+import productsView from "./products.view.js";
 
 class viewsRouterClass extends CustomRouter{
     init() {

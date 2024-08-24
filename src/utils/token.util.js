@@ -12,4 +12,13 @@ const verifyToken = (token) => {
   return data;
 };
 
-export { createToken, verifyToken };
+const getTokenFromReq = (req) => {
+  let token = req.cookies['token']
+  if (token) {
+    return verifyToken(token)
+  } else {
+    return {}
+  }
+}
+
+export { createToken, verifyToken, getTokenFromReq };

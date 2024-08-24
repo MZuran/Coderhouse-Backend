@@ -1,0 +1,41 @@
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="text-center">Edit Product Information</h3>
+            <form>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{default.title}}">
+                </div>
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Photo URL</label>
+                    <input type="text" class="form-control" id="photo" name="photo" value="{{default.photo}}">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{default.price}}">
+                </div>
+                <div class="mb-3">
+                    <label for="stock" class="form-label">Stock</label>
+                    <input type="number" class="form-control" id="stock" name="stock" value="{{default.stock}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" id="category" name="category">
+                        <option value="fruit" {{#ifEquals default.category "fruit"}} selected{{/ifEquals}}>Fruit</option>
+                        <option value="vegetable" {{#ifEquals default.category "vegetable"}} selected{{/ifEquals}}>Vegetable</option>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <button onclick="submitEdit()" class="btn btn-primary">Save Product</button>
+                    <button onclick="deleteProduct('{{default._id}}')" class="btn btn-danger" id="delete-product">Delete Product</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/scripts/editForm.js"></script>

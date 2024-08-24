@@ -6,7 +6,9 @@ function setLocals(req, res, next) {
         res.locals.localUser = {
             online: true,
             name: token.name,
-            photo: token.photo
+            photo: token.photo,
+            role: token.role,
+            _id: token._id
         }
     } else {
         res.locals.localUser = {

@@ -44,11 +44,27 @@ server.use(winston)
 server.use(setLocals);
 
 //Handlebars
+import Handlebars from "handlebars";
+
+Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
+Handlebars.registerHelper('ifIn', function(value, options) {
+  // The options.hash.values should be an array of values to check against
+  const values = options.hash.values || [];
+  return values.includes(value) ? options.fn(this) : options.inverse(this);
+});
+
 server.engine("handlebars", engine({
   partialsDir: __dirname + "/src/views/partials"
 }))
+
 server.set("view engine", "handlebars")
+
 server.set("views", __dirname + "/src/views");
+
+
 
 //Routes;
 server.use("/", indexRouter);

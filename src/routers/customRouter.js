@@ -70,7 +70,7 @@ class CustomRouter {
             if (
                 policies.includes('USER') && role === 0 ||
                 policies.includes('ADMIN') && role === 1 ||
-                policies.includes('PREM') && role === 2
+                policies.includes('PREM') && role === 2 
                 //Add more here if needed
             ) {
                 const user = await userManagerMongo.readByEmail(email)
