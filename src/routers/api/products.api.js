@@ -7,7 +7,7 @@ class ProductsRouterClass extends CustomRouter {
         this.read("/me", ["PREM"], readMe);
         this.read("/:pid", ["PUBLIC"], readOne);
         this.create("/", ["ADMIN"], create);
-        this.update("/:pid", ["ADMIN"], update);
+        this.update("/:pid", ["ADMIN", "PREM"], update);
         this.destroy("/:pid", ["ADMIN"], destroy);
     }
 }

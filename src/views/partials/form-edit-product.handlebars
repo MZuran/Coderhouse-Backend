@@ -27,13 +27,13 @@
                         <option value="vegetable" {{#ifEquals default.category "vegetable"}} selected{{/ifEquals}}>Vegetable</option>
                     </select>
                 </div>
-
-                <div class="text-center">
-                    <button onclick="submitEdit()" class="btn btn-primary">Save Product</button>
-                    <button onclick="deleteProduct('{{default._id}}')" class="btn btn-danger" id="delete-product">Delete Product</button>
-                </div>
-
+                <small class="text-muted mb-2" id="productId">{{default._id}}</small>
             </form>
+
+            <div class="text-center mt-2">
+                <button onclick="submitEdit()" class="btn btn-primary">Save Product</button>
+                <button onclick="deleteProduct('{{default._id}}')" class="btn btn-danger" id="delete-product">Delete Product</button>
+            </div>
         </div>
     </div>
 </div>

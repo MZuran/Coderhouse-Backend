@@ -256,3 +256,9 @@
 [33mERROR[39m: GET /products/edit/662fa852544e3f48527f06d0 undefined - 18:58:52 - #if requires exactly one argument
 [33mERROR[39m: GET /products/edit/662fa852544e3f48527f06d0 undefined - 18:58:53 - #if requires exactly one argument
 [33mERROR[39m: GET /products/edit/662fa852544e3f48527f06d0 undefined - 18:58:54 - #if requires exactly one argument
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 14:16:11 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 14:16:23 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 14:18:21 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 14:23:56 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 14:24:38 - Bad Auth
+[33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 14:25:26 - Bad Auth

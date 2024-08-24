@@ -6,7 +6,7 @@ import {
     destroyService,
 } from "../services/products.service.js";
 
-import { verifyToken } from "../utils/token.util.js";
+import { verifyToken, getTokenFromReq } from "../utils/token.util.js";
 
 class ProductsController {
     init() {
@@ -15,7 +15,7 @@ class ProductsController {
 
     async read(req, res, next) {
         try {
-            const { category } = req.query;            
+            const { category } = req.query;
             let token = req.cookies['token']
             let _id, role, productList
 
@@ -29,14 +29,14 @@ class ProductsController {
 
             console.log(`The token is ${verifyToken(token)}`)
             console.log(`My role is ${role} and my id is ${_id}`)
-            
+
             //If it's a premium user
             if (role && _id && role == 2) {
                 if (category) {
-                    productList = await readService({supplier_id: { $ne: _id }, category: category})
+                    productList = await readService({ supplier_id: { $ne: _id }, category: category })
 
                 } else {
-                    productList = await readService({supplier_id: { $ne: _id }})
+                    productList = await readService({ supplier_id: { $ne: _id } })
 
                 }
             } else {
@@ -64,7 +64,7 @@ class ProductsController {
         try {
             let token = req.cookies['token']
             const { _id } = verifyToken(token)
-            const productList = await readService({supplier_id: _id})
+            const productList = await readService({ supplier_id: _id })
 
             return res.status(200).json({
                 response: productList,
@@ -128,16 +128,38 @@ class ProductsController {
 
     async update(req, res, next) {
         try {
-            const { title, photo, category, price, stock, supplier_id } = req.body;
+            const { _id, role } = getTokenFromReq(req)
             const { pid } = req.params;
-            const updatedProduct = await updateService(pid, { title, photo, category, price, stock, supplier_id });
 
-            console.log(supplier_id)
+            if (role == 1) {
+                //The request comes from an admin
+                const { title, photo, category, price, stock, supplier_id } = req.body;
+                const updatedProduct = await updateService(pid, { title, photo, category, price, stock, supplier_id });
 
-            res.status(200).json({
-                message: "Product updated successfully",
-                product: updatedProduct,
-            });
+                res.status(200).json({
+                    message: "Product updated successfully",
+                    product: updatedProduct,
+                });
+            }
+
+            const originalProduct = await readOneService(pid)
+            //console.log(originalProduct.supplier_id.toString())
+            //console.log(_id)
+            const isOwner = (originalProduct.supplier_id.toString() === _id)
+
+            if (isOwner && role == 2) {
+                //Premium user that owns the product (CANNOT CHANGE SUPPLIER ID)
+                const { title, photo, category, price, stock } = req.body;
+                const updatedProduct = await updateService(pid, { title, photo, category, price, stock });
+
+                res.status(200).json({
+                    message: "Product updated successfully",
+                    product: updatedProduct,
+                });
+            } else {
+                res.error401()
+            }
+
         } catch (error) {
             next(error)
         }
