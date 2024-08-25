@@ -73,7 +73,7 @@ class SessionsController {
                 service: "gmail",
                 auth: {
                     user: "greengroceriesmarket@gmail.com",
-                    pass: "2x1enpapas",
+                    pass: process.env.GOOGLE_PASSWORD,
                 },
             });
             
