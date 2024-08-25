@@ -6,8 +6,6 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth2";
 import dao from "../dao/dao.factory.js";
 
 import { createHash, verifyHash } from "../utils/hash.util.js";
-import { createToken } from "../utils/token.util.js";
-import crypto from "crypto";
 import sendEmail from "../utils/mailing.util.js";
 
 passport.use('register', new LocalStrategy({

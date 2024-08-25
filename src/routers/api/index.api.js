@@ -1,5 +1,4 @@
-import { Router } from "express";
-import cartRouter from "./carts.routers.api.js";
+    import cartRouter from "./carts.api.js";
 import usersRouter from "./users.api.js";
 import productsRouter from "./products.api.js";
 import cookiesRouter from "./cookies.api.js";

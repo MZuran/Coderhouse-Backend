@@ -8,6 +8,7 @@ class indexRouterClass extends CustomRouter{
     init() {
         this.use("/api", apiRouter);
         this.use("/", viewsRouter)
+
         this.create("/api/nodemailer", ["PUBLIC"], async (req, res, next) => {
             try {
                 const { email, name} = req.body;
@@ -17,6 +18,7 @@ class indexRouterClass extends CustomRouter{
                 return next(error);
             }
         })
+        
     }
 }
 

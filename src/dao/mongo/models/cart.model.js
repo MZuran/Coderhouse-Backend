@@ -19,6 +19,7 @@ cartsSchema.pre(['find', 'findOne', 'update'], function() {
   this.lean();
 });
 
+/*
 cartsSchema.pre(['find', 'findOne'], function() {
   this.populate("user_id", "-_id").lean();
 });
@@ -26,7 +27,7 @@ cartsSchema.pre(['find', 'findOne'], function() {
 cartsSchema.pre(['find', 'findOne'], function() {
   this.populate("product_id", "-_id").lean();
 });
-
+*/
 
 const Cart = model(cartCollection, cartsSchema);
 
