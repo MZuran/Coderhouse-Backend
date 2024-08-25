@@ -76,7 +76,6 @@ passport.use('login', new LocalStrategy({
   }
 ));
 
-console.log('GOOGLE_CLIENT_ID:', enviroment);
 passport.use(
   "google",
   new GoogleStrategy(

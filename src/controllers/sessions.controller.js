@@ -1,6 +1,8 @@
+import jwt from 'jsonwebtoken';
 import { createToken, verifyToken } from "../utils/token.util.js";
 import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
 import nodemailer from "nodemailer";
+import bcrypt from 'bcrypt';
 
 class SessionsController {
     async readSessions(req, res, next) {
@@ -62,54 +64,89 @@ class SessionsController {
         }
     }
 // tarea sprint 12 revisar que este ok
-    async sendPasswordResetEmail(req, res, next) {
-        try {
-            const { email } = req.body;
-            // Code to send password reset email
-            // Example code using nodemailer library
-            
-            // Create a transporter
-            const transporter = nodemailer.createTransport({
-                service: "gmail",
-                auth: {
-                    user: "greengroceriesmarket@gmail.com",
-                    pass: process.env.GOOGLE_PASSWORD,
-                },
-            });
-            
-            // Define the email options
-            const mailOptions = {
-                from: "greengroceriesmarket@gmail.com",
-                to: email,
-                subject: "Password Reset",
-                text: "Please click the link to reset your password.",
-                html: "<p>Please click the link to reset your password.</p>",
-            };
-            
-            // Send the email
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    console.log("Error sending email:", error);
-                    return res.response500({ message: "Failed to send password reset email" });
-                } else {
-                    console.log("Email sent:", info.response);
-                    return res.response200({ message: "Password reset email sent!" });
-                }
-            });
-        } catch (error) {
-            return next(error);
+async sendPasswordResetEmail(req, res, next) {
+    try {
+        // Extraer el email del cuerpo de la solicitud
+        const { email } = req.body;
+
+        // Buscar al usuario por su email
+        const user = await userManagerMongo.readByEmail( email );
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' });
         }
+
+        // Generar el token
+        const token = jwt.sign({ email: user.email }, process.env.SECRET_JWT, { expiresIn: '1h' });
+        console.log("Generated token:", token);
+
+        // Crear el enlace de restablecimiento de contraseña
+        const resetLink = `http://localhost:${process.env.PORT}/resetpassword?token=${token}`;
+
+        // Crear un transportador
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "greengroceriesmarket@gmail.com",
+                pass: process.env.GOOGLE_PASSWORD,
+            },
+        });
+
+        // Definir las opciones del correo electrónico
+        const mailOptions = {
+            from: "greengroceriesmarket@gmail.com",
+            to: user.email,
+            subject: "Password Reset",
+            text: `Please click the link to reset your password: ${resetLink}`,
+            html: `<p>Please click the link to reset your password: <a href="${resetLink}">Reset Password</a></p>`,
+        };
+
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log("Error sending email:", error);
+                return res.status(500).json({ message: "Failed to send password reset email" });
+            } else {
+                console.log("Email sent:", info.response);
+                return res.status(200).json({ message: "Password reset email sent!" });
+            }
+        });
+    } catch (error) {
+        console.error("Error in sendPasswordResetEmail:", error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+async updatePassword(req, res, next) {
+    const { token, newPassword } = req.body;
+
+    // Validate the presence of token and newPassword
+    if (!token || !newPassword) {
+        return res.status(400).json({ message: 'Token and new password must be provided' });
     }
 
-    async updatePassword(req, res, next) {
-        try {
-            const { email, password } = req.body;
-            // Code to update password
-            return res.response200({ message: "Password updated!" });
-        } catch (error) {
-            return next(error);
+    try {
+        // Verify the token
+        const decoded = jwt.verify(token, process.env.SECRET_JWT);
+        const email = decoded.email;
+
+        // Find the user by email
+        const user = await userManagerMongo.readByEmail(email);
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid token or user does not exist' });
         }
+
+        // Hash the new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update the user's password
+        user.password = hashedPassword;
+        await userManagerMongo.update(user._id, user);
+
+        res.status(200).json({ message: 'Password has been reset successfully' });
+    } catch (error) {
+        res.status(400).json({ message: 'Invalid or expired token' });
     }
+}
     
 
     async update(req, res, next) {
