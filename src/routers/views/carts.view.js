@@ -4,7 +4,7 @@ import CustomRouter from "../customRouter.js";
 
 class cartsViewRouterClass extends CustomRouter {
     init() {
-        this.read("/:uid", ["USER"], cartsView);
+        this.read("/:uid", ["REGISTERED"], cartsView);
     }
 }
 

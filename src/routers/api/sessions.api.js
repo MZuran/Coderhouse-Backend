@@ -21,8 +21,9 @@ class sessionsRouterClass extends CustomRouter {
     this.create("/register", ["PUBLIC"], validator(usersSchema), passportCb("register"), registerSession);
     this.create("/login", ["PUBLIC"], passportCb("login"), loginSession);
 
-    this.create("/password", ["PUBLIC"], sendPasswordResetEmail);//revisar que este ok
-    this.update("/password", ["USER", "ADMIN", "PREM"], updatePassword); //y que esto tambi
+    this.read("/password", ["PUBLIC"], sendPasswordResetEmail);
+    this.create("/password", ["PUBLIC"], sendPasswordResetEmail);
+    this.create("/reset-password", ["PUBLIC"], updatePassword);
 
     this.read("/online", ["USER", "ADMIN", "PREM"], checkOnlineStatus);//WORKS
 

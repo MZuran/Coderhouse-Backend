@@ -4,8 +4,8 @@ import { productsView, productsViewOne, addProductsForm, productsViewMine, editO
 class productsViewRouterClass extends CustomRouter {
   init() {
     this.read("/", ["PUBLIC"], productsView);
-    this.read("/new", ["PREM"], addProductsForm);
-    this.read("/me", ["PREM"], productsViewMine);
+    this.read("/new", ["PREM", "ADMIN"], addProductsForm);
+    this.read("/me", ["PREM", "ADMIN"], productsViewMine);
     this.read("/:nid", ["PUBLIC"], productsViewOne);
     this.read("/edit/:nid", ["PREM", "ADMIN"], editOneProduct);
   }

@@ -9,7 +9,7 @@ const userSchema = new Schema({
     photo: { type: String, default: defaultPicture },
     email: {type: String, required: true, index: true},
     password: {type: String, required: true},
-    role: {type: Number, default: 0, index: true}
+    role: {type: Number, default: 0, index: true},
 })
 
 userSchema.pre(['find', 'findOne'], function() {

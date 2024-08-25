@@ -287,3 +287,8 @@
 [33mERROR[39m: POST /register 400 - 10:41:35 - Email must be valid
 [33mERROR[39m: POST /api/sessions/register undefined - 10:41:35 - Cannot set headers after they are sent to the client
 [33mERROR[39m: POST /register 400 - 10:46:07 - Email must be valid
+[33mERROR[39m: GET /users/edit/66c247a30218e4dd797ae7df undefined - 11:43:31 - Failed to lookup view "form-edit-user" in views directory "C:\Users\matia\Desktop\Proyecto\Coderhouse-Backend/src/views"
+[33mERROR[39m: GET /users/edit/66c247a30218e4dd797ae7df undefined - 11:43:34 - Failed to lookup view "form-edit-user" in views directory "C:\Users\matia\Desktop\Proyecto\Coderhouse-Backend/src/views"
+[33mERROR[39m: GET /products/me66c247a30218e4dd797ae7df undefined - 14:35:43 - Cast to ObjectId failed for value "me66c247a30218e4dd797ae7df" (type string) at path "_id" for model "products"
+[33mERROR[39m: POST / 401 - 14:49:15 - Bad Auth
+[33mERROR[39m: GET /me 401 - 14:49:15 - Bad Auth

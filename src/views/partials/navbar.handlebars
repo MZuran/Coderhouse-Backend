@@ -19,12 +19,12 @@
   <div class='collapse navbar-collapse d-flex flex-row justify-content-between' id='navbarSupportedContent'>
     <ul class='navbar-nav mr-auto'>
       <li class='nav-item'> <a class='nav-link' href='/products'> Products </a> </li>
-      <li class='nav-item'> <a class='nav-link' href='/products/real'> Add product </a> </li>
+      <li class='nav-item'> <a class='nav-link' href='/products/new'> Add product </a> </li>
       <li class='nav-item'> <a class='nav-link' href='/users'> Users </a> </li>
     </ul>
 
     <div class="d-flex flex-row centered-content ">
-       {{#if localUser.online}}<p class="m-0">Welcome back {{localUser.name}}</p>{{/if}}
+       {{#if localUser.online}}<p class="m-0">{{localUser.name}}</p>{{/if}}
        <ul class='navbar-nav mr-auto'>
         {{#if localUser.online}}
         <li class='nav-item margin-1-rem'> {{>logout-button}} </li> 

@@ -69,9 +69,9 @@ class UserController {
 
     async update(req, res, next) {
         try {
-            const { nid } = req.params;
+            const { uid } = req.params;
             const data = req.body;
-            const one = await updateService(nid, data);
+            const one = await updateService(uid, data);
             return res.json({
                 statusCode: 200,
                 message: "User modified with id: " + one.id,
@@ -104,11 +104,11 @@ class UserController {
 
     async destroy(req, res, next) {
         try {
-            const { nid } = req.params;
-            const one = await destroyService(nid);
+            const { uid } = req.params;
+            const one = await destroyService(uid);
             return res.json({
                 statusCode: 200,
-                message: "User deleted with id: " + nid,
+                message: "User deleted with id: " + uid,
                 response: one,
             });
         } catch (error) {

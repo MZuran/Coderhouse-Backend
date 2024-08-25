@@ -16,6 +16,9 @@ import swaggerJSDoc from "swagger-jsdoc";
 import { serve, setup } from "swagger-ui-express";
 import winston from "./src/middlewares/winston.mid.js";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const specs = swaggerJSDoc(swaggerOptions);
 //console.log(swaggerOptions);

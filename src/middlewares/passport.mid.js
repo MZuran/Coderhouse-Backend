@@ -7,16 +7,15 @@ import dao from "../dao/dao.factory.js";
 
 import { createHash, verifyHash } from "../utils/hash.util.js";
 import { createToken } from "../utils/token.util.js";
-
+import crypto from "crypto";
+import sendEmail from "../utils/mailing.util.js";
 
 passport.use('register', new LocalStrategy({
   passReqToCallback: true,
   usernameField: 'email'
 },
   async (req, email, password, done) => {
-    //const { email, password } = req.body
     try {
-      //Check if email or password are missing
       if (!email || !password) {
         const error = new Error("Please enter email and password!");
         error.statusCode = 400;
@@ -31,29 +30,27 @@ passport.use('register', new LocalStrategy({
         return done(null, null, error);
       }
 
-      //Hash the password
       const hashPassword = createHash(password);
-
-      //Replace the password by the encrypted one
       req.body.password = hashPassword;
 
-      //Create the user
-      const user = await dao.users.create(req.body)
-      return done(null, user)
+      const user = await dao.users.create(req.body);
+      await sendEmail({
+        to: email,
+        name: user.name,
+      });
+      return done(null, user);
     } catch (error) {
-      return done('error' + error)
+      return done('error' + error);
     }
-  }))
+  }
+));
 
 passport.use('login', new LocalStrategy({
   passReqToCallback: true,
   usernameField: 'email'
 },
   async (req, email, password, done) => {
-    //const { email, password } = req.body;
-
     try {
-      //Check if email or password are missing
       if (!email || !password) {
         const error = new Error("Please enter email and password!");
         error.statusCode = 400;
@@ -68,23 +65,20 @@ passport.use('login', new LocalStrategy({
         return done(null, null, error);
       }
 
-      //Validate password
-      const verify = verifyHash(password, one.password)
-
+      const verify = verifyHash(password, one.password);
       if (verify) {
-        delete one.password
-        //const token = createToken({ email: one.email, role: one.role })
-        //req.token = token
-        return done(null, one)
+        delete one.password;
+        return done(null, one);
       }
 
-      const error = new Error('Invalid Credentials')
-      error.statusCode = 401
-      return done(error)
+      const error = new Error('Invalid Credentials');
+      error.statusCode = 401;
+      return done(error);
     } catch (error) {
-      return done('error' + error)
+      return done('error' + error);
     }
-  }))
+  }
+));
 
 passport.use(
   "google",
@@ -121,4 +115,4 @@ passport.use(
   )
 );
 
-export default passport
+export default passport;

@@ -11,16 +11,31 @@
                 <div class="card-body">
                     <h5 class="card-title">{{user.name}}</h5>
                     <a href="mailto:{{user.email}}">{{user.email}}</a>
-                    <p class="card-text"><small class="text-muted">Role: {{user.role}}</small></p>
+                    <p class="card-text"><small class="text-muted">Role: 
+                        {{#ifEquals user.role 0}}User{{/ifEquals}}
+                        {{#ifEquals user.role 2}}Premium User{{/ifEquals}}
+                        {{#ifEquals user.role 1}}Admin{{/ifEquals}}
+                    </small></p>
+                    <small class="text-muted">If you edit your profile, you have to log out and log back in to update the token</small>
                 </div>
             </div>
             </div>
+
+            <div class="d-flex flex-row mb-2" style="">
+            <a type="button" class="btn btn-warning m-0" href="/users/edit/{{user._id}}">Edit Profile</a>
+            {{#ifEquals user.role 2}}
+            <a type="button" class="btn btn-info mx-2" href="/products/me">See My Products</a>
+            {{/ifEquals}}
+            </div>
+            <div class="d-flex flex-column" style="width: 253px;">
             {{> logout-button}}
+            </div>
+            
             {{else}}
 
             <h1>You need to log in!</h1>
 
-            {{> login-form}}
+            {{!-- {{> login-form}} --}}
 
             {{/if}}
         </div>

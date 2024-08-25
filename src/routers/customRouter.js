@@ -68,6 +68,7 @@ class CustomRouter {
             //console.log("The role is", role)
            // console.log("The policies are", policies)
             if (
+                policies.includes('REGISTERED') ||
                 policies.includes('USER') && role === 0 ||
                 policies.includes('ADMIN') && role === 1 ||
                 policies.includes('PREM') && role === 2 
