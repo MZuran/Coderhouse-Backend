@@ -17,7 +17,7 @@ async function sendEmail(data) {
       to: data.to,
       subject: `USER ${data.first_name.toUpperCase()} REGISTERED!`,
       html: `
-        <h1 style="color: red">WELCOME TO ADOPTME!</h1>
+        <h1 style="color: red">WELCOME TO GREEN GROCERIES!</h1>
         <p>VERIFY CODE: ${data.code}</p>
       `,
     });
