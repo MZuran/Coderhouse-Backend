@@ -23,8 +23,8 @@
       <li class='nav-item'> <a class='nav-link' href='/users'> Users </a> </li>
     </ul>
 
-    <div class="d-flex flex-row centered-content">
-       {{#if localUser.online}}<p>Welcome back {{localUser.name}}</p>{{/if}}
+    <div class="d-flex flex-row centered-content ">
+       {{#if localUser.online}}<p class="m-0">Welcome back {{localUser.name}}</p>{{/if}}
        <ul class='navbar-nav mr-auto'>
         {{#if localUser.online}}
         <li class='nav-item margin-1-rem'> {{>logout-button}} </li> 

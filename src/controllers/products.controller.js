@@ -152,10 +152,10 @@ class ProductsController {
                 const { title, photo, category, price, stock } = req.body;
                 const updatedProduct = await updateService(pid, { title, photo, category, price, stock });
 
-                res.status(200).json({
+                res.response200({
                     message: "Product updated successfully",
                     product: updatedProduct,
-                });
+                })
             } else {
                 res.error401()
             }

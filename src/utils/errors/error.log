@@ -262,3 +262,28 @@
 [33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 14:23:56 - Bad Auth
 [33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 14:24:38 - Bad Auth
 [33mERROR[39m: PUT /662fa852544e3f48527f06c3 401 - 14:25:26 - Bad Auth
+[33mERROR[39m: GET /edit/662fa852544e3f48527f06c3?title=broccoli&photo=https%3A%2F%2Fcdn.britannica.com%2F25%2F78225-050-1781F6B7%2Fbroccoli-florets.jpg&price=9&stock=130&category=vegetable 401 - 14:35:16 - Bad Auth
+[33mERROR[39m: GET /edit/662fa852544e3f48527f06c3?title=broccoli&photo=https%3A%2F%2Fcdn.britannica.com%2F25%2F78225-050-1781F6B7%2Fbroccoli-florets.jpg&price=9&stock=130&category=vegetable 401 - 14:35:23 - Bad Auth
+[33mERROR[39m: DELETE /662fa852544e3f48527f06c2 401 - 14:44:26 - Bad Auth
+[33mERROR[39m: DELETE /662fa852544e3f48527f06c2 401 - 14:45:43 - Bad Auth
+[33mERROR[39m: DELETE /662fa852544e3f48527f06c2 401 - 14:46:09 - Bad Auth
+[33mERROR[39m: DELETE /662fa852544e3f48527f06c2 401 - 14:48:50 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 14:51:04 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 14:51:07 - Bad Auth
+[33mERROR[39m: DELETE /662fa852544e3f48527f06c2 401 - 14:51:18 - Bad Auth
+[33mERROR[39m: DELETE /662fa852544e3f48527f06c2 401 - 14:52:13 - Bad Auth
+[33mERROR[39m: DELETE /662fa852544e3f48527f06c2 401 - 14:52:43 - Bad Auth
+[33mERROR[39m: DELETE /662fa852544e3f48527f06c2 401 - 14:53:31 - Bad Auth
+[33mERROR[39m: DELETE /662fa852544e3f48527f06c2 401 - 14:53:58 - Bad Auth
+[33mERROR[39m: GET /products/real undefined - 17:54:07 - Cast to ObjectId failed for value "real" (type string) at path "_id" for model "products"
+[33mERROR[39m: POST /register 400 - 10:40:29 - Name is required,Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /api/sessions/register undefined - 10:40:29 - undefined
+[33mERROR[39m: POST /register 400 - 10:40:49 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /api/sessions/register undefined - 10:40:49 - undefined
+[33mERROR[39m: POST /register 400 - 10:40:58 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /api/sessions/register undefined - 10:40:58 - undefined
+[33mERROR[39m: POST /register 400 - 10:41:02 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /api/sessions/register undefined - 10:41:02 - undefined
+[33mERROR[39m: POST /register 400 - 10:41:35 - Email must be valid
+[33mERROR[39m: POST /api/sessions/register undefined - 10:41:35 - Cannot set headers after they are sent to the client
+[33mERROR[39m: POST /register 400 - 10:46:07 - Email must be valid

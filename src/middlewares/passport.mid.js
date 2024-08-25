@@ -2,7 +2,9 @@ import enviroment from "../utils/env.util.js";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as GoogleStrategy } from "passport-google-oauth2";
-import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
+
+import dao from "../dao/dao.factory.js";
+
 import { createHash, verifyHash } from "../utils/hash.util.js";
 import { createToken } from "../utils/token.util.js";
 
@@ -22,7 +24,7 @@ passport.use('register', new LocalStrategy({
       }
 
       //Check if email is already used for another user
-      const one = await userManagerMongo.readByEmail(email);
+      const one = await dao.users.readByEmail(email);
       if (one) {
         const error = new Error("Email already in use!");
         error.statusCode = 409;
@@ -36,7 +38,7 @@ passport.use('register', new LocalStrategy({
       req.body.password = hashPassword;
 
       //Create the user
-      const user = await userManagerMongo.create(req.body)
+      const user = await dao.users.create(req.body)
       return done(null, user)
     } catch (error) {
       return done('error' + error)
@@ -59,7 +61,7 @@ passport.use('login', new LocalStrategy({
       }
 
       //Check if user with given email exists
-      const one = await userManagerMongo.readByEmail(email);
+      const one = await dao.users.readByEmail(email);
       if (!one) {
         const error = new Error("Bad auth from login!");
         error.statusCode = 401;
@@ -97,14 +99,14 @@ passport.use(
       try {
         const { id, picture } = profile;
         console.log(profile);
-        let user = await userManagerMongo.readByEmail(id);
+        let user = await dao.users.readByEmail(id);
         if (!user) {
           user = {
             email: id,
             password: createHash(id),
             photo: picture,
           };
-          user = await userManagerMongo.create(user);
+          user = await dao.users.create(user);
         }
         req.session.email = user.email;
         req.session.online = true;

@@ -1,4 +1,4 @@
-import { verifyToken } from "../../utils/token.util.js";
+import { getTokenFromReq } from "../../utils/token.util.js";
 import CustomRouter from "../customRouter.js";
 
 class usersViewRouterClass extends CustomRouter{
@@ -14,8 +14,10 @@ export default usersViewRouter.getRouter()
 
 async function usersView(req, res, next) {
     try {
-        let user
-        req.cookies['token'] ? user = verifyToken(req.cookies['token']) : user = null
+        let user = getTokenFromReq(req)
+        if (!user._id) {
+            user = null
+        }
         return res.render("users", { title: "Users", user });
     } catch (error) {
         next(error)
