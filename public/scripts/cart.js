@@ -1,23 +1,3 @@
-async function addQuantity(cart_id, quantity) {
-    if (!quantity || quantity == "") {return}
-    try {
-        const response = await fetch(`/api/carts/${cart_id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                quantity: quantity
-            })
-        });
-        const data = await response.json();
-        console.log(data.message, data.product); // Log the message from the server
-        return data.product; // Return the updated product
-    } catch (error) {
-        throw error;
-    }
-}
-
 async function deleteCart(cart_id) {
     try {
         const response = await fetch(`/api/carts/${cart_id}`, {
@@ -34,10 +14,24 @@ async function deleteCart(cart_id) {
     }
 }
 
-async function addToCart(product_id, user_id) {
+async function addToCart(product_id, product_name) {
+
+    const { value: quantity } = await Swal.fire({
+        title: `Enter quantity for ${product_name}`,
+        input: 'number',
+        inputLabel: 'Quantity',
+        inputValue: 1,
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value || value <= 0) {
+                return 'Please enter a valid quantity!';
+            }
+        }
+    });
+
     const sentData = {
         product_id: product_id,
-        quantity: 1,
+        quantity: quantity,
         state: "reserved",
     }
 
@@ -50,9 +44,10 @@ async function addToCart(product_id, user_id) {
             body: JSON.stringify(sentData)
         });
         const data = await response.json();
-        console.log(data.message, data.product); // Log the message from the server
+        console.log(data); // Log the message from the server
         return data.product; // Return the updated product
     } catch (error) {
         throw error;
     }
+
 }

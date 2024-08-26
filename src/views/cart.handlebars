@@ -1,5 +1,5 @@
 <h1> CART </h1>
-<h2>Carrito de {{cart.0.user_id.name}}</h2>
+<h2>Carrito de {{name}}</h2>
 <div class='d-flex flex-row flex-wrap justify-content-center' style='width: 100%;'>
     {{!-- {{log cart}} --}}
     
@@ -10,9 +10,6 @@
             <div>
                 <h5 class='card-title'> {{this.product_id.title}} </h5>
                 <p class='card-text'> Amount: {{this.quantity}}</p>
-
-                <label>Quantity:</label>
-                <input id="numericInput{{this._id}}" style="margin: 0.5rem;" type="number" name="numericInput" min="0" max="100" step="1">
 
                 <div>
                 <a style="margin: 0.2rem;" class='btn btn-primary' onclick="addQuantity('{{this._id}}', document.getElementById('numericInput{{this._id}}').value)"> Add</a>

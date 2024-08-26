@@ -7,6 +7,7 @@ import {
 } from "../services/products.service.js";
 
 import { verifyToken, getTokenFromReq } from "../utils/token.util.js";
+import parseId from "../utils/parseId.util.js";
 
 class ProductsController {
     init() {
@@ -143,9 +144,7 @@ class ProductsController {
             }
 
             const originalProduct = await readOneService(pid)
-            //console.log(originalProduct.supplier_id.toString())
-            //console.log(_id)
-            const isOwner = (originalProduct.supplier_id.toString() === _id)
+            const isOwner = (parseId(originalProduct.supplier_id) === _id)
 
             if (isOwner && role == 2) {
                 //Premium user that owns the product (CANNOT CHANGE SUPPLIER ID)

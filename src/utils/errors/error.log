@@ -301,3 +301,32 @@
 [33mERROR[39m: GET /cart/me undefined - 14:59:16 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
 [33mERROR[39m: GET /cart/me undefined - 15:00:03 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
 [33mERROR[39m: GET /cart/me undefined - 15:00:03 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: POST /api/carts/ undefined - 17:12:41 - Cannot read properties of undefined (reading 'user_id')
+[33mERROR[39m: POST /api/carts/ undefined - 17:13:20 - Cannot read properties of undefined (reading 'user_id')
+[33mERROR[39m: POST /api/carts/ undefined - 17:14:28 - Cannot read properties of undefined (reading 'user_id')
+[33mERROR[39m: POST /api/carts/ undefined - 17:18:04 - carts validation failed: user_id: Path `user_id` is required.
+[33mERROR[39m: POST /api/carts/ undefined - 17:18:37 - carts validation failed: user_id: Path `user_id` is required.
+[33mERROR[39m: POST /api/carts/ undefined - 17:19:02 - carts validation failed: user_id: Path `user_id` is required.
+[33mERROR[39m: POST /api/carts/ undefined - 17:19:35 - carts validation failed: quantity: Path `quantity` is required., product_id: Path `product_id` is required., user_id: Path `user_id` is required.
+[33mERROR[39m: POST /api/carts/ undefined - 17:20:23 - carts validation failed: quantity: Path `quantity` is required.
+[33mERROR[39m: POST /api/carts/ undefined - 17:24:50 - Cast to ObjectId failed for value "{
+  user_id: '66c247a30218e4dd797ae7df',
+  product_id: '662fa852544e3f48527f06bd',
+  quantity: 2
+}" (type Object) at path "_id" for model "carts"
+[33mERROR[39m: POST /api/carts/ undefined - 17:30:25 - Cast to ObjectId failed for value "{
+  user_id: '66c247a30218e4dd797ae7df',
+  product_id: '662fa852544e3f48527f06bd',
+  quantity: 2
+}" (type Object) at path "_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:42:21 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:43:21 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:43:22 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:43:22 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:44:05 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:44:08 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:44:10 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:44:11 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:45:12 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:45:47 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/me undefined - 17:45:48 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
