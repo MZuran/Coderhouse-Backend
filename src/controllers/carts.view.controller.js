@@ -28,7 +28,17 @@ class cartsViewController {
                 return item;
             }));
 
-            return res.render("cart", { title: "CART", cart: cartItems, name: name });
+            let total = 0
+            cartItems.forEach(item => {
+                total = total + item.product_id.price * item.quantity
+                //console.log(item.product_id.price * item.quantity)
+            });
+            //console.log(total)
+
+            let hasItems = true
+            if (cartItems.length == 0) { hasItems = false }
+
+            return res.render("cart", { title: "CART", cart: cartItems, name: name, total: total, hasItems: hasItems });
         } catch (error) {
             next(error)
         }
@@ -45,9 +55,17 @@ class cartsViewController {
                 return item;
             }));
 
-            //console.log(cartItems)
+            let total = 0
+            cartItems.forEach(item => {
+                total = total + item.product_id.price * item.quantity
+                //console.log(item.product_id.price * item.quantity)
+            });
+            //console.log(total)
 
-            return res.render("cart", { title: "CART", cart: cartItems, name: name });
+            let hasItems = true
+            if (cartItems.length == 0) { hasItems = false }
+
+            return res.render("cart", { title: "CART", cart: cartItems, name: name, total: total, hasItems: hasItems });
         } catch (error) {
             next(error)
         }

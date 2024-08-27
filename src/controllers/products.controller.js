@@ -60,7 +60,6 @@ class ProductsController {
         }
     }
 
-
     async readMe(req, res, next) {
         try {
             let token = req.cookies['token']
@@ -76,6 +75,7 @@ class ProductsController {
             next(error)
         }
     }
+
     async readOne(req, res, next) {
         try {
             const { pid } = req.params;
@@ -98,24 +98,11 @@ class ProductsController {
 
     async create(req, res, next) {
         try {
-            const { title, photo = this.defaultImageValue, category, price = 1, stock = 1, supplier_id } = req.body
-            if (!title) {
-                const error = new Error("Missing Title");
-                error.statusCode = 400; // Bad request
-                throw error;
-            }
-            if (!category) {
-                const error = new Error("Missing Category!");
-                error.statusCode = 400; // Bad request
-                throw error;
-            }
-            if (!supplier_id) {
-                const error = new Error("Missing Supplier Id!")
-                error.statusCode = 400
-                throw error
-            }
+            const { title, photo = this.defaultImageValue, category, price, stock } = req.body
+            let { _id } = getTokenFromReq(req)
+            _id = parseId(_id)
 
-            const newProduct = await createService({ title, photo, category, price, stock, supplier_id })
+            const newProduct = await createService({ title, photo, category, price, stock, supplier_id: _id })
 
             res.status(201).json({
                 message: "Product created successfully",

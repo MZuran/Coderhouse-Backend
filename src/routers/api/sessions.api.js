@@ -25,9 +25,9 @@ class sessionsRouterClass extends CustomRouter {
     this.create("/password", ["PUBLIC"], sendPasswordResetEmail);
     this.create("/reset-password", ["PUBLIC"], updatePassword);
 
-    this.read("/online", ["USER", "ADMIN", "PREM"], checkOnlineStatus);//WORKS
+    this.read("/online", ["REGISTERED"], checkOnlineStatus);//WORKS
 
-    this.create("/signout", ["USER", "ADMIN", "PREM"], signOutSession);
+    this.create("/signout", ["REGISTERED"], signOutSession);
     this.read("/google", ["PUBLIC"], passport.authenticate("google", { scope: ["email", "profile"] }));
     this.read("/google/callback", ["PUBLIC"], passport.authenticate("google", { session: false }), googleCallback);
   }

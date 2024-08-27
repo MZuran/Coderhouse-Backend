@@ -33,8 +33,9 @@ const usersSchema = joi.object({
       "string.min": "Password must have at least 3 characters",
       "string.max": "Password must have at most 50 characters",
     }),
-  photo: joi.string().uri().messages({
+  photo: joi.string().uri().allow(null).optional().messages({
     "string.uri": "Photo must be a valid URI",
+    "string.base": "Photo must be a string or null",
   }),
   role: joi.number().integer().min(0).max(4).messages({
     "number.base": "Role must be a number",

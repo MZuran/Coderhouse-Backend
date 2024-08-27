@@ -10,8 +10,10 @@
         <br />
         Stock: {{this.stock}}
       </p>
-      <a href="/products/{{this._id}}" class='btn btn-primary'> Details </a>
-      {{> button-add-to-cart product=this}}
+      <div class="d-flex flex-row">
+        <a href="/products/{{this._id}}" class='btn btn-primary me-2'> Details </a>
+        {{> button-add-to-cart product=this}}
+      </div>
     </div>
   </div>
 </div>

@@ -52,7 +52,14 @@ class CustomRouter {
         res.error403 = () => winstonErrorMessage(req, res, { statusCode: 403, message: "Forbidden" });
         res.error404 = () => winstonErrorMessage(req, res, { statusCode: 404, message: "Not Found" });
         res.error500 = () => winstonErrorMessage(req, res, { statusCode: 500, message: "Internal Server Error" });
+        res.errorPage = (title, errorCode, description) => { res.render("error-page", { title: title, error: errorCode, description }) }
+        res.forbiddenPage = () => { res.errorPage("Forbidden", 401, "You don't have permission to see this page") }
         return next()
+    }
+
+    /*-----------Check if View-----------*/
+    isViewRequest(req) {
+        return req.method === 'GET' && !req.originalUrl.startsWith('/api')
     }
 
     /*-----------Policies-----------*/
@@ -60,7 +67,13 @@ class CustomRouter {
         if (policies.includes('PUBLIC')) return next()
 
         let token = req.cookies['token']
-        if (!token) return res.error401()
+        if (!token) {
+            if (this.isViewRequest(req)) {
+                return res.forbiddenPage()
+            } else {
+                return res.error401()
+            }
+        }
 
         try {
             const { role, email } = verifyToken(token)
@@ -68,14 +81,18 @@ class CustomRouter {
                 policies.includes('REGISTERED') ||
                 policies.includes('USER') && role === 0 ||
                 policies.includes('ADMIN') && role === 1 ||
-                policies.includes('PREM') && role === 2 
+                policies.includes('PREM') && role === 2
                 //Add more here if needed
             ) {
                 const user = await userManagerMongo.readByEmail(email)
                 req.user = user
                 return next()
             } else {
-                return res.error401()
+                if (this.isViewRequest(req)) {
+                    return res.forbiddenPage()
+                } else {
+                    return res.error401()
+                }
             }
         } catch (error) {
             return res.error401()

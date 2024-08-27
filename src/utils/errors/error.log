@@ -355,3 +355,76 @@
 [33mERROR[39m: DELETE /one/66cdaab6453e52fa65d1f8a7 401 - 7:33:23 - Bad Auth
 [33mERROR[39m: DELETE /one/66cdaab8453e52fa65d1f8ab 401 - 7:33:44 - Bad Auth
 [33mERROR[39m: DELETE /one/66cdaab6453e52fa65d1f8a7 401 - 7:34:01 - Bad Auth
+[33mERROR[39m: GET /products/add undefined - 8:59:25 - Cast to ObjectId failed for value "add" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /products/real undefined - 8:59:28 - Cast to ObjectId failed for value "real" (type string) at path "_id" for model "products"
+[33mERROR[39m: POST / 400 - 8:59:46 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:00:25 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:01:21 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:01:37 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:01:56 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:02:20 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:02:21 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:02:53 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:02:54 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:03:04 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:03:15 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:03:15 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:03:19 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:03:29 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:03:33 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:03:48 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:04:30 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:04:42 - Title cannot be an empty string,Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:04:54 - Category cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:05:24 - Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:12:04 - Title cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:12:32 - Title cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: POST / 400 - 9:13:04 - Title cannot be an empty string,Price must be a number,Stock must be a number,"photo" is not allowed to be empty
+[33mERROR[39m: GET /me?page=1 401 - 9:26:39 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 9:27:47 - Bad Auth
+[33mERROR[39m: GET /ME?page=5 401 - 9:27:47 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 9:27:53 - Bad Auth
+[33mERROR[39m: GET /ME?page=4 401 - 9:27:53 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 9:30:22 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 9:30:22 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 9:30:22 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 9:30:23 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:31:21 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 9:31:34 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:33:54 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:39:02 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:39:03 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:39:03 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:39:04 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:39:12 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:39:33 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:39:40 - Bad Auth
+[33mERROR[39m: GET /new 401 - 9:39:58 - Bad Auth
+[33mERROR[39m: POST /register 400 - 10:07:17 - Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:07:26 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:07:50 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:07:51 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:07:57 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:08:00 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:08:12 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:09:35 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:09:35 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:09:57 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:10:13 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:12:01 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:12:06 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:12:26 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string,"photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:14:56 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string
+[33mERROR[39m: POST /register 400 - 10:15:02 - Email cannot be an empty string,Password cannot be an empty string
+[33mERROR[39m: POST /register 400 - 10:15:05 - Email must be valid,Email must have at least 3 characters,Password cannot be an empty string
+[33mERROR[39m: POST /register 400 - 10:15:15 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /api/sessions/register undefined - 10:15:29 - undefined
+[33mERROR[39m: POST /register 400 - 10:16:44 - "photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:16:50 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string
+[33mERROR[39m: POST /register 400 - 10:18:22 - "photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:19:05 - "photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:19:41 - "photo" must be a string
+[33mERROR[39m: POST /register 400 - 10:19:50 - "photo" must be a string
+[33mERROR[39m: POST /api/sessions/register undefined - 10:21:38 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 10:22:35 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 10:23:05 - undefined
