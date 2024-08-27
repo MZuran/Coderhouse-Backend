@@ -2,7 +2,7 @@ import ManagerMemory from "./manager.memory.js";
 import fillUsers from "./fill/users.memory.fill";
 class UserManager extends ManagerMemory {
   validateData(data) {
-    return data.name && data.email && data.password;
+    return data.name && data.email && data.password && data.photo && data.verified;
   }
 }
 

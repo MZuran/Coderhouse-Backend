@@ -1,12 +1,13 @@
 import FileManager from "./Manager.fs";
 
 class User {
-  constructor(name, photo, email, password, role = 0) {
+  constructor(name, photo, email, password, role = 0, verified) {
     this.name = name;
     this.photo = photo || "https://cdn-icons-png.flaticon.com/512/3607/3607444.png";
     this.email = email;
     this.password = password;
     this.role = role;
+    this.verified = verified;
   }
 }
 
