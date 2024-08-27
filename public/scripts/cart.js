@@ -1,21 +1,17 @@
 async function deleteCart(cart_id) {
 
-    const sentData = {
-        cart_id: cart_id
-    }
-
     try {
         const response = await fetch(`/api/carts/one/${cart_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(sentData)
+            }
         });
 
         const data = await response.json();
+        console.log(response)
 
-        if (response.ok) {
+        if (response.status == 200) {
             // Notify the user of success and reload the page
             Swal.fire({
                 icon: 'success',
@@ -43,6 +39,45 @@ async function deleteCart(cart_id) {
     }
 }
 
+async function deleteAllCarts() {
+
+    try {
+        const response = await fetch(`/api/carts/all`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Notify the user of success and reload the page
+            Swal.fire({
+                icon: 'success',
+                title: 'All Products Deleted',
+                text: data.message,
+            }).then(() => {
+                window.location.reload(); // Reload the page after the user clicks 'OK'
+            });
+        } else {
+            // Notify the user of the error
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.message || 'Something went wrong!',
+            });
+        }
+
+    } catch (error) {
+        // Notify the user of a network or unexpected error
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An unexpected error occurred. Please try again later.',
+        });
+    }
+}
 
 async function addToCart(product_id, product_name) {
 

@@ -1,4 +1,5 @@
 import { getTokenFromReq } from "../utils/token.util.js";
+import parseId from "../utils/parseId.util.js";
 import dao from "../dao/dao.factory.js";
 
 /*
@@ -8,11 +9,12 @@ import dao from "../dao/dao.factory.js";
 
 async function isCartOwner(req, res, next) {
   const token = getTokenFromReq(req)
-  const { cart_id } = req.body
-  const cart = await dao.carts.readOne(cart_id)
-  const supplier_id = cart.user_id
+  const { cid } = req.params
 
-  if (!token.role || (token._id != supplier_id && token.role != 1)) {
+  const cart = await dao.carts.readOne(cid)
+  const user_id = parseId(cart.user_id)
+
+  if (!token.role || (token._id != user_id && token.role != 1)) {
     return res.error401()
   }
 

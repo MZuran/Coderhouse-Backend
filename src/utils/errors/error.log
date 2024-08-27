@@ -345,3 +345,13 @@
 [33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:15:41 - Unexpected token o in JSON at position 1
 [33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:16:26 - Unexpected token o in JSON at position 1
 [33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:17:53 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/all undefined - 7:28:09 - Cannot read properties of undefined (reading 'user_id')
+[33mERROR[39m: GET /online 401 - 7:29:15 - Bad Auth
+[33mERROR[39m: DELETE /one/66cdaab8453e52fa65d1f8ab 401 - 7:30:34 - Bad Auth
+[33mERROR[39m: DELETE /one/66cdaab6453e52fa65d1f8a7 401 - 7:30:38 - Bad Auth
+[33mERROR[39m: DELETE /one/66cdaab8453e52fa65d1f8ab 401 - 7:31:06 - Bad Auth
+[33mERROR[39m: DELETE /one/66cdaab8453e52fa65d1f8ab 401 - 7:31:25 - Bad Auth
+[33mERROR[39m: DELETE /one/66cdaab6453e52fa65d1f8a7 401 - 7:32:10 - Bad Auth
+[33mERROR[39m: DELETE /one/66cdaab6453e52fa65d1f8a7 401 - 7:33:23 - Bad Auth
+[33mERROR[39m: DELETE /one/66cdaab8453e52fa65d1f8ab 401 - 7:33:44 - Bad Auth
+[33mERROR[39m: DELETE /one/66cdaab6453e52fa65d1f8a7 401 - 7:34:01 - Bad Auth

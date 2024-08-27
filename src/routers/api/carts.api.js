@@ -6,9 +6,9 @@ class cartRouterClass extends CustomRouter {
   init() {
     this.create("/", ["REGISTERED"], createCart);
     this.read("/", ["REGISTERED"], readCart);
-    this.update("/:cid", ["REGISTERED"], updateCart);
+    this.update("/:cid", ["REGISTERED"], isCartOwner, updateCart);
     this.destroy("/one/:cid", ["REGISTERED"], isCartOwner, deleteCart);
-    this.destroy("/all", ["ADMIN"], deleteAllCarts);
+    this.destroy("/all", ["REGISTERED"], deleteAllCarts);
   }
 }
 

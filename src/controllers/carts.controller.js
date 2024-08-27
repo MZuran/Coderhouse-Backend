@@ -84,7 +84,8 @@ async deleteCart(req, res, next) {
 
 async deleteAllCarts(req, res, next) {
     try {
-        const userCartList = await dao.carts.read({ user_id: req.session.user_id });
+        const { _id } = getTokenFromReq(req)
+        const userCartList = await dao.carts.read({ user_id: _id });
         let idList = []
 
         userCartList.forEach(cart => {
