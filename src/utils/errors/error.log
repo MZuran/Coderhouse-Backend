@@ -330,3 +330,18 @@
 [33mERROR[39m: GET /cart/me undefined - 17:45:12 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
 [33mERROR[39m: GET /cart/me undefined - 17:45:47 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
 [33mERROR[39m: GET /cart/me undefined - 17:45:48 - Cast to ObjectId failed for value "me" (type string) at path "user_id" for model "carts"
+[33mERROR[39m: GET /cart/user/66c247a30218e4dd797ae7df undefined - 19:58:09 - Cannot read properties of undefined (reading 'toString')
+[33mERROR[39m: GET /cart/user/66c247a30218e4dd797ae7df undefined - 19:58:45 - Cannot read properties of undefined (reading 'toString')
+[33mERROR[39m: GET /cart/user/66c247a30218e4dd797ae7df undefined - 19:58:59 - Cannot read properties of undefined (reading 'toString')
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:09:27 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:09:29 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:09:31 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:10:07 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:10:38 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:11:00 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:11:56 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:14:30 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:14:32 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:15:41 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:16:26 - Unexpected token o in JSON at position 1
+[33mERROR[39m: DELETE /api/carts/one/66cce9dbd5cfee5b72df02f1 400 - 7:17:53 - Unexpected token o in JSON at position 1

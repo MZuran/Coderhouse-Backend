@@ -5,7 +5,7 @@ class CartsController {
     async createCart(req, res, next) {
     try {
         const data = req.body;
-        console.log(data)
+        //console.log(data)
         const { _id } = getTokenFromReq(req)
 
         const list = await dao.carts.read({ user_id: _id, product_id: data.product_id });
@@ -70,6 +70,7 @@ async updateCart(req, res, next) {
 async deleteCart(req, res, next) {
     try {
         const { cid } = req.params;
+        console.log("My cid is", cid)
         const remainingProducts = await dao.carts.destroy(cid);
 
         res.status(200).json({

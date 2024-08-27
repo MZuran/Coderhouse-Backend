@@ -1,18 +1,48 @@
 async function deleteCart(cart_id) {
+
+    const sentData = {
+        cart_id: cart_id
+    }
+
     try {
-        const response = await fetch(`/api/carts/${cart_id}`, {
+        const response = await fetch(`/api/carts/one/${cart_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(sentData)
         });
+
         const data = await response.json();
-        console.log(data.message, data.product); // Log the message from the server
-        return data.product; // Return the updated product
+
+        if (response.ok) {
+            // Notify the user of success and reload the page
+            Swal.fire({
+                icon: 'success',
+                title: 'Product Deleted',
+                text: data.message,
+            }).then(() => {
+                window.location.reload(); // Reload the page after the user clicks 'OK'
+            });
+        } else {
+            // Notify the user of the error
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.message || 'Something went wrong!',
+            });
+        }
+
     } catch (error) {
-        throw error;
+        // Notify the user of a network or unexpected error
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An unexpected error occurred. Please try again later.',
+        });
     }
 }
+
 
 async function addToCart(product_id, product_name) {
 
@@ -44,7 +74,7 @@ async function addToCart(product_id, product_name) {
             body: JSON.stringify(sentData)
         });
         const data = await response.json();
-        console.log(data); // Log the message from the server
+        //console.log(data); // Log the message from the server
         return data.product; // Return the updated product
     } catch (error) {
         throw error;

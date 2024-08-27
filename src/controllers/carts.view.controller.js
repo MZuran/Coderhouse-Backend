@@ -13,11 +13,22 @@ import {
 class cartsViewController {
     async cartsView(req, res, next) {
         try {
-            console.log("asjhduaishdiusahdiu")
             const { uid } = req.params;
-            const cartItems = await dao.carts.read({ user_id: uid });
-            console.log("My cartItems are", cartItems)
-            return res.render("cart", { title: "CART", cart: cartItems });
+            let cartItems = await dao.carts.read({ user_id: uid });
+            let name
+
+            if (cartItems) {
+                console.log(cartItems[0].user_id)
+                name = await readOneService(parseId(cartItems[0].user_id))
+            }
+
+            // Populate them manually so that it works for all persistences
+            cartItems = await Promise.all(cartItems.map(async item => {
+                item.product_id = await readOneService(parseId(item.product_id));
+                return item;
+            }));
+
+            return res.render("cart", { title: "CART", cart: cartItems, name: name });
         } catch (error) {
             next(error)
         }
@@ -34,7 +45,7 @@ class cartsViewController {
                 return item;
             }));
 
-            console.log(cartItems)
+            //console.log(cartItems)
 
             return res.render("cart", { title: "CART", cart: cartItems, name: name });
         } catch (error) {

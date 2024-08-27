@@ -1,5 +1,3 @@
-console.log("I live")
-
 async function addProduct() {
   const title = document.querySelector("#title").value
   const price = document.querySelector("#price").value
