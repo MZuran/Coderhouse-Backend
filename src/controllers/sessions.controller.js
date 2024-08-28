@@ -1,13 +1,21 @@
 import jwt from 'jsonwebtoken';
 import { createToken, verifyToken } from "../utils/token.util.js";
-import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
 import nodemailer from "nodemailer";
 import bcrypt from 'bcrypt';
+
+import {
+    createService,
+    readService,
+    paginateService,
+    readOneService,
+    updateService,
+    destroyService,
+} from "../services/users.service.js"
 
 class SessionsController {
     async readSessions(req, res, next) {
         try {
-            const data = await userManagerMongo.read();
+            const data = await readOneService();
             return res.response200({ message: "Fetched Data", payload: data })
         } catch (error) {
             return next(error);
@@ -70,7 +78,8 @@ async sendPasswordResetEmail(req, res, next) {
         const { email } = req.body;
 
         // Buscar al usuario por su email
-        const user = await userManagerMongo.readByEmail( email );
+        let user = await readService( {email: email});
+        user = user[0]
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
         }
@@ -130,7 +139,8 @@ async updatePassword(req, res, next) {
         const email = decoded.email;
 
         // Find the user by email
-        const user = await userManagerMongo.readByEmail(email);
+        let user = await readService( {email: email});
+        user = user[0]
         if (!user) {
             return res.status(400).json({ message: 'Invalid token or user does not exist' });
         }
@@ -140,7 +150,7 @@ async updatePassword(req, res, next) {
 
         // Update the user's password
         user.password = hashedPassword;
-        await userManagerMongo.update(user._id, user);
+        await updateService(user._id, user)
 
         res.status(200).json({ message: 'Password has been reset successfully' });
     } catch (error) {

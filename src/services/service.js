@@ -18,14 +18,29 @@ class Service {
         throw error;
       }
     };
-    paginateService = async ({ filter, opts }) => {
+
+    readByEmailService = async (email) => {
       try {
-        const all = await this.repository.paginateRepository({ filter, opts });
+        const all = await this.repository.readRepository(filter);
+        return all;
+      } catch (error) {
+        throw error;
+      }
+    }
+
+    paginateService = async (filter, opts) => {
+      try {
+        
+        console.log(filter)
+        console.log(opts)
+        
+        const all = await this.repository.paginateRepository(filter, opts);
         return all;
       } catch (error) {
         throw error;
       }
     };
+
     readOneService = async (uid) => {
       try {
         const one = await this.repository.readOneRepository(uid);

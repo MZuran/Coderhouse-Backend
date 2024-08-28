@@ -1,7 +1,9 @@
-import dao from "../dao/dao.factory.js";
 import { getTokenFromReq } from "../utils/token.util.js";
 
-const { products } = dao
+import {
+    paginateService,
+    readOneService,
+} from "../services/products.service.js"
 
 class ProductsViewController {
     async productsView(req, res, next) {
@@ -14,9 +16,9 @@ class ProductsViewController {
             let productList
 
             if (role === 2) {
-                productList = await products.paginate({ supplier_id: { $ne: _id } }, { limit: 4, page: page });
+                productList = await paginateService({ supplier_id: { $ne: _id } }, { limit: 4, page: page });
             } else {
-                productList = await products.paginate({}, { limit: 4, page: page });
+                productList = await paginateService({}, { limit: 4, page: page });
             }
 
             return res.render("products-paginated",
@@ -44,9 +46,9 @@ class ProductsViewController {
             let productList
 
             if (role === 2) {
-                productList = await products.paginate({ supplier_id: _id }, { limit: 4, page: page });
+                productList = await paginateService({ supplier_id: _id }, { limit: 4, page: page });
             } else {
-                productList = await products.paginate({}, { limit: 4, page: page });
+                productList = await paginateService({}, { limit: 4, page: page });
             }
 
             return res.render("products-paginated",
@@ -67,7 +69,7 @@ class ProductsViewController {
     async productsViewOne(req, res, next) {
         try {
             const { nid } = req.params;
-            const one = await products.readOne(nid);
+            const one = await readOneService(nid);
             return res.render("details", { title: "DETAILS", product: one });
         } catch (error) {
             return next(error);
@@ -85,7 +87,7 @@ class ProductsViewController {
     async editOneProduct(req, res, next) {
         try {
             const { nid } = req.params;
-            const one = await products.readOne(nid);
+            const one = await readOneService(nid);
             return res.render("edit-product", { title: "DETAILS", product: one });
         } catch (error) {
             return next(error);

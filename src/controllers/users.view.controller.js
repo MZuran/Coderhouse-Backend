@@ -1,7 +1,14 @@
 import { getTokenFromReq } from "../utils/token.util.js";
-import dao from "../dao/dao.factory.js";
 
-const { users } = dao
+import {
+    createService,
+    readService,
+    paginateService,
+    readOneService,
+    updateService,
+    destroyService,
+} from "../services/users.service.js"
+
 
 class UsersViewController {
     async usersView(req, res, next) {
@@ -35,7 +42,7 @@ class UsersViewController {
     async editView(req, res, next) {
         try {
             const { uid } = req.params
-            const user = await users.readOne(uid)
+            const user = await readOneService(uid)
             const { role } = getTokenFromReq(req)
             let isAdmin = role == 1
             console.log(user)

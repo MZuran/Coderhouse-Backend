@@ -8,6 +8,15 @@ import dao from "../dao/dao.factory.js";
 import { createHash, verifyHash } from "../utils/hash.util.js";
 import sendEmail from "../utils/mailing.util.js";
 
+import {
+  createService,
+  readService,
+  paginateService,
+  readOneService,
+  updateService,
+  destroyService,
+} from "../services/users.service.js"
+
 passport.use('register', new LocalStrategy({
   passReqToCallback: true,
   usernameField: 'email'
