@@ -16,7 +16,7 @@ import {
 */
 
 async function isProductPublisher(req, res, next) {
-  const token = getTokenFromReq(req)
+  const token = getTokenFromReq(req,res)
   const { pid } = req.params
 
   const product = await readOneService(pid)

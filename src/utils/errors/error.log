@@ -466,3 +466,52 @@
 [33mERROR[39m: GET /products?page=2 undefined - 13:32:53 - products is not defined
 [33mERROR[39m: GET /?page=2 undefined - 16:49:00 - this.repository.paginateRepository is not a function
 [33mERROR[39m: GET /?page=2 undefined - 16:49:03 - this.repository.paginateRepository is not a function
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:24:49 - jwt expired
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:24:52 - jwt expired
+[33mERROR[39m: GET /api/sessions/online undefined - 19:25:01 - jwt expired
+[33mERROR[39m: GET /products?page=2 undefined - 19:25:16 - jwt expired
+[33mERROR[39m: GET /favicon.ico undefined - 19:25:16 - jwt expired
+[33mERROR[39m: GET /products?page=2 undefined - 19:25:17 - jwt expired
+[33mERROR[39m: GET /favicon.ico undefined - 19:25:17 - jwt expired
+[33mERROR[39m: GET /users undefined - 19:25:51 - jwt expired
+[33mERROR[39m: GET /favicon.ico undefined - 19:25:51 - jwt expired
+[33mERROR[39m: POST /api/sessions/login undefined - 19:27:53 - jwt expired
+[33mERROR[39m: POST /api/sessions/login undefined - 19:28:58 - jwt expired
+[33mERROR[39m: POST /api/sessions/login undefined - 19:30:16 - jwt expired
+[33mERROR[39m: POST /api/sessions/login undefined - 19:30:45 - jwt expired
+[33mERROR[39m: POST /api/sessions/login undefined - 19:31:00 - jwt expired
+[33mERROR[39m: POST /api/sessions/login undefined - 19:32:54 - Cannot read properties of null (reading 'name')
+[33mERROR[39m: POST /api/sessions/login undefined - 19:33:22 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:33:52 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:34:00 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:34:32 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:35:29 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:36:15 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:37:53 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:38:41 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:38:56 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:39:10 - Cannot read properties of undefined (reading 'role')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:40:21 - Cannot read properties of undefined (reading 'role')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:40:51 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:41:15 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:41:29 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:41:55 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:42:08 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:42:59 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:45:22 - res is not defined
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:46:05 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:48:26 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:48:58 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:49:48 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:50:01 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:50:16 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:50:35 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /users undefined - 19:51:16 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: POST /signout 401 - 19:51:46 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 19:51:49 - Bad Auth
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:53:32 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:53:33 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:53:44 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:54:00 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:54:20 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /api/products?category=fruit undefined - 19:54:40 - Parameter "filter" to find() must be an object, got "fruit" (type string)

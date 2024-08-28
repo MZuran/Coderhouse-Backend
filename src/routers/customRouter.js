@@ -67,6 +67,9 @@ class CustomRouter {
         if (policies.includes('PUBLIC')) return next()
 
         let token = req.cookies['token']
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        console.log("My token is", token)
+
         if (!token) {
             if (this.isViewRequest(req)) {
                 return res.forbiddenPage()

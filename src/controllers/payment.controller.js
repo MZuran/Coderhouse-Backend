@@ -4,7 +4,7 @@ import { getTokenFromReq } from "../utils/token.util.js"
 class PaymentController {
     async createPayment(req, res, next) {
         try {
-            const {_id} = getTokenFromReq(req)
+            const {_id} = getTokenFromReq(req,res)
             const response = await checkoutService({user_id: _id})
 
             return res.json(response.url)

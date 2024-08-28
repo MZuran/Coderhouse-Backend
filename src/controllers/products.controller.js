@@ -20,16 +20,16 @@ class ProductsController {
             let token = req.cookies['token']
             let _id, role, productList
 
-            console.log(`My category is ${category}`)
-            console.log(req.query)
+            //console.log(`My category is ${category}`)
+            //console.log(req.query)
 
             if (token) {
                 role = verifyToken(token).role
                 _id = verifyToken(token)._id
             }
 
-            console.log(`The token is ${verifyToken(token)}`)
-            console.log(`My role is ${role} and my id is ${_id}`)
+            //console.log(`The token is ${verifyToken(token)}`)
+            //console.log(`My role is ${role} and my id is ${_id}`)
 
             //If it's a premium user
             if (role && _id && role == 2) {
@@ -41,7 +41,7 @@ class ProductsController {
 
                 }
             } else {
-                productList = await readService(category);
+                productList = await readService({category});
             }
 
             if (productList.length !== 0) {
@@ -99,7 +99,7 @@ class ProductsController {
     async create(req, res, next) {
         try {
             const { title, photo = this.defaultImageValue, category, price, stock } = req.body
-            let { _id } = getTokenFromReq(req)
+            let { _id } = getTokenFromReq(req,res)
             _id = parseId(_id)
 
             const newProduct = await createService({ title, photo, category, price, stock, supplier_id: _id })
@@ -116,7 +116,7 @@ class ProductsController {
 
     async update(req, res, next) {
         try {
-            const { _id, role } = getTokenFromReq(req)
+            const { _id, role } = getTokenFromReq(req,res)
             const { pid } = req.params;
 
             if (role == 1) {

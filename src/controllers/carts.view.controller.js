@@ -45,7 +45,7 @@ class cartsViewController {
 
     async cartsMe(req, res, next) {
         try {
-            const { _id, name } = getTokenFromReq(req)
+            const { _id, name } = getTokenFromReq(req,res)
             let cartItems = await readService({ user_id: _id });
 
             // Populate them manually so that it works for all persistences

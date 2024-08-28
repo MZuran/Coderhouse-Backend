@@ -16,7 +16,7 @@ import {
 */
 
 async function isCartOwner(req, res, next) {
-  const token = getTokenFromReq(req)
+  const token = getTokenFromReq(req,res)
   const { cid } = req.params
 
   const cart = await readOneService(cid)

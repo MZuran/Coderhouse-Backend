@@ -22,5 +22,4 @@ class apiRouterClass extends CustomRouter {
 
 const apiRouter = new apiRouterClass();
 
-
 export default apiRouter.getRouter();

@@ -5,7 +5,7 @@ import { getTokenFromReq } from "../utils/token.util.js";
 class TicketsController {
      async cartTotal(req, res, next) {
         try {
-            const token = getTokenFromReq(req)
+            const token = getTokenFromReq(req,res)
             const list = await cartsManager.read({user_id: token.user_id});
             let total = 0
             list.forEach(element => {
