@@ -3,6 +3,7 @@ async function submitEditUser() {
     const name = document.getElementById('name').value;
     const photo = document.getElementById('photo').value;
     const role = document.getElementById('role')?.value; // Role is optional and may not exist
+    const password = document.getElementById('passwordChange')?.value;
 
     const userId = document.getElementById("userId").innerText;
 
@@ -15,6 +16,10 @@ async function submitEditUser() {
     // If role exists (admin user), add it to the payload
     if (role !== undefined) {
         payload.role = parseInt(role);
+    }
+
+    if(password !== null && password !== "") {
+        payload.password = password;
     }
 
     try {
