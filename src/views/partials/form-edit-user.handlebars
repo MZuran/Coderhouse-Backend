@@ -12,6 +12,8 @@
                     <input type="text" class="form-control" id="photo" name="photo" value="{{default.photo}}">
                 </div>
 
+               
+
                 {{#if isAdmin}}
                 <div class="mb-3">
                     <label for="role" class="form-label">Role</label>
@@ -22,7 +24,17 @@
                     </select>
                 </div>
                 {{/if}}
+            <div class="card p-3 mb-3">   
+                 <div class="mb-3">
+                    <label for="password" class="form-label">New Password</label>
+                    <input type="password" class="form-control" id="passwordChange" name="password">
+                </div>
 
+                 <div class="mb-3">
+                    <label for="confirm-password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm-password" name="confirm-password">
+                </div>
+            </div>
                 <small class="text-muted mb-2" id="userId">{{default._id}}</small>
             </form>
 

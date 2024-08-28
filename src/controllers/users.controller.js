@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import {
     createService,
     readService,
@@ -71,6 +72,11 @@ class UserController {
         try {
             const { uid } = req.params;
             const data = req.body;
+
+            if(data.password) {
+                data.password = await bcrypt.hash(data.password, 10);
+            }
+
             const one = await updateService(uid, data);
             return res.json({
                 statusCode: 200,
