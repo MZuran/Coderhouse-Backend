@@ -58,6 +58,7 @@ class SessionsController {
         try {
             res.clearCookie("token");
             //res.cookie("token", createToken({}), { signedCookie: true })
+            console.log("Cleared token")
             return res.json({ statusCode: 200, message: "Signed out!" });
         } catch (error) {
             return next(error);

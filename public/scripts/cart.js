@@ -9,8 +9,6 @@ async function deleteCart(cart_id) {
         });
 
         const data = await response.json();
-        console.log(response)
-
         if (response.status == 200) {
             // Notify the user of success and reload the page
             Swal.fire({
@@ -109,7 +107,6 @@ async function addToCart(product_id, product_name) {
             body: JSON.stringify(sentData)
         });
         const data = await response.json();
-        //console.log(data); // Log the message from the server
         return data.product; // Return the updated product
     } catch (error) {
         throw error;

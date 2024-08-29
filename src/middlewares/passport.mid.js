@@ -41,11 +41,12 @@ passport.use('register', new LocalStrategy({
       req.body.password = hashPassword;
 
       let photo = req.body.photo
-      if (!photo || photo == null) {req.body.photo = "https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0="}
+      if (!photo || photo == null) { req.body.photo = "https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0=" }
 
       req.body.verified = false
 
-      const user = await dao.users.create(req.body);
+      const user = await createService(req.body);
+      console.log(user)
       /*
       await sendEmail({
         to: email,
@@ -73,16 +74,20 @@ passport.use('login', new LocalStrategy({
 
       //Check if user with given email exists
       const one = await dao.users.readByEmail(email);
-      if (!one) {
+      const oneCopy = {...one}
+
+      if (!oneCopy) {
         const error = new Error("Bad auth from login!");
         error.statusCode = 401;
         return done(null, null, error);
       }
 
-      const verify = verifyHash(password, one.password);
+      console.log("The passwords are", password, oneCopy.password)
+      const verify = verifyHash(password, oneCopy.password);
+
       if (verify) {
-        delete one.password;
-        return done(null, one);
+        delete oneCopy.password;
+        return done(null, oneCopy);
       }
 
       const error = new Error('Invalid Credentials');
@@ -106,7 +111,6 @@ passport.use(
     async (req, accessToken, refreshToken, profile, done) => {
       try {
         const { id, picture } = profile;
-        console.log(profile);
         let user = await dao.users.readByEmail(id);
         if (!user) {
           user = {

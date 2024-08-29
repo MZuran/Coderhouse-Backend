@@ -515,3 +515,49 @@
 [33mERROR[39m: GET /api/products?category=fruit undefined - 19:54:00 - Parameter "filter" to find() must be an object, got "fruit" (type string)
 [33mERROR[39m: GET /api/products?category=fruit undefined - 19:54:20 - Parameter "filter" to find() must be an object, got "fruit" (type string)
 [33mERROR[39m: GET /api/products?category=fruit undefined - 19:54:40 - Parameter "filter" to find() must be an object, got "fruit" (type string)
+[33mERROR[39m: GET /online 401 - 19:57:10 - Bad Auth
+[33mERROR[39m: GET / 401 - 19:57:17 - Bad Auth
+[33mERROR[39m: GET / undefined - 8:13:47 - this.model.paginate is not a function
+[33mERROR[39m: GET /products/06fb744823df53e9b52d6f35 undefined - 8:29:08 - _id is not defined
+[33mERROR[39m: GET /products/06fb744823df53e9b52d6f35 undefined - 8:29:10 - _id is not defined
+[33mERROR[39m: POST /register 400 - 8:34:16 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /register 400 - 8:34:23 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /api/sessions/register undefined - 8:34:30 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:34:40 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:37:20 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:38:14 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:38:48 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:39:24 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:40:15 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:40:47 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:41:26 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:42:44 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:44:05 - undefined
+[33mERROR[39m: POST /api/sessions/register undefined - 8:45:07 - undefined
+[33mERROR[39m: POST /api/sessions/login 401 - 8:48:12 - Invalid Credentials
+[33mERROR[39m: POST /api/sessions/login 401 - 8:55:34 - Invalid Credentials
+[33mERROR[39m: POST /api/sessions/login 401 - 8:57:09 - Invalid Credentials
+[33mERROR[39m: POST /api/sessions/login 401 - 8:57:33 - Invalid Credentials
+[33mERROR[39m: POST /register 400 - 9:03:18 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /register 400 - 9:04:11 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /register 400 - 9:04:17 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /register 400 - 9:04:40 - Password must contain at least one lowercase letter, one uppercase letter, and one number
+[33mERROR[39m: POST /api/sessions/login 401 - 9:06:44 - Invalid Credentials
+[33mERROR[39m: POST /api/sessions/login 401 - 9:09:52 - Invalid Credentials
+[33mERROR[39m: POST /api/sessions/login 401 - 9:11:38 - Invalid Credentials
+[33mERROR[39m: POST /api/sessions/login 401 - 9:13:21 - Invalid Credentials
+[33mERROR[39m: POST /api/sessions/login 401 - 9:13:40 - Invalid Credentials
+[33mERROR[39m: POST /api/sessions/login 401 - 9:18:06 - Invalid Credentials
+[33mERROR[39m: POST /register 400 - 9:34:02 - Password must contain at least one lowercase letter, one uppercase letter, one number, and can include '.' or '@'
+[33mERROR[39m: PUT /api/products/3789439d56479932de61e2f8 undefined - 9:44:25 - this.model.update is not a function
+[33mERROR[39m: PUT /d7137f602689e4c04be0daff 401 - 9:47:55 - Bad Auth
+[33mERROR[39m: PUT /api/products/d7137f602689e4c04be0daff undefined - 9:47:55 - Cannot set headers after they are sent to the client
+[33mERROR[39m: POST /api/sessions/login undefined - 10:17:08 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 10:17:21 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 10:17:34 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 10:25:10 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 10:25:13 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 10:26:29 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 10:27:17 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 10:28:22 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 10:28:42 - undefined

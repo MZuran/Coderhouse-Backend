@@ -21,7 +21,6 @@ dotenv.config();
 
 
 const specs = swaggerJSDoc(swaggerOptions);
-//console.log(swaggerOptions);
 const server = express();
 const port = enviroment.PORT;
 const ready = () => { console.log("Server ready on port " + port); dbConnection() };

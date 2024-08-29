@@ -5,7 +5,7 @@ import { usersView, loginView, registerView, editView } from "../../controllers/
 
 class usersViewRouterClass extends CustomRouter{
     init(){
-        this.read("/", ["PUBLIC"], usersView);
+        this.read("/", ["REGISTERED"], usersView);
         this.read("/login", ["PUBLIC"], loginView);
         this.read("/register", ["PUBLIC"], registerView);
         this.read("/edit/:uid", ["REGISTERED"], isUserFromParams, editView);

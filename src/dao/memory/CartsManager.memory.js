@@ -9,17 +9,7 @@ class Cart {
     }
 }
 
-class CartManager extends Manager {
-    validateData(data) {
-        // Ensure data contains user_id, product_id, quantity, and valid state
-        const validStates = ["reserved", "paid", "delivered"];
-        return (
-            data.user_id &&
-            data.product_id &&
-            typeof data.quantity === "number" &&
-            validStates.includes(data.state)
-        );
-    }
+class CartManager extends ManagerMemory {
 }
 
 const CartManagerInstance = new CartManager()

@@ -68,6 +68,7 @@ class Manager {
   async paginate(filterObj = {}, paginationObj = { limit: 4, page: 1 }) {
     try {
       const all = await this.Model.paginate(filterObj, paginationObj)
+      console.log(all)
       return all
     } catch (error) {
       throw error;
