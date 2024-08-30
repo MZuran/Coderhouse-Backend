@@ -45,10 +45,9 @@ class ProductsController {
             }
 
             if (productList.length !== 0) {
-                return res.status(200).json({
+                return res.response200({
                     length: productList.length,
                     response: productList,
-                    statusCode: res.statusCode,
                 });
             } else {
                 const error = new Error("No matching Products");
@@ -66,10 +65,7 @@ class ProductsController {
             const { _id } = verifyToken(token)
             const productList = await readService({ supplier_id: _id })
 
-            return res.status(200).json({
-                response: productList,
-                products: productList.length
-            })
+            return res.sta
 
         } catch (error) {
             next(error)
@@ -81,9 +77,8 @@ class ProductsController {
             const { pid } = req.params;
             const productList = await readOneService(pid);
             if (productList.length !== 0) {
-                return res.status(200).json({
+                return res.response200({
                     response: productList,
-                    statusCode: res.statusCode,
                 });
             } else {
                 const error = new Error("No matching Products");
@@ -104,7 +99,7 @@ class ProductsController {
 
             const newProduct = await createService({ title, photo, category, price, stock, supplier_id: _id })
 
-            res.status(201).json({
+            res.response200({
                 message: "Product created successfully",
                 product: newProduct,
             });
@@ -124,7 +119,7 @@ class ProductsController {
                 const { title, photo, category, price, stock, supplier_id } = req.body;
                 const updatedProduct = await updateService(pid, { title, photo, category, price, stock, supplier_id });
 
-                res.status(200).json({
+                res.response200({
                     message: "Product updated successfully",
                     product: updatedProduct,
                 });
@@ -157,10 +152,7 @@ class ProductsController {
 
             const remainingProducts = await destroyService(pid);
 
-            res.status(200).json({
-                message: "Product deleted successfully",
-                product: remainingProducts,
-            });
+            res.response200({message: "Product deleted successfully"})
         } catch (error) {
             next(error)
         }

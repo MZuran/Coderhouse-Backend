@@ -44,9 +44,9 @@ class CustomRouter {
 
     /*-----------Responses-----------*/
     response = (req, res, next) => {
-        res.response200 = (response) => { res.json({ statusCode: 200, response }) }
+        res.response200 = (response) => { res.json({ statusCode: 200, ...response }) }
         res.paginate = (response, info) => { res.json({ statusCode: 200, response, info }) }
-        res.message201 = (message) => res.json({ statusCode: 201, message });
+        res.message201 = (response) => res.json({ statusCode: 201, ...response });
         res.error400 = (message) => winstonErrorMessage(req, res, { statusCode: 400, message });
         res.error401 = () => winstonErrorMessage(req, res, { statusCode: 401, message: "Bad Auth" });
         res.error403 = () => winstonErrorMessage(req, res, { statusCode: 403, message: "Forbidden" });

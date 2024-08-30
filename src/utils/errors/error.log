@@ -575,3 +575,4 @@
 [33mERROR[39m: POST /api/payments/checkout undefined - 16:17:30 - req is not defined
 [33mERROR[39m: POST /api/payments/checkout undefined - 16:17:32 - req is not defined
 [33mERROR[39m: GET / undefined - 12:26:02 - ifEquals doesn't match if - 25:9
+[33mERROR[39m: POST / 400 - 12:32:18 - "photo" is not allowed to be empty

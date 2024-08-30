@@ -23,8 +23,9 @@ async function addProduct() {
     });
 
     const data = await response.json();
+    console.log(data)
 
-    if (data.status === 200) {
+    if (data.statusCode == 200) {
       // Show success notification
       await Swal.fire({
         title: 'Success!',
