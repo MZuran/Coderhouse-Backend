@@ -113,3 +113,33 @@ async function addToCart(product_id, product_name) {
     }
 
 }
+
+async function checkout() {
+    try {
+        const response = await fetch(`/api/payments/checkout`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                baseUrl: document.location.href
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const parsedResponse = await response.json();
+        console.log(parsedResponse);
+
+        window.location.replace(parsedResponse)
+        
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An unexpected error occurred. Please try again later.',
+        });
+    }
+}

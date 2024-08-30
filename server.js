@@ -32,7 +32,10 @@ server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
 server.use(cookieParser(enviroment.SESSION_KEY));
 server.use(cors({ origin: true, credentials: true }));
+
+//Swagger
 server.use("/api/docs", serve, setup(specs));
+
 server.use(
   compression({
     brotli: { enabled: true, zlib: {} },

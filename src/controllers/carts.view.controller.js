@@ -70,6 +70,14 @@ class cartsViewController {
         }
     }
 
+    async cartsThanks(req, res, next) {
+        try {
+            return res.render("thanks", { title: "Thank you!" });
+        } catch (error) {
+            next(error)
+        }
+    }
+
     //Methods
     async addQuantity(cart_id, quantity) {
         try {
@@ -83,4 +91,4 @@ class cartsViewController {
 }
 
 const cartsViewControllerInstance = new cartsViewController()
-export const { cartsView, addQuantity, cartsMe } = cartsViewControllerInstance
+export const { cartsView, addQuantity, cartsMe, cartsThanks } = cartsViewControllerInstance

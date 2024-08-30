@@ -5,7 +5,7 @@ import { createPayment } from "../../controllers/payment.controller.js";
 
 class PaymentRouterClass extends CustomRouter {
   init() {
-    this.create("/", ["REGISTERED"], createPayment);
+    this.create("/checkout", ["REGISTERED"], createPayment);
   }
 }
 

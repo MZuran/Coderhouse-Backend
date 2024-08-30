@@ -3,6 +3,8 @@ import { createToken, verifyToken } from "../utils/token.util.js";
 import nodemailer from "nodemailer";
 import bcrypt from 'bcrypt';
 
+import getBaseUrl from '../utils/baseUrl.util.js';
+
 import {
     createService,
     readService,
@@ -90,7 +92,7 @@ async sendPasswordResetEmail(req, res, next) {
         console.log("Generated token:", token);
 
         // Crear el enlace de restablecimiento de contraseña
-        const resetLink = `http://localhost:${process.env.PORT}/resetpassword?token=${token}`;
+        const resetLink = `${getBaseUrl()}/resetpassword?token=${token}`;
 
         // Crear un transportador
         const transporter = nodemailer.createTransport({

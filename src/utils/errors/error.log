@@ -561,3 +561,17 @@
 [33mERROR[39m: POST /api/sessions/login undefined - 10:27:17 - undefined
 [33mERROR[39m: POST /api/sessions/login undefined - 10:28:22 - undefined
 [33mERROR[39m: POST /api/sessions/login undefined - 10:28:42 - undefined
+[33mERROR[39m: GET / undefined - 15:58:25 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: GET /cart undefined - 16:03:44 - Cannot read properties of undefined (reading 'user_id')
+[33mERROR[39m: GET /cart undefined - 16:03:49 - Cannot read properties of undefined (reading 'user_id')
+[33mERROR[39m: POST /api/payments/checkout 400 - 16:09:11 - Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout 400 - 16:09:12 - Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout 400 - 16:12:13 - Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout 400 - 16:12:16 - Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout 400 - 16:13:05 - Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout 400 - 16:13:21 - Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout 400 - 16:13:55 - Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout 400 - 16:13:58 - Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout undefined - 16:17:30 - req is not defined
+[33mERROR[39m: POST /api/payments/checkout undefined - 16:17:32 - req is not defined
+[33mERROR[39m: GET / undefined - 12:26:02 - ifEquals doesn't match if - 25:9

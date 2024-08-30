@@ -1,7 +1,7 @@
 {{> modal-fade-navbar}}
 
 <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-  <a class='navbar-brand margin-1-rem' href='/' > Rincon Natural </a>
+  <a class='navbar-brand margin-1-rem' href='/' > GreenGrocers </a>
 
   <button
     class='navbar-toggler'
@@ -18,9 +18,12 @@
 
   <div class='collapse navbar-collapse d-flex flex-row justify-content-between' id='navbarSupportedContent'>
     <ul class='navbar-nav mr-auto'>
+      <li class='nav-item'> <a class='nav-link' href='/'> Home </a> </li>
       <li class='nav-item'> <a class='nav-link' href='/products'> Products </a> </li>
-      <li class='nav-item'> <a class='nav-link' href='/products/new'> Add product </a> </li>
-      <li class='nav-item'> <a class='nav-link' href='/users'> Users </a> </li>
+      {{#ifEquals localUser.role 1}}<li class='nav-item'> <a class='nav-link' href='/products/new'> Add product </a> </li>{{/ifEquals}}
+      {{#ifEquals localUser.role 2}}<li class='nav-item'> <a class='nav-link' href='/products/new'> Add product </a> </li>{{/ifEquals}}
+      {{#if localUser.online}}<li class='nav-item'> <a class='nav-link' href='/users'> Profile </a> </li>{{/if}}
+      {{#ifEquals localUser.online false}}<li class='nav-item'> <a class='nav-link' href='/users/register'> Register </a> </li>{{/ifEquals}}
     </ul>
 
     <div class="d-flex flex-row centered-content ">

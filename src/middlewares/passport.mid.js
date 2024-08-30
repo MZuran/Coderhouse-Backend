@@ -8,6 +8,8 @@ import dao from "../dao/dao.factory.js";
 import { createHash, verifyHash } from "../utils/hash.util.js";
 import sendEmail from "../utils/mailing.util.js";
 
+import getBaseUrl from "../utils/baseUrl.util.js";
+
 import {
   createService,
   readService,
@@ -105,7 +107,7 @@ passport.use(
     {
       clientID: enviroment.GOOGLE_CLIENT_ID,
       clientSecret: enviroment.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8080/api/sessions/google/callback",
+      callbackURL: `${getBaseUrl()}/api/sessions/google/callback`,
       passReqToCallback: true,
     },
     async (req, accessToken, refreshToken, profile, done) => {
