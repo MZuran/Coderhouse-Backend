@@ -32,6 +32,14 @@ class UsersViewController {
         }
     }
 
+    async verifyView(req, res, next) {
+        try {
+            return res.render("verify", { title: "Verify" });
+        } catch (error) {
+            next(error)
+        }
+    }
+
     async editView(req, res, next) {
         try {
             const { uid } = req.params
@@ -47,4 +55,4 @@ class UsersViewController {
 }
 
 const usersViewController = new UsersViewController()
-export const { usersView, loginView, registerView, editView } = usersViewController
+export const { usersView, loginView, registerView, editView, verifyView } = usersViewController
