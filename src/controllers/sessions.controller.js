@@ -24,6 +24,20 @@ class SessionsController {
         }
     }
 
+    async verifyCode (req, res, next) {
+        const { email, code } = req.body;
+        const one = await readByEmailService(email);
+        const verify = code === one.verifyCode;
+        console.log(one);
+        console.log(code);
+        if (verify) {
+          await updateService(one._id, { verify });
+          return res.message200("Verified User!");
+        } else {
+          return res.error400("Invalid credentials!");
+        }
+      };
+
     async loginSession(req, res, next) {
         try {
             //console.log("My req.user is", req.user)
@@ -166,5 +180,5 @@ async updatePassword(req, res, next) {
 }
 
 const sessionsController = new SessionsController();
-const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail } = sessionsController;
-export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail };
+const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail, verifyCode } = sessionsController;
+export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail, verifyCode };

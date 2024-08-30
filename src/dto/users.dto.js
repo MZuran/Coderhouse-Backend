@@ -14,6 +14,8 @@ class UsersDTO {
     this.password = createHash(data.password);
     this.role = data.role || 0;
     this.photo = data.photo || defaultPicture;
+    this.verified = false;
+    this.verifyCode = crypto.randomBytes(12).toString("hex");
     persistence !== "mongo" && (this.createdAt = new Date());
     persistence !== "mongo" && (this.updatedAt = new Date());
   }
