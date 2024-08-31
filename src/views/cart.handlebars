@@ -16,7 +16,7 @@
                     <small class='text-muted'>{{this._id}}</small>
                     <a 
                     style="margin: 0.2rem; height:35px; width:35px; border-radius:50%;" 
-                    class='btn btn-danger d-flex flex-row align-items-center justify-content-center' 
+                    class='btn btn-gg-important d-flex flex-row align-items-center justify-content-center' 
                     onclick="deleteCart('{{this._id}}')">
                         <i class="bi bi-trash3"></i> 
                     </a>
@@ -28,7 +28,7 @@
 </div>
 <div style="width: 100%;" class="d-flex justify-content-center">
     {{#if hasItems}}
-    <button class="btn btn-danger mx-1" onclick="deleteAllCarts()">Delete all Items</button>
+    <button class="btn btn-gg-important mx-1" onclick="deleteAllCarts()">Delete all Items</button>
     <button class="btn btn-success mx-1" onclick="checkout()">Confirm Purchase (${{total}})</button>
     {{else}}
     <p>This cart is empty!</p>

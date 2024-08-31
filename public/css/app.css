@@ -33,4 +33,58 @@
   height: 100%;
 }
 
-/*# sourceMappingURL=app.css.map */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+body, p, span, div, a, li, ul, ol, input, button {
+  font-family: 'Lato', sans-serif;
+}
+
+body, .modal-body{
+  background-color: #F5F5DC;
+}
+
+h1, .navbar-brand {
+  color: #6B8E23;
+}
+
+.navbar
+{
+  z-index:5;
+}
+
+.navbar-brand
+{
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+}
+
+h5
+{
+  color: #307317 !important;
+}
+
+a{
+  color:#ff5d17;
+}
+
+.form-group .form-control
+{
+  font-family: "Merriweather", serif;
+  font-style: italic;
+  color:#307317;
+}
+
+.btn-gg-important {
+  color: #fff;
+  background-color: #dc5e35;
+  border-color: #dc7435;
+}
+.btn-gg-important:hover {
+  color: #fff;
+  background-color: #bb2d3b;
+  border-color: #b02a37;
+}
+
+/*# sourceMappingURL=app.css.map */ 
