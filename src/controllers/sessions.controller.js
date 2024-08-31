@@ -16,13 +16,40 @@ class SessionsController {
 
     async registerSession(req, res, next) {
         try {
-            //const data = req.body;
-            //await userManagerMongo.create(data);
+            const data = req.body;
+            await userManagerMongo.create(data);
             return res.message201("Registered!")
         } catch (error) {
             return next(error);
         }
     }
+
+    async verifyCode(req, res, next) {
+        const { token } = req.body;
+    
+        // Ensure token is a string
+        if (typeof token !== 'string') {
+            return res.error400("Invalid token format!");
+        }
+    
+        try {
+            // Pass the token directly as a string
+            const one = await userManagerMongo.readByVerifyCode(token);
+            const verify = token === one.verifyCode;
+
+            one.verified = true;
+            await userManagerMongo.update(one._id, one);
+
+            if (verify) {
+                return res.json({ success: true, message: "User account verified succesfully!" });
+            } else {
+                return res.error400("Invalid credentials!");
+            }
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ statusCode: 500, message: "Internal Server Error" });
+        }
+    };
 
     async loginSession(req, res, next) {
         try {
@@ -166,5 +193,5 @@ async updatePassword(req, res, next) {
 }
 
 const sessionsController = new SessionsController();
-const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail } = sessionsController;
-export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail };
+const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail, verifyCode } = sessionsController;
+export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail, verifyCode };

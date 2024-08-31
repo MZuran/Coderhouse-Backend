@@ -7,6 +7,8 @@ import dao from "../dao/dao.factory.js";
 
 import { createHash, verifyHash } from "../utils/hash.util.js";
 import sendEmail from "../utils/mailing.util.js";
+import crypto from "crypto";
+
 
 passport.use('register', new LocalStrategy({
   passReqToCallback: true,
@@ -35,14 +37,16 @@ passport.use('register', new LocalStrategy({
       if (!photo || photo == null) {req.body.photo = "https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0="}
 
       req.body.verified = false
+      req.body.verifyCode = crypto.randomBytes(12).toString("hex");
 
       const user = await dao.users.create(req.body);
-      /*
+      
       await sendEmail({
         to: email,
         name: user.name,
+        code: user.verifyCode,
       });
-      */
+      
       return done(null, user);
     } catch (error) {
       return done('error' + error);
@@ -59,14 +63,23 @@ passport.use('login', new LocalStrategy({
       if (!email || !password) {
         const error = new Error("Please enter email and password!");
         error.statusCode = 400;
+        console.error(error);
         return done(null, null, error);
       }
 
-      //Check if user with given email exists
+      // Check if user with given email exists
       const one = await dao.users.readByEmail(email);
       if (!one) {
         const error = new Error("Bad auth from login!");
         error.statusCode = 401;
+        console.error(error);
+        return done(null, null, error);
+      }
+
+      if (!one.verified) {
+        const error = new Error("User not verified!");
+        error.statusCode = 401;
+        console.error(error);
         return done(null, null, error);
       }
 
@@ -78,8 +91,10 @@ passport.use('login', new LocalStrategy({
 
       const error = new Error('Invalid Credentials');
       error.statusCode = 401;
+      console.error(error);
       return done(error);
     } catch (error) {
+      console.error('error', error);
       return done('error' + error);
     }
   }

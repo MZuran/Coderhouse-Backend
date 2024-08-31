@@ -10,15 +10,17 @@ async function sendEmail(data) {
       secure: true,
       auth: { user: GOOGLE_EMAIL, pass: GOOGLE_PASSWORD },
     });
+
+    const resetLink = `http://localhost:${process.env.PORT}/users/verify?token=${data.code}`;
     
     await trasport.verify();
     await trasport.sendMail({
-      from: `ADOPTME <${GOOGLE_EMAIL}>`,
+      from: `GREENGROCERIESMARKET <${GOOGLE_EMAIL}>`,
       to: data.to,
-      subject: `USER ${data.first_name.toUpperCase()} REGISTERED!`,
+      subject: `USER ${data.name.toUpperCase()} REGISTERED!`,
       html: `
         <h1 style="color: red">WELCOME TO GREEN GROCERIES!</h1>
-        <p>VERIFY CODE: ${data.code}</p>
+        <p>To finish the registration process please proceed to this link: ${resetLink}</p>
       `,
     });
   } catch (error) {
