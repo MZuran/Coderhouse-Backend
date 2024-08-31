@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const options = {
     definition: {
         openapi: "3.1.0",
-        info: { 
+        info: {
             title: "Green Groceries API",
             description: "Documentation of Green Groceries API"
         },
