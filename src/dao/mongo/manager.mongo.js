@@ -68,6 +68,7 @@ class Manager {
   async paginate(filterObj = {}, paginationObj = { limit: 4, page: 1 }) {
     try {
       const all = await this.Model.paginate(filterObj, paginationObj)
+      console.log(all)
       return all
     } catch (error) {
       throw error;
@@ -77,6 +78,15 @@ class Manager {
   async readByEmail(email) {
     try {
       const one = await this.Model.findOne({ email });
+      return one;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async readByVerifyCode(verifyCode) {
+    try {
+      const one = await this.Model.findOne({ verifyCode });
       return one;
     } catch (error) {
       throw error;

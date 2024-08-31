@@ -4,12 +4,10 @@ import Stripe from "stripe";
 import { readService as readCarts } from "../services/carts.service.js"
 import { readOneService as readOneProduct } from "../services/products.service.js";
 
+import getBaseUrl from "../utils/baseUrl.util.js";
+
 //TODO: Change success url
 
-/*
-    Doesn't use the base repository class apparently
-    We only really ever use filter for user_id
-*/
 const checkoutRepository = async (filter) => {
     try {
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -20,11 +18,11 @@ const checkoutRepository = async (filter) => {
             cart.product_id = await readOneProduct(cart.product_id);
             return cart;
         }));
-        
+
         productsOnCart = productsOnCart.map((each) => new CheckoutProduct(each));
         const line_items = productsOnCart;
         const mode = "payment";
-        const success_url = "http://localhost:8080/thanks.html";
+        const success_url = `${getBaseUrl()}/thanks.html`;
         const intent = await stripe.checkout.sessions.create({
             line_items,
             mode,

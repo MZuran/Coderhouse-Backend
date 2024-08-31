@@ -16,11 +16,10 @@ class apiRouterClass extends CustomRouter {
         this.use("/cookies", cookiesRouter);
         this.use("/sessions", sessionsRouter);
         this.use("/tickets", ticketsRouter);
-        this.use("/payment", paymentRouter);
+        this.use("/payments", paymentRouter);
     }
 }
 
 const apiRouter = new apiRouterClass();
-
 
 export default apiRouter.getRouter();

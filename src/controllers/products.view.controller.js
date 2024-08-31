@@ -11,7 +11,7 @@ class ProductsViewController {
             let { page } = req.query;
             if (!page) { page = 1 }
 
-            const { role, _id } = getTokenFromReq(req)
+            const { role, _id } = getTokenFromReq(req,res)
 
             let productList
 
@@ -41,7 +41,7 @@ class ProductsViewController {
             let { page } = req.query;
             if (!page) { page = 1 }
 
-            const { role, _id } = getTokenFromReq(req)
+            const { role, _id } = getTokenFromReq(req,res)
 
             let productList
 

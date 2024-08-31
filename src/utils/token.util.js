@@ -2,20 +2,30 @@ import jwt from "jsonwebtoken";
 import enviroment from "./env.util.js";
 
 const createToken = (data) => {
-  const opts = { expiresIn: 60 * 60 * 24 };
+  const opts = { expiresIn: 60 * 60 };
   const token = jwt.sign(data, enviroment.SECRET_JWT, opts);
   return token;
 };
 
 const verifyToken = (token) => {
-  const data = jwt.verify(token, enviroment.SECRET_JWT);
-  return data;
+  try {
+    const data = jwt.verify(token, enviroment.SECRET_JWT);
+    return data;
+  } catch (error) {
+    return null;
+  }
 };
 
-const getTokenFromReq = (req) => {
+const getTokenFromReq = (req, res) => {
   let token = req.cookies['token']
   if (token) {
-    return verifyToken(token)
+    const verifiedToken = verifyToken(token)
+    if (verifiedToken == null) {
+      console.log("Invalid Token. Clearing Cookie.")
+      res.clearCookie('token');
+    } else {
+      return verifiedToken
+    }
   } else {
     return {}
   }

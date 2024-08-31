@@ -13,7 +13,7 @@ import {
 class UsersViewController {
     async usersView(req, res, next) {
         try {
-            let user = getTokenFromReq(req)
+            let user = getTokenFromReq(req,res)
             if (!user._id) {
                 user = null
             }
@@ -39,11 +39,19 @@ class UsersViewController {
         }
     }
 
+    async verifyView(req, res, next) {
+        try {
+            return res.render("verify", { title: "Verify" });
+        } catch (error) {
+            next(error)
+        }
+    }
+
     async editView(req, res, next) {
         try {
             const { uid } = req.params
             const user = await readOneService(uid)
-            const { role } = getTokenFromReq(req)
+            const { role } = getTokenFromReq(req,res)
             let isAdmin = role == 1
             console.log(user)
             return res.render("edit-user", { title: "Edit User", user: user, isAdmin });
@@ -54,4 +62,4 @@ class UsersViewController {
 }
 
 const usersViewController = new UsersViewController()
-export const { usersView, loginView, registerView, editView } = usersViewController
+export const { usersView, loginView, registerView, editView, verifyView } = usersViewController

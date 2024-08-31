@@ -7,6 +7,19 @@ import dao from "../dao/dao.factory.js";
 
 import { createHash, verifyHash } from "../utils/hash.util.js";
 import sendEmail from "../utils/mailing.util.js";
+import crypto from "crypto";
+
+
+import getBaseUrl from "../utils/baseUrl.util.js";
+
+import {
+  createService,
+  readService,
+  paginateService,
+  readOneService,
+  updateService,
+  destroyService,
+} from "../services/users.service.js"
 
 import {
   createService,
@@ -41,17 +54,20 @@ passport.use('register', new LocalStrategy({
       req.body.password = hashPassword;
 
       let photo = req.body.photo
-      if (!photo || photo == null) {req.body.photo = "https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0="}
+      if (!photo || photo == null) { req.body.photo = "https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0=" }
 
       req.body.verified = false
+      req.body.verifyCode = crypto.randomBytes(12).toString("hex");
 
-      const user = await dao.users.create(req.body);
-      /*
+      const user = await createService(req.body);
+      console.log(user)
+      
       await sendEmail({
         to: email,
         name: user.name,
+        code: user.verifyCode,
       });
-      */
+      
       return done(null, user);
     } catch (error) {
       return done('error' + error);
@@ -68,27 +84,42 @@ passport.use('login', new LocalStrategy({
       if (!email || !password) {
         const error = new Error("Please enter email and password!");
         error.statusCode = 400;
+        console.error(error);
         return done(null, null, error);
       }
 
-      //Check if user with given email exists
+      // Check if user with given email exists
       const one = await dao.users.readByEmail(email);
-      if (!one) {
+      const oneCopy = {...one}
+
+      if (!oneCopy) {
         const error = new Error("Bad auth from login!");
         error.statusCode = 401;
+        console.error(error);
         return done(null, null, error);
       }
 
-      const verify = verifyHash(password, one.password);
+      if (!one.verified) {
+        const error = new Error("User not verified!");
+        error.statusCode = 401;
+        console.error(error);
+        return done(null, null, error);
+      }
+
+      console.log("The passwords are", password, oneCopy.password)
+      const verify = verifyHash(password, oneCopy.password);
+
       if (verify) {
-        delete one.password;
-        return done(null, one);
+        delete oneCopy.password;
+        return done(null, oneCopy);
       }
 
       const error = new Error('Invalid Credentials');
       error.statusCode = 401;
+      console.error(error);
       return done(error);
     } catch (error) {
+      console.error('error', error);
       return done('error' + error);
     }
   }
@@ -100,13 +131,12 @@ passport.use(
     {
       clientID: enviroment.GOOGLE_CLIENT_ID,
       clientSecret: enviroment.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8080/api/sessions/google/callback",
+      callbackURL: `${getBaseUrl()}/api/sessions/google/callback`,
       passReqToCallback: true,
     },
     async (req, accessToken, refreshToken, profile, done) => {
       try {
         const { id, picture } = profile;
-        console.log(profile);
         let user = await dao.users.readByEmail(id);
         if (!user) {
           user = {

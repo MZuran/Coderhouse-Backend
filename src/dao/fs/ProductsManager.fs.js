@@ -1,14 +1,5 @@
 import FileManager from "./FileManager";
-
-class Product {
-  constructor(title, photo, category, price, stock) {
-    this.title = title;
-    this.photo = photo;
-    this.category = category;
-    this.price = price;
-    this.stock = stock;
-  }
-}
+import Product from "../product.class.js";
 
 class ProductManager extends FileManager {
   constructor() {

@@ -1,13 +1,8 @@
 import { getTokenFromReq } from "../utils/token.util.js";
 import parseId from "../utils/parseId.util.js";
 
-import {
-    readService,
-} from "../services/carts.service.js"
-
-import {
-    readOneService as readOneProductService,
-} from "../services/products.service.js";
+import { readService, } from "../services/carts.service.js"
+import { readOneService as readOneProductService, } from "../services/carts.service.js"
 
 class cartsViewController {
     async cartsView(req, res, next) {
@@ -19,10 +14,12 @@ class cartsViewController {
             if (cartItems) {
                 console.log(cartItems[0].user_id)
                 name = await readOneProductService(parseId(cartItems[0].user_id))
+                name = await readOneProductService(parseId(cartItems[0].user_id))
             }
 
             // Populate them manually so that it works for all persistences
             cartItems = await Promise.all(cartItems.map(async item => {
+                item.product_id = await readOneProductService(parseId(item.product_id));
                 item.product_id = await readOneProductService(parseId(item.product_id));
                 return item;
             }));
@@ -45,11 +42,12 @@ class cartsViewController {
 
     async cartsMe(req, res, next) {
         try {
-            const { _id, name } = getTokenFromReq(req)
+            const { _id, name } = getTokenFromReq(req, res)
             let cartItems = await readService({ user_id: _id });
 
             // Populate them manually so that it works for all persistences
             cartItems = await Promise.all(cartItems.map(async item => {
+                item.product_id = await readOneProductService(parseId(item.product_id));
                 item.product_id = await readOneProductService(parseId(item.product_id));
                 return item;
             }));
@@ -70,6 +68,14 @@ class cartsViewController {
         }
     }
 
+    async cartsThanks(req, res, next) {
+        try {
+            return res.render("thanks", { title: "Thank you!" });
+        } catch (error) {
+            next(error)
+        }
+    }
+
     //Methods
     async addQuantity(cart_id, quantity) {
         try {
@@ -83,4 +89,4 @@ class cartsViewController {
 }
 
 const cartsViewControllerInstance = new cartsViewController()
-export const { cartsView, addQuantity, cartsMe } = cartsViewControllerInstance
+export const { cartsView, addQuantity, cartsMe, cartsThanks } = cartsViewControllerInstance

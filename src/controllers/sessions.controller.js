@@ -3,6 +3,8 @@ import { createToken, verifyToken } from "../utils/token.util.js";
 import nodemailer from "nodemailer";
 import bcrypt from 'bcrypt';
 
+import getBaseUrl from '../utils/baseUrl.util.js';
+
 import {
     createService,
     readService,
@@ -24,13 +26,40 @@ class SessionsController {
 
     async registerSession(req, res, next) {
         try {
-            //const data = req.body;
-            //await userManagerMongo.create(data);
+            const data = req.body;
+            await userManagerMongo.create(data);
             return res.message201("Registered!")
         } catch (error) {
             return next(error);
         }
     }
+
+    async verifyCode(req, res, next) {
+        const { token } = req.body;
+    
+        // Ensure token is a string
+        if (typeof token !== 'string') {
+            return res.error400("Invalid token format!");
+        }
+    
+        try {
+            // Pass the token directly as a string
+            const one = await userManagerMongo.readByVerifyCode(token);
+            const verify = token === one.verifyCode;
+
+            one.verified = true;
+            await userManagerMongo.update(one._id, one);
+
+            if (verify) {
+                return res.json({ success: true, message: "User account verified succesfully!" });
+            } else {
+                return res.error400("Invalid credentials!");
+            }
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ statusCode: 500, message: "Internal Server Error" });
+        }
+    };
 
     async loginSession(req, res, next) {
         try {
@@ -58,6 +87,7 @@ class SessionsController {
         try {
             res.clearCookie("token");
             //res.cookie("token", createToken({}), { signedCookie: true })
+            console.log("Cleared token")
             return res.json({ statusCode: 200, message: "Signed out!" });
         } catch (error) {
             return next(error);
@@ -89,7 +119,7 @@ async sendPasswordResetEmail(req, res, next) {
         console.log("Generated token:", token);
 
         // Crear el enlace de restablecimiento de contraseña
-        const resetLink = `http://localhost:${process.env.PORT}/resetpassword?token=${token}`;
+        const resetLink = `${getBaseUrl()}/resetpassword?token=${token}`;
 
         // Crear un transportador
         const transporter = nodemailer.createTransport({
@@ -176,5 +206,5 @@ async updatePassword(req, res, next) {
 }
 
 const sessionsController = new SessionsController();
-const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail } = sessionsController;
-export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail };
+const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail, verifyCode } = sessionsController;
+export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail, verifyCode };

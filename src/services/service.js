@@ -30,10 +30,6 @@ class Service {
 
     paginateService = async (filter, opts) => {
       try {
-        
-        console.log(filter)
-        console.log(opts)
-        
         const all = await this.repository.paginateRepository(filter, opts);
         return all;
       } catch (error) {

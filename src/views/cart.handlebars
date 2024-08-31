@@ -29,7 +29,7 @@
 <div style="width: 100%;" class="d-flex justify-content-center">
     {{#if hasItems}}
     <button class="btn btn-danger mx-1" onclick="deleteAllCarts()">Delete all Items</button>
-    <button class="btn btn-success mx-1" onclick="">Confirm Purchase (${{total}})</button>
+    <button class="btn btn-success mx-1" onclick="checkout()">Confirm Purchase (${{total}})</button>
     {{else}}
     <p>This cart is empty!</p>
     {{/if}}

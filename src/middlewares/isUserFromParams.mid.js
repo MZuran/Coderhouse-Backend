@@ -6,7 +6,7 @@ import { getTokenFromReq } from "../utils/token.util.js";
 */
 
 async function isUserFromParams(req, res, next) {
-  const token = getTokenFromReq(req)
+  const token = getTokenFromReq(req,res)
   const { uid } = req.params
 
   if (!token.role || (token._id != uid && token.role != 1)) {

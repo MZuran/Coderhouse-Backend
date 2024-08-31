@@ -9,7 +9,8 @@ import {
   signOutSession, 
   googleCallback, 
   sendPasswordResetEmail, 
-  updatePassword 
+  updatePassword,
+  verifyCode
 } from "../../controllers/sessions.controller.js"
 
 import validator from "../../utils/validator.joi.util.js";
@@ -24,6 +25,7 @@ class sessionsRouterClass extends CustomRouter {
     this.read("/password", ["PUBLIC"], sendPasswordResetEmail);
     this.create("/password", ["PUBLIC"], sendPasswordResetEmail);
     this.create("/reset-password", ["PUBLIC"], updatePassword);
+    this.create("/verify", ["PUBLIC"], verifyCode);
 
     this.read("/online", ["REGISTERED"], checkOnlineStatus);//WORKS
 

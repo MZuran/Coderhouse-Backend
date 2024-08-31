@@ -22,14 +22,14 @@ const usersSchema = joi.object({
       "string.max": "Email must have at most 50 characters",
     }),
   password: joi.string()
-    .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]+$'))
+    .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d@.]+$'))
     .min(3)
     .max(50)
     .required()
     .messages({
       "any.required": "Password is required",
       "string.empty": "Password cannot be an empty string",
-      "string.pattern.base": "Password must contain at least one lowercase letter, one uppercase letter, and one number",
+      "string.pattern.base": "Password must contain at least one lowercase letter, one uppercase letter, one number, and can include '.' or '@'",
       "string.min": "Password must have at least 3 characters",
       "string.max": "Password must have at most 50 characters",
     }),

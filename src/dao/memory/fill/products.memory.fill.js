@@ -1,3 +1,5 @@
+import Product from "../../product.class.js"
+
 function fillProducts(manager) {
     const urls = {
         banana: "https://acdn.mitiendanube.com/stores/001/219/229/products/banana1-39d62a544fc16a2b8016025979095295-640-0.jpg",

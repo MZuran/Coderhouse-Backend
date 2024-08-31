@@ -6,7 +6,9 @@ import usersRepository from "../../src/repositories/users.rep.js";
 import authRepository from "../../src/repositories/auth.rep.js";
 import { format } from "morgan";
 
-const requester = supertest(`http://localhost:${enviroment.PORT}/api`);
+import getBaseUrl from "../../src/utils/baseUrl.util.js";
+
+const requester = supertest(`${getBaseUrl()}/api`);
 
 /*
 Ya sé que esto es re inseguro pero nuestro register no deja que cualquiera

@@ -13,7 +13,7 @@ class CartsController {
     async createCart(req, res, next) {
         try {
             const data = req.body;
-            const { _id } = getTokenFromReq(req)
+            const { _id } = getTokenFromReq(req,res)
 
             console.log("My id is", _id)
 
@@ -94,7 +94,7 @@ class CartsController {
 
     async deleteAllCarts(req, res, next) {
         try {
-            const { _id } = getTokenFromReq(req)
+            const { _id } = getTokenFromReq(req,res)
             const userCartList = await readService({ user_id: _id });
             let idList = []
 

@@ -9,8 +9,6 @@ async function deleteCart(cart_id) {
         });
 
         const data = await response.json();
-        console.log(response)
-
         if (response.status == 200) {
             // Notify the user of success and reload the page
             Swal.fire({
@@ -109,10 +107,39 @@ async function addToCart(product_id, product_name) {
             body: JSON.stringify(sentData)
         });
         const data = await response.json();
-        //console.log(data); // Log the message from the server
         return data.product; // Return the updated product
     } catch (error) {
         throw error;
     }
 
+}
+
+async function checkout() {
+    try {
+        const response = await fetch(`/api/payments/checkout`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                baseUrl: document.location.href
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const parsedResponse = await response.json();
+        console.log(parsedResponse);
+
+        window.location.replace(parsedResponse)
+        
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An unexpected error occurred. Please try again later.',
+        });
+    }
 }

@@ -7,7 +7,9 @@ import { expect } from 'chai';
 import { verifyToken } from '../../src/utils/token.util.js';
 import mongoose from 'mongoose';
 
-const requester = supertest(`http://localhost:${enviroment.PORT}/api`);
+import getBaseUrl from '../../src/utils/baseUrl.util.js';
+
+const requester = supertest(`${getBaseUrl()}/api`);
 
 const adminCredentials = {
     "email": "test@test.com",

@@ -6,9 +6,7 @@ class BaseRepository {
   
     createRepository = async (data) => {
       try {
-        if (this.DTOClass) {
-          data = new this.DTOClass(data);
-        }
+        if (this.DTOClass) { data = new this.DTOClass(data); }
         const result = await this.model.create(data);
         return result;
       } catch (error) {

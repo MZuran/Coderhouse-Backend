@@ -23,9 +23,8 @@
 
             <div class="d-flex flex-row mb-2" style="">
             <a type="button" class="btn btn-warning m-0" href="/users/edit/{{user._id}}">Edit Profile</a>
-            {{#ifEquals user.role 2}}
-            <a type="button" class="btn btn-info mx-2" href="/products/me">See My Products</a>
-            {{/ifEquals}}
+            {{#ifEquals user.role 2}} <a type="button" class="btn btn-info mx-2" href="/products/me">See My Products</a> {{/ifEquals}}
+            {{#ifEquals user.role 1}} <a type="button" class="btn btn-info mx-2" href="/products/me">See My Products</a> {{/ifEquals}}
             </div>
             <div class="d-flex flex-column" style="width: 253px;">
             {{> logout-button}}
