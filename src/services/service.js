@@ -40,6 +40,7 @@ class Service {
     readOneService = async (uid) => {
       try {
         const one = await this.repository.readOneRepository(uid);
+        console.log("My one is", one, uid)
         return one;
       } catch (error) {
         throw error;

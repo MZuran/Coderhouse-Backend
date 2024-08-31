@@ -37,3 +37,27 @@
 [33mERROR[39m: POST /verify 400 - 10:26:49 - Invalid credentials!
 [33mERROR[39m: GET /users/login undefined - 10:44:58 - window is not defined
 [33mERROR[39m: GET /users/login undefined - 10:44:59 - window is not defined
+[33mERROR[39m: GET /cart undefined - 16:11:27 - Cannot read properties of null (reading 'toString')
+[33mERROR[39m: GET /cart undefined - 16:12:30 - Cannot read properties of null (reading 'toString')
+[33mERROR[39m: GET /cart undefined - 16:13:18 - Cannot read properties of null (reading 'toString')
+[33mERROR[39m: GET /cart undefined - 16:13:40 - Cannot read properties of null (reading 'toString')
+[33mERROR[39m: GET /cart undefined - 16:13:43 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:13:55 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:14:12 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:14:33 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:14:35 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:15:17 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:15:30 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:15 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:16 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:20 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:38 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:54 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:58 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:17:20 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:20:06 - Cannot read properties of undefined (reading 'forEach')
+[33mERROR[39m: GET /cart undefined - 16:20:09 - Cannot read properties of undefined (reading 'forEach')
+[33mERROR[39m: GET /cart undefined - 16:20:52 - Cannot read properties of undefined (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:20:55 - Cannot read properties of undefined (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:23:47 - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /cart undefined - 16:23:48 - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "products"
