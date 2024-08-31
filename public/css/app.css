@@ -41,7 +41,7 @@ body, p, span, div, a, li, ul, ol, input, button {
   font-family: 'Lato', sans-serif;
 }
 
-body{
+body, .modal-body{
   background-color: #F5F5DC;
 }
 
@@ -74,6 +74,17 @@ a{
   font-family: "Merriweather", serif;
   font-style: italic;
   color:#307317;
+}
+
+.btn-gg-important {
+  color: #fff;
+  background-color: #dc5e35;
+  border-color: #dc7435;
+}
+.btn-gg-important:hover {
+  color: #fff;
+  background-color: #bb2d3b;
+  border-color: #b02a37;
 }
 
 /*# sourceMappingURL=app.css.map */ 
