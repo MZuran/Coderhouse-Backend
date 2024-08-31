@@ -20,16 +20,16 @@ class ProductsController {
             let token = req.cookies['token']
             let _id, role, productList
 
-            console.log(`My category is ${category}`)
-            console.log(req.query)
+            //console.log(`My category is ${category}`)
+            //console.log(req.query)
 
             if (token) {
                 role = verifyToken(token).role
                 _id = verifyToken(token)._id
             }
 
-            console.log(`The token is ${verifyToken(token)}`)
-            console.log(`My role is ${role} and my id is ${_id}`)
+            //console.log(`The token is ${verifyToken(token)}`)
+            //console.log(`My role is ${role} and my id is ${_id}`)
 
             //If it's a premium user
             if (role && _id && role == 2) {
@@ -41,14 +41,13 @@ class ProductsController {
 
                 }
             } else {
-                productList = await readService(category);
+                productList = await readService({category});
             }
 
             if (productList.length !== 0) {
-                return res.status(200).json({
+                return res.response200({
                     length: productList.length,
                     response: productList,
-                    statusCode: res.statusCode,
                 });
             } else {
                 const error = new Error("No matching Products");
@@ -66,10 +65,7 @@ class ProductsController {
             const { _id } = verifyToken(token)
             const productList = await readService({ supplier_id: _id })
 
-            return res.status(200).json({
-                response: productList,
-                products: productList.length
-            })
+            return res.sta
 
         } catch (error) {
             next(error)
@@ -81,9 +77,8 @@ class ProductsController {
             const { pid } = req.params;
             const productList = await readOneService(pid);
             if (productList.length !== 0) {
-                return res.status(200).json({
+                return res.response200({
                     response: productList,
-                    statusCode: res.statusCode,
                 });
             } else {
                 const error = new Error("No matching Products");
@@ -99,12 +94,12 @@ class ProductsController {
     async create(req, res, next) {
         try {
             const { title, photo = this.defaultImageValue, category, price, stock } = req.body
-            let { _id } = getTokenFromReq(req)
+            let { _id } = getTokenFromReq(req,res)
             _id = parseId(_id)
 
             const newProduct = await createService({ title, photo, category, price, stock, supplier_id: _id })
 
-            res.status(201).json({
+            res.response200({
                 message: "Product created successfully",
                 product: newProduct,
             });
@@ -116,7 +111,7 @@ class ProductsController {
 
     async update(req, res, next) {
         try {
-            const { _id, role } = getTokenFromReq(req)
+            const { _id, role } = getTokenFromReq(req,res)
             const { pid } = req.params;
 
             if (role == 1) {
@@ -124,7 +119,7 @@ class ProductsController {
                 const { title, photo, category, price, stock, supplier_id } = req.body;
                 const updatedProduct = await updateService(pid, { title, photo, category, price, stock, supplier_id });
 
-                res.status(200).json({
+                res.response200({
                     message: "Product updated successfully",
                     product: updatedProduct,
                 });
@@ -157,10 +152,7 @@ class ProductsController {
 
             const remainingProducts = await destroyService(pid);
 
-            res.status(200).json({
-                message: "Product deleted successfully",
-                product: remainingProducts,
-            });
+            res.response200({message: "Product deleted successfully"})
         } catch (error) {
             next(error)
         }

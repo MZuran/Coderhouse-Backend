@@ -101,10 +101,11 @@ async function deleteProduct(pid) {
                     method: 'DELETE',
                 });
 
-                const readableResponse = await response.json()
+                const data = await response.json()
+                console.log("Response", response)
+                console.log("data", data)
 
-                if (response.statusCode === 200) {
-                    const data = await response.json();
+                if (data.statusCode == 200) {
                     console.log('Product deleted successfully:', data);
 
                     // Show success message and redirect
@@ -117,13 +118,13 @@ async function deleteProduct(pid) {
                     // Redirect to the products page or any other action
                     window.location.href = '/products';
                 } else {
-                    console.error('Failed to delete product:', readableResponse.message);
+                    console.error('Failed to delete product:', data.message);
 
                     // Show error message
                     await Swal.fire({
                         icon: 'error',
                         title: 'Deletion Failed',
-                        text: `Failed to delete product. ${readableResponse.message}.`
+                        text: `Failed to delete product. ${data.message}.`
                     });
                 }
             } catch (error) {

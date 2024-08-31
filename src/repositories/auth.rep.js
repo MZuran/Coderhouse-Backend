@@ -1,33 +1,19 @@
-//REPOSITORIO LLAMA A DAO
+// AuthRepository.js
 import dao from "../dao/dao.factory.js";
 import UsersDTO from "../dto/users.dto.js";
+import BaseRepository from "./base.rep.js";
+
 const { users } = dao;
 
-class AuthRepository {
+class AuthRepository extends BaseRepository {
   constructor() {
-    this.model = users;
+    super(users, UsersDTO);
   }
-  create = async (data) => {
+
+  readByEmail = async (email) => {
     try {
-      data = new UsersDTO(data);
-      const one = await this.model.create(data);
-      return one;
-    } catch (error) {
-      throw error;
-    }
-  };
-  readByEmailRepository = async (email) => {
-    try {
-      const one = await this.model.readByEmail(email);
-      return one;
-    } catch (error) {
-      throw error;
-    }
-  };
-  updateRepository = async (id, data) => {
-    try {
-      const one = await this.model.update(id, data);
-      return one;
+      const result = await this.model.readByEmail(email);
+      return result;
     } catch (error) {
       throw error;
     }

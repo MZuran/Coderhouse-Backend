@@ -4,11 +4,14 @@
     "dev": "nodemon ./server.js -p 8082 --env dev",
     "prod": "nodemon ./server.js -p 8080 --env prod",
     "products": "node ./src/mocks/products.mock.js",
+    "dev-mem": "nodemon ./server.js --persistence memory",
+    "dev-fs": "nodemon ./server.js --persistence fs",
     "users": "node ./src/mocks/users.mock.js",
     "mocha": "mocha ./test/mocha",
     "chai": "mocha ./test/chai",
     "supertest": "mocha ./test/superTest",
-    "productUpdatingTest": "mocha ./test/assign"
+    "productUpdatingTest": "mocha ./test/assign",
+    "hashTest": "mocha ./test/hash"
   },
   "name": "coderhouse-backend",
   "description": "",
@@ -50,6 +53,7 @@
     "passport-local": "^1.0.0",
     "sass": "^1.77.1",
     "socket.io": "^4.7.5",
+    "stripe": "^16.8.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.13.1"

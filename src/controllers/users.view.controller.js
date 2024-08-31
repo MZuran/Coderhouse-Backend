@@ -1,12 +1,19 @@
 import { getTokenFromReq } from "../utils/token.util.js";
-import dao from "../dao/dao.factory.js";
 
-const { users } = dao
+import {
+    createService,
+    readService,
+    paginateService,
+    readOneService,
+    updateService,
+    destroyService,
+} from "../services/users.service.js"
+
 
 class UsersViewController {
     async usersView(req, res, next) {
         try {
-            let user = getTokenFromReq(req)
+            let user = getTokenFromReq(req,res)
             if (!user._id) {
                 user = null
             }
@@ -43,8 +50,8 @@ class UsersViewController {
     async editView(req, res, next) {
         try {
             const { uid } = req.params
-            const user = await users.readOne(uid)
-            const { role } = getTokenFromReq(req)
+            const user = await readOneService(uid)
+            const { role } = getTokenFromReq(req,res)
             let isAdmin = role == 1
             console.log(user)
             return res.render("edit-user", { title: "Edit User", user: user, isAdmin });

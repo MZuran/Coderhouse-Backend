@@ -6,15 +6,16 @@ import CustomRouter from "../customRouter.js";
 import productsView from "./products.view.js";
 import forgotPasswordViewRouter from "./forgotPassword.view.js";
 import resetPasswordViewRouter from "./resetPassword.view.js";
+import homeViewRouter from "./home.view.js";
 
 class viewsRouterClass extends CustomRouter{
     init() {
         this.use("/users", usersViewRouter);
         this.use("/products", productsViewRouter);
         this.use("/cart", cartsViewRouter)
-        this.read("/", ["PUBLIC"], productsView);
         this.use("/forgotpassword", forgotPasswordViewRouter);
         this.use("/resetpassword", resetPasswordViewRouter);
+        this.read("/", ["PUBLIC"], homeViewRouter);
     }
 }
 
