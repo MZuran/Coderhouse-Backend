@@ -1,0 +1,49 @@
+info:
+  title: Green Groceries API - Tickets
+  description: Documentation of Green Groceries API for ticket management
+  version: 1.0.0
+
+components:
+  schemas:
+    CartTotal:
+      type: object
+      properties:
+        total:
+          type: number
+          format: float
+          description: Total amount of the cart
+      example:
+        total: 150.75
+    Error500:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to server-side fatal error
+        message:
+          type: string
+          description: Descriptive text for server-side error message
+      example:
+        statusCode: 500
+        message: Server error
+
+paths:
+  /api/tickets:
+    get:
+      summary: Get the total amount of the cart
+      tags:
+        - Ticket
+      responses:
+        200:
+          description: Total amount of the cart retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartTotal'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'

@@ -1,0 +1,235 @@
+openapi: 3.1.0
+info:
+  title: Green Groceries API - Carts
+  description: Documentation of Green Groceries API for cart management
+  version: 1.0.0
+paths:
+  /api/carts:
+    post:
+      summary: Create a new cart
+      tags:
+        - Cart
+      requestBody:
+        required: true
+        description: Data to create a new cart
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        201:
+          description: Cart created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message201'
+        400:
+          description: Error due to incomplete or incorrect data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+    get:
+      summary: Get all carts
+      tags:
+        - Cart
+      responses:
+        200:
+          description: List of carts obtained successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200all'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/carts/{cid}:
+    put:
+      summary: Update a cart by ID
+      tags:
+        - Cart
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Data to update the cart
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        200:
+          description: Cart updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        400:
+          description: Error due to incomplete or incorrect data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        404:
+          description: Cart not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+    delete:
+      summary: Delete a cart by ID
+      tags:
+        - Cart
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: Cart deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        404:
+          description: Cart not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/carts/all:
+    delete:
+      summary: Delete all carts
+      tags:
+        - Cart
+      responses:
+        200:
+          description: All carts deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Cart ID
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+                description: ID of the product
+              quantity:
+                type: integer
+                description: Quantity of the product
+      example:
+        id: "12345"
+        items:
+          - productId: "67890"
+            quantity: 2
+    Message200:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to successful request
+        message:
+          type: string
+          description: Descriptive text for successful request
+      example:
+        statusCode: 200
+        message: Operation successful
+    Message201:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to successful creation
+        message:
+          type: string
+          description: Descriptive text for successful creation
+      example:
+        statusCode: 201
+        message: Cart created successfully
+    Error400:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to client-side failure
+        message:
+          type: string
+          description: Descriptive text for client-side error message
+      example:
+        statusCode: 400
+        message: Incomplete or incorrect data
+    Error404:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to resource not found
+        message:
+          type: string
+          description: Descriptive text for resource not found error message
+      example:
+        statusCode: 404
+        message: Cart not found
+    Error500:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to server-side fatal error
+        message:
+          type: string
+          description: Descriptive text for server-side error message
+      example:
+        statusCode: 500
+        message: Server error
