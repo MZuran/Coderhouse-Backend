@@ -14,7 +14,7 @@ async function sendEmail(data) {
       auth: { user: GOOGLE_EMAIL, pass: GOOGLE_PASSWORD },
     });
 
-    const resetLink = `${getBaseUrl()}/users/verify?token=${data.code}`;
+    const resetLink = `${getBaseUrl()}/users/verify/${data.code}`;
 
     await trasport.verify();
 
