@@ -13,6 +13,8 @@ class UsersDTO {
     this.role = data.role || 0;
     this.photo = data.photo || defaultPicture;
     this.name = data.name;
+    this.verified = false;
+    this.verifyCode = crypto.randomBytes(12).toString("hex");
   }
 }
 

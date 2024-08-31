@@ -9,7 +9,8 @@ const userSchema = new Schema({
     email: {type: String, required: true, index: true},
     password: {type: String, required: true},
     role: {type: Number, default: 0, index: true},
-    verified: {type: Boolean, default: false}
+    verified: {type: Boolean, default: false},
+    verifyCode: {type: String},
 })
 
 userSchema.pre(['find', 'findOne'], function() {

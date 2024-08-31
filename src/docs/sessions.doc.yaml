@@ -1,0 +1,277 @@
+openapi: 3.0.0
+info:
+  title: API de Sesiones
+  version: 1.0.0
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: Correo electrónico del usuario
+        password:
+          type: string
+          format: password
+          description: Contraseña del usuario
+      required:
+        - email
+        - password
+      example:
+        email: usuario@example.com
+        password: password123
+    Message200:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al éxito en la solicitud
+        message:
+          type: string
+          description: Texto descriptivo con el éxito en la solicitud
+      example:
+        statusCode: 200
+        message: Operación exitosa
+    Error400:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al fracaso por problemas del cliente
+        message:
+          type: string
+          description: Texto descriptivo con mensaje de error por parte del cliente
+      example:
+        statusCode: 400
+        message: Datos incompletos o incorrectos
+    Error401:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al fracaso por falta de autenticación
+        message:
+          type: string
+          description: Texto descriptivo con mensaje de error por falta de autenticación
+      example:
+        statusCode: 401
+        message: No autorizado
+    Error500:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado correspondiente al fracaso por error fatal en el servidor
+        message:
+          type: string
+          description: Texto descriptivo con mensaje de error por parte del servidor
+      example:
+        statusCode: 500
+        message: Error del servidor
+paths:
+  /api/sessions/register:
+    post:
+      summary: Registra un nuevo usuario
+      tags:
+        - Sessions
+      requestBody:
+        required: true
+        description: Datos para registrar un nuevo usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: Usuario registrado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        400:
+          description: Error por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/sessions/login:
+    post:
+      summary: Inicia sesión de un usuario
+      tags:
+        - Sessions
+      requestBody:
+        required: true
+        description: Datos para iniciar sesión
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: Inicio de sesión exitoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        400:
+          description: Error por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        401:
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/sessions:
+    post:
+      summary: Obtiene los datos del usuario conectado
+      tags:
+        - Sessions
+      responses:
+        200:
+          description: Datos del usuario obtenidos con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        401:
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/sessions/signout:
+    post:
+      summary: Cierra la sesión del usuario
+      tags:
+        - Sessions
+      responses:
+        200:
+          description: Sesión cerrada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        401:
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/sessions/password:
+    post:
+      summary: Envía un correo electrónico para restablecer la contraseña
+      tags:
+        - Sessions
+      requestBody:
+        required: true
+        description: Correo electrónico del usuario
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Correo electrónico del usuario
+              required:
+                - email
+              example:
+                email: usuario@example.com
+      responses:
+        200:
+          description: Correo electrónico enviado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        400:
+          description: Error por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+    put:
+      summary: Actualiza la contraseña del usuario
+      tags:
+        - Sessions
+      requestBody:
+        required: true
+        description: Datos para actualizar la contraseña
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Correo electrónico del usuario
+                password:
+                  type: string
+                  format: password
+                  description: Nueva contraseña del usuario
+              required:
+                - email
+                - password
+              example:
+                email: usuario@example.com
+                password: newpassword123
+      responses:
+        200:
+          description: Contraseña actualizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        400:
+          description: Error por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        500:
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'

@@ -83,6 +83,15 @@ class Manager {
       throw error;
     }
   }
+
+  async readByVerifyCode(verifyCode) {
+    try {
+      const one = await this.Model.findOne({ verifyCode });
+      return one;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Manager;
