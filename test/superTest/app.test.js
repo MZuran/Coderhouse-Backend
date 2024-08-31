@@ -34,19 +34,13 @@ describe("Testeando API", function () {
     it("Inicio de sesión de un usuario", async () => {
         const response = await requester.post("/sessions/login").send(userCredentials);
         const { _body, headers } = response;
-        //console.log(_body);
-        //token = headers["set-cookie"][0].split(";")[0];
         token = headers["set-cookie"][0].split(";")[0];
-        //console.log("The token is")
-        //console.log(token)
         expect(_body.statusCode).to.be.equals(200);
     });
 
     it("Cerrar sesión de un usuario", async () => {
         const response = await requester.post("/sessions/signout").set("Cookie", token);
         const { _body } = response;
-        //console.log(token)
-        //console.log(_body)
         expect(_body.statusCode).to.be.equals(200);
     });
 })

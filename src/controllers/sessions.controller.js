@@ -29,7 +29,6 @@ class SessionsController {
     async registerSession(req, res, next) {
         try {
             const data = req.body;
-            await createService(data);
             return res.message201("Registered!")
         } catch (error) {
             return next(error);
