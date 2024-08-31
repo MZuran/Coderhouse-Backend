@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 import bcrypt from 'bcrypt';
 
 import getBaseUrl from '../utils/baseUrl.util.js';
+import parseId from '../utils/parseId.util.js';
 
 import {
     createService,
@@ -12,6 +13,7 @@ import {
     readOneService,
     updateService,
     destroyService,
+    readByVerifyCodeService
 } from "../services/users.service.js"
 
 class SessionsController {
@@ -27,7 +29,7 @@ class SessionsController {
     async registerSession(req, res, next) {
         try {
             const data = req.body;
-            await userManagerMongo.create(data);
+            await createService(data);
             return res.message201("Registered!")
         } catch (error) {
             return next(error);
@@ -35,26 +37,17 @@ class SessionsController {
     }
 
     async verifyCode(req, res, next) {
-        const { token } = req.body;
-    
-        // Ensure token is a string
-        if (typeof token !== 'string') {
-            return res.error400("Invalid token format!");
+        const { uid } = req.body
+
+        if (!uid) {
+            return res.error400("Invalid format!");
         }
-    
+
         try {
-            // Pass the token directly as a string
-            const one = await userManagerMongo.readByVerifyCode(token);
-            const verify = token === one.verifyCode;
+            const one = await readByVerifyCodeService(uid);
+            console.log("My readbyverify is", one)
 
-            one.verified = true;
-            await userManagerMongo.update(one._id, one);
-
-            if (verify) {
-                return res.json({ success: true, message: "User account verified succesfully!" });
-            } else {
-                return res.error400("Invalid credentials!");
-            }
+            return res.response200({message: "Verified!"})
         } catch (error) {
             console.error(error);
             return res.status(500).json({ statusCode: 500, message: "Internal Server Error" });
@@ -66,7 +59,7 @@ class SessionsController {
             //console.log("My req.user is", req.user)
             return res
                 .cookie("token", createToken(req.user), { signedCookie: true })
-                .response200("Logged in!");
+                .response200({message: "Logged in!"});
         } catch (error) {
             return next(error);
         }
@@ -76,7 +69,8 @@ class SessionsController {
         try {
             return res.json({
                 statusCode: 100,
-                token: verifyToken(req.cookies['token'])
+                baseUrl: getBaseUrl() || "Undefined",
+                token: verifyToken(req.cookies['token']),
             });
         } catch (error) {
             return next(error);
@@ -101,110 +95,130 @@ class SessionsController {
             return next(error);
         }
     }
-// tarea sprint 12 revisar que este ok
-async sendPasswordResetEmail(req, res, next) {
-    try {
-        // Extraer el email del cuerpo de la solicitud
-        const { email } = req.body;
 
-        // Buscar al usuario por su email
-        let user = await readService( {email: email});
-        user = user[0]
-        if (!user) {
-            return res.status(400).json({ message: 'User not found' });
-        }
+    async sendPasswordResetEmail(req, res, next) {
+        try {
+            // Extraer el email del cuerpo de la solicitud
+            const { email } = req.body;
 
-        // Generar el token
-        const token = jwt.sign({ email: user.email }, process.env.SECRET_JWT, { expiresIn: '1h' });
-        console.log("Generated token:", token);
-
-        // Crear el enlace de restablecimiento de contraseña
-        const resetLink = `${getBaseUrl()}/resetpassword?token=${token}`;
-
-        // Crear un transportador
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: "greengroceriesmarket@gmail.com",
-                pass: process.env.GOOGLE_PASSWORD,
-            },
-        });
-
-        // Definir las opciones del correo electrónico
-        const mailOptions = {
-            from: "greengroceriesmarket@gmail.com",
-            to: user.email,
-            subject: "Password Reset",
-            text: `Please click the link to reset your password: ${resetLink}`,
-            html: `<p>Please click the link to reset your password: <a href="${resetLink}">Reset Password</a></p>`,
-        };
-
-        // Enviar el correo electrónico
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log("Error sending email:", error);
-                return res.status(500).json({ message: "Failed to send password reset email" });
-            } else {
-                console.log("Email sent:", info.response);
-                return res.status(200).json({ message: "Password reset email sent!" });
+            // Buscar al usuario por su email
+            let user = await readService({ email: email });
+            user = user[0]
+            if (!user) {
+                return res.status(400).json({ message: 'User not found' });
             }
-        });
-    } catch (error) {
-        console.error("Error in sendPasswordResetEmail:", error);
-        res.status(500).json({ message: 'Internal server error' });
+
+            // Generar el token
+            const token = jwt.sign({ email: user.email }, process.env.SECRET_JWT, { expiresIn: '1h' });
+            console.log("Generated token:", token);
+
+            // Crear el enlace de restablecimiento de contraseña
+            const resetLink = `${getBaseUrl()}/resetpassword?token=${token}`;
+
+            // Crear un transportador
+            const transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                    user: "greengroceriesmarket@gmail.com",
+                    pass: process.env.GOOGLE_PASSWORD,
+                },
+            });
+
+            // Definir las opciones del correo electrónico
+            const mailOptions = {
+                from: "greengroceriesmarket@gmail.com",
+                to: user.email,
+                subject: "Password Reset",
+                text: `Please click the link to reset your password: ${resetLink}`,
+                html: `<p>Please click the link to reset your password: <a href="${resetLink}">Reset Password</a></p>`,
+            };
+
+            // Enviar el correo electrónico
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.log("Error sending email:", error);
+                    return res.status(500).json({ message: "Failed to send password reset email" });
+                } else {
+                    console.log("Email sent:", info.response);
+                    return res.status(200).json({ message: "Password reset email sent!" });
+                }
+            });
+        } catch (error) {
+            console.error("Error in sendPasswordResetEmail:", error);
+            res.status(500).json({ message: 'Internal server error' });
+        }
     }
-}
 
-async updatePassword(req, res, next) {
-    const { token, newPassword } = req.body;
+    async updatePassword(req, res, next) {
+        const { token, newPassword } = req.body;
 
-    // Validate the presence of token and newPassword
-    if (!token || !newPassword) {
-        return res.status(400).json({ message: 'Token and new password must be provided' });
-    }
-
-    try {
-        // Verify the token
-        const decoded = jwt.verify(token, process.env.SECRET_JWT);
-        const email = decoded.email;
-
-        // Find the user by email
-        let user = await readService( {email: email});
-        user = user[0]
-        if (!user) {
-            return res.status(400).json({ message: 'Invalid token or user does not exist' });
+        // Validate the presence of token and newPassword
+        if (!token || !newPassword) {
+            return res.status(400).json({ message: 'Token and new password must be provided' });
         }
 
-        // Hash the new password
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        try {
+            // Verify the token
+            const decoded = jwt.verify(token, process.env.SECRET_JWT);
+            const email = decoded.email;
 
-        // Update the user's password
-        user.password = hashedPassword;
-        await updateService(user._id, user)
+            // Find the user by email
+            let user = await readService({ email: email });
+            user = user[0]
+            if (!user) {
+                return res.status(400).json({ message: 'Invalid token or user does not exist' });
+            }
 
-        res.status(200).json({ message: 'Password has been reset successfully' });
-    } catch (error) {
-        res.status(400).json({ message: 'Invalid or expired token' });
+            // Hash the new password
+            const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+            // Update the user's password
+            user.password = hashedPassword;
+            await updateService(user._id, user)
+
+            res.status(200).json({ message: 'Password has been reset successfully' });
+        } catch (error) {
+            res.status(400).json({ message: 'Invalid or expired token' });
+        }
     }
-}
-    
 
     async update(req, res, next) {
         try {
             const { title, photo, category, price, stock } = req.body;
             const { pid } = req.params;
             const updatedProduct = await updateService(pid, { title, photo, category, price, stock });
-    
+
             res.status(200).json({
                 message: "Product updated successfully",
                 product: updatedProduct,
             });
-        }catch(error){
+        } catch (error) {
             next(error)
         }
     }
 }
 
 const sessionsController = new SessionsController();
-const { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail, verifyCode } = sessionsController;
-export { readSessions, registerSession, loginSession, checkOnlineStatus, signOutSession, googleCallback, updatePassword, sendPasswordResetEmail, verifyCode };
+const { 
+    readSessions, 
+    registerSession, 
+    loginSession, 
+    checkOnlineStatus, 
+    signOutSession, 
+    googleCallback, 
+    updatePassword, 
+    sendPasswordResetEmail, 
+    verifyCode 
+} = sessionsController;
+
+export { 
+    readSessions, 
+    registerSession, 
+    loginSession, 
+    checkOnlineStatus, 
+    signOutSession, 
+    googleCallback, 
+    updatePassword, 
+    sendPasswordResetEmail, 
+    verifyCode 
+};

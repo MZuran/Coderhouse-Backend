@@ -32,6 +32,17 @@ class ManagerMemory {
     return parsedList[0];
   }
 
+  findOne(filter) {
+    try {
+      const foundItem = this.items.find(item =>
+        Object.entries(filter).every(([key, value]) => item[key] === value)
+      );
+      return foundItem || null; // Return null if no item matches the filter
+    } catch (error) {
+      throw error;
+    }
+  }
+
   paginate(filterObj = {}, paginationObj = { limit: 4, page: 1 }) {
     try {
       const filteredItems = this.items.filter(item =>

@@ -5,7 +5,7 @@ import {
     readOneService,
     updateService,
     destroyService,
-  } from "../services/users.service.js";
+} from "../services/users.service.js";
 
 class UserController {
     async read(req, res, next) {
@@ -16,8 +16,8 @@ class UserController {
 
             if (req.body == {}) {
                 all = await readService(role);
-            }   else {
-                all = await readService({...req.body})
+            } else {
+                all = await readService({ ...req.body })
             }
 
             if (all.length !== 0) {
@@ -73,7 +73,7 @@ class UserController {
             const { uid } = req.params;
             const data = req.body;
 
-            if(data.password) {
+            if (data.password) {
                 data.password = await bcrypt.hash(data.password, 10);
             }
 
@@ -91,12 +91,12 @@ class UserController {
     async updateByEmail(req, res, next) {
         try {
             const data = req.body
-            const {email} = req.body
-            let one = await readService({email})
+            const { email } = req.body
+            let one = await readService({ email })
             one = one[0]
 
             one = await updateService(one._id, data)
-            
+
             return res.json({
                 statusCode: 200,
                 message: "Updated User",
@@ -124,4 +124,4 @@ class UserController {
 }
 
 const userController = new UserController()
-export const {read, readOne, create, update, destroy, updateByEmail} = userController
+export const { read, readOne, create, update, destroy, updateByEmail } = userController

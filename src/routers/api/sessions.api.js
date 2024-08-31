@@ -1,6 +1,7 @@
 import passport from "../../middlewares/passport.mid.js";
 import CustomRouter from "../customRouter.js";
 import passportCb from "../../middlewares/passportCb.mid.js";
+
 import { 
   readSessions, 
   registerSession, 
@@ -24,10 +25,11 @@ class sessionsRouterClass extends CustomRouter {
 
     this.read("/password", ["PUBLIC"], sendPasswordResetEmail);
     this.create("/password", ["PUBLIC"], sendPasswordResetEmail);
+
     this.create("/reset-password", ["PUBLIC"], updatePassword);
     this.create("/verify", ["PUBLIC"], verifyCode);
 
-    this.read("/online", ["REGISTERED"], checkOnlineStatus);//WORKS
+    this.read("/online", ["REGISTERED"], checkOnlineStatus);
 
     this.create("/signout", ["REGISTERED"], signOutSession);
     this.read("/google", ["PUBLIC"], passport.authenticate("google", { scope: ["email", "profile"] }));

@@ -8,11 +8,11 @@
 <body>
     <div class="container">
         <h1>Account verification</h1>
-        <p>Click the button below to verify your account.</p>
-        <form action="../api/sessions/verify" method="POST" id="verifyForm">
-            <button type="submit" class="btn btn-primary">Verify Account</button>
-        </form>
+        <p>Click the button below to verify your account.
+            <br>
+        </p>
+        <button type="submit" class="btn btn-primary" onclick="verify('{{user_id}}')">Verify Account</button>
     </div>
-    <script src="/./scripts/verifyAccount.js"> </script>
+    <script src="/scripts/verifyAccount.js"> </script>
 </body>
 </html>

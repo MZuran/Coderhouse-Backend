@@ -21,7 +21,7 @@ class Service {
 
     readByEmailService = async (email) => {
       try {
-        const all = await this.repository.readRepository(filter);
+        const all = await this.repository.readRepository(email);
         return all;
       } catch (error) {
         throw error;

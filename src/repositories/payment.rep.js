@@ -6,8 +6,6 @@ import { readOneService as readOneProduct } from "../services/products.service.j
 
 import getBaseUrl from "../utils/baseUrl.util.js";
 
-//TODO: Change success url
-
 const checkoutRepository = async (filter) => {
     try {
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);

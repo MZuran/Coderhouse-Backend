@@ -2,7 +2,18 @@ import Service from "./service.js";
 
 import usersRepository from "../repositories/users.rep.js";
 
-const usersService = new Service(usersRepository);
+class UsersServiceClass extends Service{
+  readByVerifyCodeService = async (code) => {
+    try {
+      const one = await this.repository.readByVerifyCode(code);
+      return one;
+    } catch (error) {
+      throw error;
+    }
+  };
+}
+
+const usersService = new UsersServiceClass(usersRepository);
 
 export const {
   createService,
@@ -11,4 +22,6 @@ export const {
   readOneService,
   updateService,
   destroyService,
+  readByVerifyCodeService,
+  readByEmailService
 } = usersService;

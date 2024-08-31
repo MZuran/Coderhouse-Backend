@@ -15,6 +15,9 @@ function setLocals(req, res, next) {
             online: false
         }
     }
+
+    res.locals.currentUrl = req.originalUrl;
+    
     next();
 }
 

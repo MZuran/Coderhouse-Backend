@@ -68,6 +68,19 @@ class FileManager {
     }
   }
 
+  async findOne(filter) {
+    try {
+      const itemList = await this.read();
+      const foundItem = itemList.find(item =>
+        Object.entries(filter).every(([key, value]) => item[key] === value)
+      );
+      return foundItem || null; // Return null if no item matches the filter
+    } catch (error) {
+      throw error;
+    }
+  }
+  
+
   async update(id, data) {
     try {
       let itemList = await this.read();

@@ -31,6 +31,15 @@ class Manager {
     }
   }
 
+  async findOne(filter) {
+    try {
+      const one = await this.Model.findOne({ ...filter });
+      return one;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   /*
     You use this one by passing to filter an object that has one key and one value
     For example {email: "test@hotmail.com"}

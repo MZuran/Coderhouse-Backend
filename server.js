@@ -61,6 +61,11 @@ Handlebars.registerHelper('ifIn', function(value, options) {
   return values.includes(value) ? options.fn(this) : options.inverse(this);
 });
 
+Handlebars.registerHelper('ifUrl', function(expectedUrl, options) {
+  return (this.currentUrl === expectedUrl) ? options.fn(this) : options.inverse(this);
+});
+
+
 server.engine("handlebars", engine({
   partialsDir: __dirname + "/src/views/partials"
 }))

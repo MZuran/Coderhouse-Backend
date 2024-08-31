@@ -9,17 +9,7 @@ import { createHash, verifyHash } from "../utils/hash.util.js";
 import sendEmail from "../utils/mailing.util.js";
 import crypto from "crypto";
 
-
 import getBaseUrl from "../utils/baseUrl.util.js";
-
-import {
-  createService,
-  readService,
-  paginateService,
-  readOneService,
-  updateService,
-  destroyService,
-} from "../services/users.service.js"
 
 import {
   createService,
@@ -92,24 +82,27 @@ passport.use('login', new LocalStrategy({
       const one = await dao.users.readByEmail(email);
       const oneCopy = {...one}
 
-      if (!oneCopy) {
+      console.log(oneCopy)
+
+      if (oneCopy == {}) {
         const error = new Error("Bad auth from login!");
         error.statusCode = 401;
         console.error(error);
         return done(null, null, error);
       }
 
-      if (!one.verified) {
+      /*
+      if (!oneCopy.verified) {
         const error = new Error("User not verified!");
         error.statusCode = 401;
         console.error(error);
         return done(null, null, error);
       }
+      */
 
-      console.log("The passwords are", password, oneCopy.password)
-      const verify = verifyHash(password, oneCopy.password);
+      const verifiedPassword = verifyHash(password, oneCopy.password);
 
-      if (verify) {
+      if (verifiedPassword) {
         delete oneCopy.password;
         return done(null, oneCopy);
       }

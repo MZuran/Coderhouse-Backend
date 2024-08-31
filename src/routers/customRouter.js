@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { verifyToken } from "../utils/token.util.js";
-import userManagerMongo from "../dao/mongo/managers/userManager.mongo.js";
+import { getTokenFromReq, verifyToken } from "../utils/token.util.js";
 import winstonErrorMessage from "../utils/winstonMessage.util.js";
+
+import { readByEmailService } from "../services/users.service.js";
 
 class CustomRouter {
     /*-----------Setup-----------*/
@@ -53,7 +54,9 @@ class CustomRouter {
         res.error404 = () => winstonErrorMessage(req, res, { statusCode: 404, message: "Not Found" });
         res.error500 = () => winstonErrorMessage(req, res, { statusCode: 500, message: "Internal Server Error" });
         res.errorPage = (title, errorCode, description) => { res.render("error-page", { title: title, error: errorCode, description }) }
-        res.forbiddenPage = () => { res.errorPage("Forbidden", 401, "You don't have permission to see this page") }
+        res.unauthorizedPage = () => { res.errorPage("Unauthorized", 401, "You must be logged on to see this page") }
+        res.forbiddenPage = () => { res.errorPage("Forbidden", 403, "You don't have permission to see this page") }
+        res.verificationError = () => { res.errorPage("Not Verified", 403, "You must verify your account to see this page. Check your email inbox for your url") }
         return next()
     }
 
@@ -66,9 +69,9 @@ class CustomRouter {
     policies = (policies) => async (req, res, next) => {
         if (policies.includes('PUBLIC')) return next()
 
-        let token = req.cookies['token']
+        let token = getTokenFromReq(req, res)
 
-        if (!token) {
+        if (token.role == undefined) {
             if (this.isViewRequest(req)) {
                 return res.forbiddenPage()
             } else {
@@ -76,8 +79,17 @@ class CustomRouter {
             }
         }
 
+        const { role, email, verified } = token
+
+        if (!verified) {
+            if (this.isViewRequest(req)) {
+                return res.verificationError()
+            } else {
+                return res.error401()
+            }
+        }
+
         try {
-            const { role, email } = verifyToken(token)
             if (
                 policies.includes('REGISTERED') ||
                 policies.includes('USER') && role === 0 ||
@@ -85,7 +97,7 @@ class CustomRouter {
                 policies.includes('PREM') && role === 2
                 //Add more here if needed
             ) {
-                const user = await userManagerMongo.readByEmail(email)
+                const user = await readByEmailService({email})
                 req.user = user
                 return next()
             } else {
@@ -96,6 +108,7 @@ class CustomRouter {
                 }
             }
         } catch (error) {
+            console.error(error)
             return res.error401()
         }
     }

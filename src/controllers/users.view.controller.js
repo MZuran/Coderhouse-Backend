@@ -40,8 +40,9 @@ class UsersViewController {
     }
 
     async verifyView(req, res, next) {
+        const { uid } = req.params
         try {
-            return res.render("verify", { title: "Verify" });
+            return res.render("verify", { title: "Verify", user_id: uid });
         } catch (error) {
             next(error)
         }

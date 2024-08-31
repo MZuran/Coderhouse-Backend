@@ -8,7 +8,7 @@ class usersViewRouterClass extends CustomRouter{
         this.read("/", ["REGISTERED"], usersView);
         this.read("/login", ["PUBLIC"], loginView);
         this.read("/register", ["PUBLIC"], registerView);
-        this.read("/verify", ["PUBLIC"], verifyView);
+        this.read("/verify/:uid", ["PUBLIC"], verifyView);
         this.read("/edit/:uid", ["REGISTERED"], isUserFromParams, editView);
     }
 }
