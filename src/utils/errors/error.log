@@ -576,3 +576,4 @@
 [33mERROR[39m: POST /api/payments/checkout undefined - 16:17:32 - req is not defined
 [33mERROR[39m: GET / undefined - 12:26:02 - ifEquals doesn't match if - 25:9
 [33mERROR[39m: POST / 400 - 12:32:18 - "photo" is not allowed to be empty
+[33mERROR[39m: POST /register 400 - 19:12:33 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string
