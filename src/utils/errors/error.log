@@ -61,4 +61,3 @@
 [33mERROR[39m: GET /cart undefined - 16:20:55 - Cannot read properties of undefined (reading 'price')
 [33mERROR[39m: GET /cart undefined - 16:23:47 - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "products"
 [33mERROR[39m: GET /cart undefined - 16:23:48 - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "products"
-[33mERROR[39m: POST /register 400 - 16:52:01 - Name must have at least 3 characters

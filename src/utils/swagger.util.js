@@ -13,7 +13,7 @@ const options = {
             description: "Documentation of Green Groceries API"
         },
     },
-    apis: [path.join(__dirname, "..\\docs\\users.doc.yaml"), path.join(__dirname, "..\\docs\\product.doc.yaml"), path.join(__dirname, "..\\docs\\sessions.doc.yaml"), path.join(__dirname, "..\\docs\\carts.doc.yaml"), path.join(__dirname, "..\\docs\\tickets.doc.yaml"), path.join(__dirname, "..\\docs\\cookies.doc.yaml"), path.join(__dirname, "..\\docs\\payment.doc.yaml")],
+    apis: [path.join(__dirname, "..\\docs\\users.doc.yaml"), path.join(__dirname, "..\\docs\\product.doc.yaml"), path.join(__dirname, "..\\docs\\sessions.doc.yaml"), path.join(__dirname, "..\\docs\\carts.doc.yaml"), path.join(__dirname, "..\\docs\\tickets.doc.yaml"), path.join(__dirname, "..\\docs\\cookies.doc.yaml"), path.join(__dirname, "..\\docs\\payment.doc.yaml")], 
     debug: {
         dirName: __dirname
     }
