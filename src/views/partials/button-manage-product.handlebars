@@ -1,0 +1,16 @@
+{{#if localUser.online}}
+    {{!-- <div> <a class='btn btn-warning' > Edit Product {{product.title}} </a> </div> --}}
+
+    {{#ifEquals localUser.role 1}}
+        {{!-- You're an admin! --}}
+        <div> <a class='btn btn-warning' href="/products/edit/{{product._id}}" > Edit Product {{product.title}} </a> </div>
+        {{else}}
+            {{#ifEquals localUser.role 2}}
+                {{#ifEquals product.supplier_id localUser._id}}
+                    {{!-- You're a premium user and this product belongs to you! --}}
+                    <div> <a class='btn btn-warning' href="/products/edit/{{product._id}}" > Edit Product {{product.title}} </a> </div>
+                {{/ifEquals}}
+            {{/ifEquals}}
+    {{/ifEquals}}
+
+{{/if}} 

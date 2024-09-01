@@ -1,0 +1,19 @@
+<form class="form-group">
+    <div class='mb-3'>
+      <label for='email' class='form-label'> Email address </label>
+      <input type='email' class='form-control' id='email' aria-describedby='emailHelp' />
+      <div id='emailHelp' class='form-text'> We'll never share your email with anyone else. </div>
+    </div>
+    <div class='mb-3'>
+      <label for='password' class='form-label'> Password </label>
+      <input type='password' class='form-control' id='password' />
+    </div>
+  </form>
+  <button type='button' class='btn btn-success' onclick="submitForm()"> Login </button>
+  <div class="d-flex flex-row">
+    <p class="fw-light margin-y-1-rem fst-italic">New to our site?</p>
+    <a href="/users/register" class="fw-light margin-y-1-rem fst-italic margin-x-half-rem">Sign In</a>
+  </div>
+    <a href="/forgotpassword" class="fw-light margin-y-1-rem fst-italic">Forgot your password?</a>
+  
+  <script src="/scripts/login.js"></script>

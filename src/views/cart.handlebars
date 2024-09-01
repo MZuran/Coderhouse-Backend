@@ -1,0 +1,37 @@
+<h1> CART </h1>
+<h2>Carrito de {{name}}</h2>
+<div class='d-flex flex-row flex-wrap justify-content-center' style='width: 100%;'>
+    {{!-- {{log cart}} --}}
+    
+    {{#each cart}}
+    <div class='card' style='width: 20vw; height 40vh; margin: 2vh;'>
+        <div class='card-body d-flex flex-column justify-content-between'>
+            <img src="{{this.product_id.photo}}" class='card-img-top' alt='...' />
+
+            <div>
+                <h5 class='card-title'> {{this.product_id.title}} </h5>
+                <p class='card-text'> Price: ${{this.product_id.price}} </br> Amount: {{this.quantity}} </p>
+
+                <div class='d-flex flex-row align-items-center flex-wrap overflow-hidden justify-content-between' style="width: 100%;">
+                    <small class='text-muted'>{{this._id}}</small>
+                    <a 
+                    style="margin: 0.2rem; height:35px; width:35px; border-radius:50%;" 
+                    class='btn btn-gg-important d-flex flex-row align-items-center justify-content-center' 
+                    onclick="deleteCart('{{this._id}}')">
+                        <i class="bi bi-trash3"></i> 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<div style="width: 100%;" class="d-flex justify-content-center">
+    {{#if hasItems}}
+    <button class="btn btn-gg-important mx-1" onclick="deleteAllCarts()">Delete all Items</button>
+    <button class="btn btn-success mx-1" onclick="checkout()">Confirm Purchase (${{total}})</button>
+    {{else}}
+    <p>This cart is empty!</p>
+    {{/if}}
+</div>
+<script src="/scripts/cart.js"></script>

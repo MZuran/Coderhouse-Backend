@@ -1,0 +1,10 @@
+{{#if localUser.online}}
+  <div>
+    <a {{!-- href='/cart/me' --}} class='btn btn-gg-important' onclick="addToCart('{{product._id}}', '{{product.title}}')" >
+      Add to cart
+      {{!-- <i class='bi bi-basket2-fill'></i> --}}
+    </a>
+    {{!-- <p>{{product.title}}</p> --}}
+  </div>
+  <script src='/scripts/cart.js'></script>
+{{/if}}

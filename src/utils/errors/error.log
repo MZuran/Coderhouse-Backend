@@ -1,0 +1,75 @@
+[33mERROR[39m: POST /api/sessions/register undefined - 7:58:08 - undefined
+[33mERROR[39m: POST /register 400 - 7:59:58 - Password must contain at least one lowercase letter, one uppercase letter, one number, and can include '.' or '@'
+[33mERROR[39m: POST /api/sessions/register undefined - 8:00:12 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 8:00:21 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 8:00:57 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 8:01:05 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 8:01:59 - undefined
+[33mERROR[39m: POST /api/sessions/login undefined - 8:02:51 - undefined
+[33mERROR[39m: POST /verify 400 - 8:08:14 - Invalid token format!
+[33mERROR[39m: POST /verify 400 - 8:09:34 - Invalid token format!
+[33mERROR[39m: POST /verify 400 - 8:10:00 - Invalid token format!
+[33mERROR[39m: POST /verify 400 - 8:10:31 - Invalid token format!
+[33mERROR[39m: GET /users/register undefined - 9:25:45 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: POST /register 400 - 9:26:06 - Password must contain at least one lowercase letter, one uppercase letter, one number, and can include '.' or '@'
+[33mERROR[39m: POST /api/sessions/register undefined - 9:26:20 - userManagerMongo is not defined
+[33mERROR[39m: GET /online 401 - 9:37:58 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:38:07 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:39:29 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:40:35 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:40:40 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:40:56 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:41:13 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:41:21 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:41:46 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:42:12 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:42:44 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:43:16 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:43:50 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:44:40 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:44:52 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:45:22 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:45:32 - Bad Auth
+[33mERROR[39m: GET /online 401 - 9:45:53 - Bad Auth
+[33mERROR[39m: POST /verify 400 - 10:04:56 - Invalid credentials!
+[33mERROR[39m: POST /verify 400 - 10:09:15 - Invalid credentials!
+[33mERROR[39m: POST /verify 400 - 10:26:06 - Invalid credentials!
+[33mERROR[39m: POST /verify 400 - 10:26:49 - Invalid credentials!
+[33mERROR[39m: GET /users/login undefined - 10:44:58 - window is not defined
+[33mERROR[39m: GET /users/login undefined - 10:44:59 - window is not defined
+[33mERROR[39m: GET /cart undefined - 16:11:27 - Cannot read properties of null (reading 'toString')
+[33mERROR[39m: GET /cart undefined - 16:12:30 - Cannot read properties of null (reading 'toString')
+[33mERROR[39m: GET /cart undefined - 16:13:18 - Cannot read properties of null (reading 'toString')
+[33mERROR[39m: GET /cart undefined - 16:13:40 - Cannot read properties of null (reading 'toString')
+[33mERROR[39m: GET /cart undefined - 16:13:43 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:13:55 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:14:12 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:14:33 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:14:35 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:15:17 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:15:30 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:15 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:16 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:20 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:38 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:54 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:16:58 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:17:20 - Cannot read properties of null (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:20:06 - Cannot read properties of undefined (reading 'forEach')
+[33mERROR[39m: GET /cart undefined - 16:20:09 - Cannot read properties of undefined (reading 'forEach')
+[33mERROR[39m: GET /cart undefined - 16:20:52 - Cannot read properties of undefined (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:20:55 - Cannot read properties of undefined (reading 'price')
+[33mERROR[39m: GET /cart undefined - 16:23:47 - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /cart undefined - 16:23:48 - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "products"
+[33mERROR[39m: POST /signout 401 - 8:33:17 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 8:33:21 - Bad Auth
+[33mERROR[39m: POST /api/sessions/verify undefined - 8:38:28 - Cannot set headers after they are sent to the client
+[33mERROR[39m: GET /products?page=1 undefined - 9:18:39 - Cannot set properties of undefined (setting 'supplier_id')
+[33mERROR[39m: GET /products?page=1 undefined - 9:18:40 - Cannot set properties of undefined (setting 'supplier_id')
+[33mERROR[39m: GET /products?page=1 undefined - 9:18:41 - Cannot set properties of undefined (setting 'supplier_id')
+[33mERROR[39m: GET /products?page=1 undefined - 9:18:52 - Cannot set properties of undefined (setting 'supplier_id')
+[33mERROR[39m: GET /products?page=2?category=fruit undefined - 9:19:09 - Unexpected token ? in JSON at position 1
+[33mERROR[39m: GET / undefined - 10:24:53 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: POST /register 400 - 10:29:45 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string
+[33mERROR[39m: POST /register 400 - 10:29:50 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string
+[33mERROR[39m: GET /products/me undefined - 10:35:26 - category is not defined

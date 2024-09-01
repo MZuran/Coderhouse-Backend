@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info:
+  title: Green Groceries API - Cookies
+  description: Documentation of Green Groceries API for cookie management
+  version: 1.0.0
+
+paths:
+  /api/cookies/set:
+    get:
+      summary: Set a cookie
+      tags:
+        - Cookies
+      responses:
+        200:
+          description: Cookie set successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/cookies:
+    get:
+      summary: Get all cookies
+      tags:
+        - Cookies
+      responses:
+        200:
+          description: Cookies retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/cookies/destroy/{cookie}:
+    get:
+      summary: Destroy a specific cookie
+      tags:
+        - Cookies
+      parameters:
+        - name: cookie
+          in: path
+          required: true
+          description: Name of the cookie to destroy
+          schema:
+            type: string
+      responses:
+        200:
+          description: Cookie destroyed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        404:
+          description: Cookie not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/cookies/signed:
+    get:
+      summary: Set a signed cookie
+      tags:
+        - Cookies
+      responses:
+        200:
+          description: Signed cookie set successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message200'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+  /api/cookies/get-signed:
+    get:
+      summary: Get all signed cookies
+      tags:
+        - Cookies
+      responses:
+        200:
+          description: Signed cookies retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+
+components:
+  schemas:
+    Message200:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to successful request
+        message:
+          type: string
+          description: Descriptive text for successful request
+      example:
+        statusCode: 200
+        message: Operation successful
+    Error404:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to resource not found
+        message:
+          type: string
+          description: Descriptive text for resource not found error message
+      example:
+        statusCode: 404
+        message: Resource not found
+    Error500:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to server-side fatal error
+        message:
+          type: string
+          description: Descriptive text for server-side error message
+      example:
+        statusCode: 500
+        message: Server error

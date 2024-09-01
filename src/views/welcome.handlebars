@@ -1,0 +1,93 @@
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="height: 85vh;">
+  <div class="carousel-inner">
+      <div class="carousel-item active">
+          <img src="/./img/photo1.jpg" class="d-block w-100" alt="..." style="height: 85vh; object-fit: cover;">
+          <div class="carousel-caption d-none d-md-block" style="top: 50%; transform: translateY(-50%);">
+              <h2 class="text-white text-center" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                  Welcome to green grocers!
+              </h2>
+          </div>
+      </div>
+      <div class="carousel-item">
+          <img src="/./img/photo2.jpg" class="d-block w-100" alt="..." style="height: 85vh; object-fit: cover;">
+          <div class="carousel-caption d-none d-md-block" style="top: 50%; transform: translateY(-50%);">
+              <h2 class="text-white text-center" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                  Buy the best fruits and vegetables at the best price!
+              </h2>
+          </div>
+      </div>
+      <div class="carousel-item">
+          <img src="/./img/photo3.jpg" class="d-block w-100" alt="..." style="height: 85vh; object-fit: cover;">
+          <div class="carousel-caption d-none d-md-block" style="top: 50%; transform: translateY(-50%);">
+              <h2 class="text-white text-center" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                  More than a thousand products available!
+              </h2>
+          </div>
+      </div>
+  </div>
+</div>
+
+</div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class='container mt-5'>
+  <div class='jumbotron text-center'>
+    <h1 class='display-4'>
+      « Welcome to Green Grocers! »
+    </h1>
+    <p class='lead'>
+      This part of the router is controlled by Handlebars and res.render, alongside custom Handlebars helpers.
+    </p>
+  </div>
+
+  <div class='card mb-3'>
+    <div class='card-body'>
+      <h5 class='card-title'>
+        About
+      </h5>
+      <p class='card-text'>
+        This is the final version of our GreenGrocers API. We're from the commission #53135 and we're currently awaiting to be evaluated by Prof. Ignacio Borraz.
+        Please, if there is anything to be discussed at all, contact us through Discord. You can use
+        <a href='https://discord.gg/uS6KPYrUWK'> coderhouse's Discord server</a> 
+        to reach us. Alternatively, you can just send us a Whatsapp message, although we prefer Discord ourselves.
+      </p>
+    </div>
+  </div>
+
+  <div class='card mb-3'>
+    <div class='card-body'>
+      <h5 class='card-title'>
+        Creators
+      </h5>
+      <ul class='list-group list-group-flush'>
+        <li class='list-group-item'> Matías Zuran <i class='text-muted small'> +54 9 11 2502-0221 </i> </li>
+        <li class='list-group-item'> María Victoria Navarro <i class='text-muted small'> +54 9 11 6480-9406 </i> </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class='card mb-3'>
+    <div class='card-body'>
+      <h5 class='card-title'>
+        Endpoints of Interest
+      </h5>
+      <ul class='list-group list-group-flush'>
+        <li class='list-group-item'> <a href="/api/docs">API Documentation</a> <i class="small text-muted">Public</i></li>
+        <li class='list-group-item'> <a href="/products">Products Page</a> <i class="small text-muted">Public. Premium users cannot see their own products</i> </li>
+        <li class='list-group-item'> <a href="/products?category=fruit">Products Page With Filter</a> <i class="small text-muted">Public. Filtered by "fruit". Could also be "vegetable".</i> </li>
+        <li class='list-group-item'> <a href="/users">Users Page</a> <i class="small text-muted">You need to be logged in</i></li>
+        <li class='list-group-item'> <a href="/cart">Cart Page</a> <i class="small text-muted">You need to be logged in</i></li>
+        <li class='list-group-item'> <a href="/products/new">New Product Page</a> <i class="small text-muted">You need to be logged in as an Admin or Premium User</i></li>
+      </ul>
+    </div>
+  </div>
+</div>
+

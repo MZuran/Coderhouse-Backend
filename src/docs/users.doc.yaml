@@ -1,0 +1,409 @@
+openapi: 3.0.0
+info:
+  title: Green Groceries API - Users
+  description: Documentation of Green Groceries API for user management
+  version: 1.0.0
+paths:
+  /api/users:
+    post:
+      summary: Create a new user
+      tags:
+        - User
+      requestBody:
+        required: true
+        description: Data to create a new user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Message201'
+        400:
+          description: Error due to incomplete or incorrect data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error400'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error500'
+    get:
+      summary: Get all users (optionally filtered by role)
+      tags:
+        - User
+      parameters:
+        - name: role
+          in: query
+          description: Filter by user role
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: List of users obtained successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Response200all'
+        400:
+          description: Error due to incomplete or incorrect data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error400'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error500'
+  /api/users/{uid}:
+    get:
+      summary: Find a user by ID
+      tags:
+        - User
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: integer
+      responses:
+        200:
+          description: User found successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error404'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error500'
+    put:
+      summary: Update a user by ID
+      tags:
+        - User
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        description: Data to update the user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Response200one'
+        400:
+          description: Error due to incomplete or incorrect data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error400'
+        404:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error404'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error500'
+    delete:
+      summary: Delete a user by ID
+      tags:
+        - User
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: integer
+      responses:
+        200:
+          description: User deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Message200'
+        404:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error404'
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error500'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: Name of the user who wants to register
+        last_name:
+          type: string
+          description: Last name of the user who wants to register
+        email:
+          type: string
+          description: Email of the user who wants to register
+        password:
+          type: string
+          description: Password of the user who wants to register
+        avatar:
+          type: string
+          description: URL of the photo that the user will use as a profile picture
+        role:
+          type: string
+          description: To define permissions based on the role
+        verify:
+          type: boolean
+          description: To define if an account has been verified or not
+        verifyCode:
+          type: string
+          description: To define the verification code of the account
+      example:
+        first_name: Juan
+        last_name: Perez
+        email: juan.perez@example.com
+        password: securepassword123
+        avatar: https://www.example.com/juan.png
+  responses:
+    Message200:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the successful request
+        message:
+          type: string
+          description: Descriptive text with the success message
+      example:
+        statusCode: 200
+        message: Verified User!
+    Message201:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the successful creation request
+        message:
+          type: string
+          description: Descriptive text with the success message in the creation
+      example:
+        statusCode: 201
+        message: User registered!
+    Response200one:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the successful request returning data
+        response:
+          type: object
+          description: Object with the data of the requested resource
+      example:
+        statusCode: 200
+        response:
+          first_name: Juan
+          last_name: Perez
+          email: juan.perez@example.com
+          password: securepassword123
+          avatar: https://www.example.com/juan.png
+    Response200all:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the successful request returning data
+        response:
+          type: array
+          description: Array of objects of the requested resource
+      example:
+        statusCode: 200
+        response:
+          - first_name: Juan
+            last_name: Perez
+            email: juan.perez@example.com
+            password: securepassword123
+            avatar: https://www.example.com/juan.png
+          - first_name: Maria
+            last_name: Lopez
+            email: maria.lopez@example.com
+            password: anotherpassword456
+            avatar: https://www.example.com/maria.png
+          - first_name: Carlos
+            last_name: Garcia
+            email: carlos.garcia@example.com
+            password: password789
+            avatar: https://www.example.com/carlos.png
+    Paginate:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the successful request returning paginated data
+        response:
+          type: array
+          description: Array of objects of the requested resource paginated and sorted
+        info:
+          type: object
+          description: Pagination data
+      example:
+        statusCode: 200
+        response:
+          - first_name: Juan
+            last_name: Perez
+            email: juan.perez@example.com
+            password: securepassword123
+            avatar: https://www.example.com/juan.png
+          - first_name: Maria
+            last_name: Lopez
+            email: maria.lopez@example.com
+            password: anotherpassword456
+            avatar: https://www.example.com/maria.png
+          - first_name: Carlos
+            last_name: Garcia
+            email: carlos.garcia@example.com
+            password: password789
+            avatar: https://www.example.com/carlos.png
+        info:
+          next: null
+          prev: null
+    Error400:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the failed request due to client problems
+        message:
+          type: string
+          description: Descriptive text with the error message from the client
+      example:
+        statusCode: 400
+        message: Incomplete data on mid
+    Error401:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the failed authentication request
+        message:
+          type: string
+          description: Descriptive text with the authentication error message
+      example:
+        statusCode: 401
+        message: Bad auth from policies!
+    Error403:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the failed authorization request
+        message:
+          type: string
+          description: Descriptive text with the authorization error message
+      example:
+        statusCode: 403
+        message: Forbidden from policies!
+    Error404:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the failed request due to resource not found
+        message:
+          type: string
+          description: Descriptive text with the error message from the client
+      example:
+        statusCode: 404
+        message: Not found docs
+    Error500:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Status code corresponding to the failed request due to fatal server error
+        message:
+          type: string
+          description: Descriptive text with the error message from the server
+      example:
+        statusCode: 500
+        message: Fatal error in server
+  /api/auth/register:
+    post:
+      summary: Route for registering a new user on our server
+      tags:
+        - User
+      requestBody:
+        required: true
+        description: Data to register a user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: Success in registering a user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Message201'
+        400:
+          description: Failure due to incomplete or incorrect data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error400'
+        500:
+          description: Failure due to fatal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Error500'
