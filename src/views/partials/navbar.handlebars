@@ -31,6 +31,8 @@
 
     {{#ifUrl "/users/login"}}
     {{else}}
+      {{#ifUrl "/users/register"}}
+      {{else}}
       <div class="d-flex flex-row centered-content ">
        {{#if localUser.online}}<p class="m-0">{{localUser.name}}</p>{{/if}}
        <ul class='navbar-nav mr-auto'>
@@ -40,7 +42,9 @@
         <li class='nav-item margin-1-rem'> {{>login-navbar-modal-button}} </li> 
         {{/if}}
       </ul>
-    </div>
+      </div>
+    
+      {{/ifUrl}}
     {{/ifUrl}}
     
   </div>
