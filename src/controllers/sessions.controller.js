@@ -29,7 +29,7 @@ class SessionsController {
     async registerSession(req, res, next) {
         try {
             const data = req.body;
-            return res.message201("Registered!")
+            return res.message201({message: "Registered!"})
         } catch (error) {
             return next(error);
         }

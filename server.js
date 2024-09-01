@@ -19,7 +19,6 @@ import winston from "./src/middlewares/winston.mid.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-
 const specs = swaggerJSDoc(swaggerOptions);
 const server = express();
 const port = enviroment.PORT;
@@ -36,11 +35,7 @@ server.use(cors({ origin: true, credentials: true }));
 //Swagger
 server.use("/api/docs", serve, setup(specs));
 
-server.use(
-  compression({
-    brotli: { enabled: true, zlib: {} },
-  })
-);
+server.use( compression({ brotli: { enabled: true, zlib: {} }, }) );
 server.use(winston)
 
 //Middleware to make online status, name and photo available to all reqs via storing it in res.locals
@@ -66,15 +61,9 @@ Handlebars.registerHelper('ifUrl', function(expectedUrl, options) {
 });
 
 
-server.engine("handlebars", engine({
-  partialsDir: __dirname + "/src/views/partials"
-}))
-
+server.engine("handlebars", engine({ partialsDir: __dirname + "/src/views/partials" }))
 server.set("view engine", "handlebars")
-
 server.set("views", __dirname + "/src/views");
-
-
 
 //Routes;
 server.use("/", indexRouter);

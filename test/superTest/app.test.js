@@ -1,46 +1,53 @@
-import enviroment from "../../src/utils/env.util.js";
-import supertest from "supertest";
-import { expect } from "chai";
-import productsRepository from "../../src/repositories/products.rep.js";
-import usersRepository from "../../src/repositories/users.rep.js";
-import authRepository from "../../src/repositories/auth.rep.js";
-import { format } from "morgan";
-
-import getBaseUrl from "../../src/utils/baseUrl.util.js";
-
-const requester = supertest(`${getBaseUrl()}/api`);
-
-/*
-Ya sé que esto es re inseguro pero nuestro register no deja que cualquiera
-que se registre pueda marcarse como administrador. Tenemos que buscar una forma
-más segura para testear esto
-*/
-
-const adminCredentials = {
-    "email": "test@test.com",
-    "password": "test@test.com"
-}
-
-const userCredentials = {
-    "email": "user@user.com",
-    "password": "user@user.com"
-}
-
-describe("Testeando API", function () {
+describe("Testing API", function () {
     this.timeout(20000);
 
-    let token = ""
+    let token = "";
+    let verifyCode, userId;
 
-    it("Inicio de sesión de un usuario", async () => {
+    it("User Login", async () => {
         const response = await requester.post("/sessions/login").send(userCredentials);
         const { _body, headers } = response;
         token = headers["set-cookie"][0].split(";")[0];
         expect(_body.statusCode).to.be.equals(200);
     });
 
-    it("Cerrar sesión de un usuario", async () => {
+    it("User Logout", async () => {
         const response = await requester.post("/sessions/signout").set("Cookie", token);
         const { _body } = response;
         expect(_body.statusCode).to.be.equals(200);
     });
-})
+
+    it("Register an Admin User", async () => {
+        const response = await requester.post("/sessions/register").send(newUserCredentials);
+        const { _body, headers } = response;
+
+        expect(_body.statusCode).to.be.equals(201);
+    });
+
+    it("Login Newly Registered Admin User", async () => {
+        const response = await requester.post("/sessions/login").send(newUserCredentials);
+        const { _body, headers } = response;
+        token = headers["set-cookie"][0].split(";")[0];
+        expect(_body.statusCode).to.be.equals(200);
+    });
+
+    it("Check Online Status of New User", async () => {
+        const response = await requester.get("/sessions/online").set("Cookie", token);
+        const { _body, headers } = response;
+        verifyCode = _body.token.verifyCode;
+        userId = _body.token._id;
+        expect(_body.token.name).to.be.equals(newUserCredentials.name);
+    });
+
+    it("Verify Newly Registered User", async () => {
+        const response = await requester.post("/sessions/verify").send({ uid: verifyCode });
+        const { _body, headers } = response;
+        expect(_body.statusCode).to.be.equals(200);
+    });
+    
+    it("Delete Newly Registered User", async () => {
+        const response = await requester.delete(`/users/${userId}`).set("Cookie", token);
+        const { _body, headers } = response;
+        expect(_body.statusCode).to.be.equals(200);
+    });
+});

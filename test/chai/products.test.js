@@ -1,13 +1,25 @@
 import { expect } from 'chai';
-import 'dotenv/config.js';
-import dao from '../../src/dao/dao.factory.js';
 import { afterEach, before } from 'mocha';
 
+import parseId from '../../src/utils/parseId.util.js';
+
+import dao from '../../src/dao/dao.factory.js';
+import 'dotenv/config.js';
+
+import crypto from "crypto";
+
 const { products } = dao;
+
 let productsTestPassed = true;
 let id;
 
-const data = { title: "ProductTitle", price: 1, stock: 2, category: "fruit" }; // Photo is not required
+const data = { 
+    title: "ProductTitle", 
+    price: 1, 
+    stock: 2, 
+    category: "fruit", 
+    supplier_id: crypto.randomBytes(12).toString("hex") 
+}; // Photo is not required
 
 describe("PRODUCTS resource testing", () => {
     // Set the passed flag as false if any fails
@@ -36,6 +48,12 @@ describe("PRODUCTS resource testing", () => {
 
     it("Test for a valid value for the price property", () => {
         expect(data.price).to.be.greaterThan(0);
+    });
+
+    it("Supplier ID property testing", () => {
+        const parsedSupplier_id = parseId(data.supplier_id)
+        expect(parsedSupplier_id).to.be.a('string');
+        expect(parsedSupplier_id).to.have.lengthOf(24);
     });
 });
 

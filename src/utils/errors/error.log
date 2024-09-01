@@ -69,3 +69,4 @@
 [33mERROR[39m: GET /products?page=1 undefined - 9:18:41 - Cannot set properties of undefined (setting 'supplier_id')
 [33mERROR[39m: GET /products?page=1 undefined - 9:18:52 - Cannot set properties of undefined (setting 'supplier_id')
 [33mERROR[39m: GET /products?page=2?category=fruit undefined - 9:19:09 - Unexpected token ? in JSON at position 1
+[33mERROR[39m: GET / undefined - 10:24:53 - Cannot read properties of undefined (reading 'name')
