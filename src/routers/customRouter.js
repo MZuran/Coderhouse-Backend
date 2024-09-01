@@ -45,20 +45,26 @@ class CustomRouter {
 
     /*-----------Responses-----------*/
     response = (req, res, next) => {
-        res.response200 = (response) => { res.json({ statusCode: 200, ...response }) }
-        res.paginate = (response, info) => { res.json({ statusCode: 200, response, info }) }
-        res.message201 = (response) => res.json({ statusCode: 201, ...response });
-        res.error400 = (message) => winstonErrorMessage(req, res, { statusCode: 400, message });
-        res.error401 = () => winstonErrorMessage(req, res, { statusCode: 401, message: "Bad Auth" });
-        res.error403 = () => winstonErrorMessage(req, res, { statusCode: 403, message: "Forbidden" });
-        res.error404 = () => winstonErrorMessage(req, res, { statusCode: 404, message: "Not Found" });
-        res.error500 = () => winstonErrorMessage(req, res, { statusCode: 500, message: "Internal Server Error" });
-        res.errorPage = (title, errorCode, description) => { res.render("error-page", { title: title, error: errorCode, description }) }
-        res.unauthorizedPage = () => { res.errorPage("Unauthorized", 401, "You must be logged on to see this page") }
-        res.forbiddenPage = () => { res.errorPage("Forbidden", 403, "You don't have permission to see this page") }
-        res.verificationError = () => { res.errorPage("Not Verified", 403, "You must verify your account to see this page. Check your email inbox for your url") }
-        return next()
-    }
+        res.response200 = (response) => { res.json({ statusCode: 200, ...response }); return res; };
+        res.paginate = (response, info) => { res.json({ statusCode: 200, response, info }); return res; };
+        res.message201 = (response) => { res.json({ statusCode: 201, ...response }); return res; };
+        res.error400 = (message) => { winstonErrorMessage(req, res, { statusCode: 400, message }); return res; };
+        res.error401 = () => { winstonErrorMessage(req, res, { statusCode: 401, message: "Bad Auth" }); return res; };
+        res.error403 = () => { winstonErrorMessage(req, res, { statusCode: 403, message: "Forbidden" }); return res; };
+        res.error404 = () => { winstonErrorMessage(req, res, { statusCode: 404, message: "Not Found" }); return res; };
+        res.error500 = () => { winstonErrorMessage(req, res, { statusCode: 500, message: "Internal Server Error" }); return res; };
+        res.errorPage = (title, errorCode, description) => { res.render("error-page", { title: title, error: errorCode, description }); return res; };
+        res.unauthorizedPage = () => { res.errorPage("Unauthorized", 401, "You must be logged on to see this page"); return res; };
+        res.forbiddenPage = () => { res.errorPage("Forbidden", 403, "You don't have permission to see this page"); return res; };
+        res.verificationError = () => { res.errorPage("Not Verified", 403, "You must verify your account to see this page. Check your email inbox for your url"); return res; };
+        res.logout = () => {
+            res.clearCookie('token');
+            return res;
+        };
+
+        return next();
+    };
+
 
     /*-----------Check if View-----------*/
     isViewRequest(req) {
@@ -79,15 +85,7 @@ class CustomRouter {
             }
         }
 
-        const { role, email, verified } = token
-
-        if (!verified) {
-            if (this.isViewRequest(req)) {
-                return res.verificationError()
-            } else {
-                return res.error401()
-            }
-        }
+        const { role, email } = token
 
         try {
             if (
@@ -97,7 +95,7 @@ class CustomRouter {
                 policies.includes('PREM') && role === 2
                 //Add more here if needed
             ) {
-                const user = await readByEmailService({email})
+                const user = await readByEmailService({ email })
                 req.user = user
                 return next()
             } else {

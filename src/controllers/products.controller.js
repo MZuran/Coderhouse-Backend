@@ -19,41 +19,24 @@ class ProductsController {
             const { category } = req.query;
             let token = req.cookies['token']
             let _id, role, productList
-
-            //console.log(`My category is ${category}`)
-            //console.log(req.query)
-
             if (token) {
                 role = verifyToken(token).role
                 _id = verifyToken(token)._id
             }
-
-            //console.log(`The token is ${verifyToken(token)}`)
-            //console.log(`My role is ${role} and my id is ${_id}`)
-
-            //If it's a premium user
             if (role && _id && role == 2) {
                 if (category) {
                     productList = await readService({ supplier_id: { $ne: _id }, category: category })
-
                 } else {
                     productList = await readService({ supplier_id: { $ne: _id } })
-
                 }
             } else {
                 productList = await readService({category});
             }
 
-            if (productList.length !== 0) {
-                return res.response200({
-                    length: productList.length,
-                    response: productList,
-                });
-            } else {
-                const error = new Error("No matching Products");
-                error.statusCode = 404;
-                throw error;
-            }
+            return res.response200({
+                length: productList.length,
+                response: productList,
+            })
         } catch (error) {
             next(error)
         }
@@ -63,9 +46,22 @@ class ProductsController {
         try {
             let token = req.cookies['token']
             const { _id } = verifyToken(token)
-            const productList = await readService({ supplier_id: _id })
+            const { category } = req.query;
 
-            return res.sta
+            console.log("AAAAAAAAAAAAAAAA")
+
+            let productList
+
+            if (category) {
+                productList = await readService({ supplier_id: _id , category: category })
+            } else {
+                productList = await readService({ supplier_id: _id })
+            }
+
+            return res.response200({
+                length: productList.length,
+                response: productList,
+            })
 
         } catch (error) {
             next(error)

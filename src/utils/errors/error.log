@@ -61,3 +61,11 @@
 [33mERROR[39m: GET /cart undefined - 16:20:55 - Cannot read properties of undefined (reading 'price')
 [33mERROR[39m: GET /cart undefined - 16:23:47 - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "products"
 [33mERROR[39m: GET /cart undefined - 16:23:48 - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "products"
+[33mERROR[39m: POST /signout 401 - 8:33:17 - Bad Auth
+[33mERROR[39m: POST /signout 401 - 8:33:21 - Bad Auth
+[33mERROR[39m: POST /api/sessions/verify undefined - 8:38:28 - Cannot set headers after they are sent to the client
+[33mERROR[39m: GET /products?page=1 undefined - 9:18:39 - Cannot set properties of undefined (setting 'supplier_id')
+[33mERROR[39m: GET /products?page=1 undefined - 9:18:40 - Cannot set properties of undefined (setting 'supplier_id')
+[33mERROR[39m: GET /products?page=1 undefined - 9:18:41 - Cannot set properties of undefined (setting 'supplier_id')
+[33mERROR[39m: GET /products?page=1 undefined - 9:18:52 - Cannot set properties of undefined (setting 'supplier_id')
+[33mERROR[39m: GET /products?page=2?category=fruit undefined - 9:19:09 - Unexpected token ? in JSON at position 1

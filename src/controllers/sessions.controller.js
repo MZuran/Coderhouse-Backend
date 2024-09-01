@@ -38,15 +38,14 @@ class SessionsController {
     async verifyCode(req, res, next) {
         const { uid } = req.body
 
-        if (!uid) {
-            return res.error400("Invalid format!");
-        }
+        if (!uid) { return res.error400("Invalid format!"); }
 
         try {
             const one = await readByVerifyCodeService(uid);
-            console.log("My readbyverify is", one)
+            await updateService(one._id, {verified: true})
 
-            return res.response200({message: "Verified!"})
+            return res.logout().response200({message: "Verified!"})
+
         } catch (error) {
             console.error(error);
             return res.status(500).json({ statusCode: 500, message: "Internal Server Error" });

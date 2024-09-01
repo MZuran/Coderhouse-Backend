@@ -1,24 +1,20 @@
 import { getTokenFromReq } from "../utils/token.util.js";
-import parseId from "../utils/parseId.util.js";
 
-import {
-  createService,
-  readService,
-  paginateService,
-  readOneService,
-  updateService,
-  destroyService,
-} from "../services/users.service.js"
+function isViewRequest(req) {
+  return req.method === 'GET' && !req.originalUrl.startsWith('/api')
+}
 
 async function isVerified(req, res, next) {
-  const token = getTokenFromReq(req,res)
-  
-
-  if (!token.role || (token._id != user_id && token.role != 1)) {
-    return res.error401()
+  const token = getTokenFromReq(req, res)
+  if (token.verified) {
+    return next();
+  } else {
+    if (isViewRequest(req)) {
+      return res.verificationError()
+    }
   }
 
-  return next();
+  return res.error401()
 }
 
 export default isVerified

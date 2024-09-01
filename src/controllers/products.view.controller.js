@@ -8,18 +8,18 @@ import {
 class ProductsViewController {
     async productsView(req, res, next) {
         try {
-            let { page } = req.query;
+            let { page, category } = req.query;
             if (!page) { page = 1 }
 
             const { role, _id } = getTokenFromReq(req,res)
 
-            let productList
+            let query = {}
+            if (category) { query.category = category }
+            if (role === 2) { query.supplier_id = { $ne: _id }}
 
-            if (role === 2) {
-                productList = await paginateService({ supplier_id: { $ne: _id } }, { limit: 4, page: page });
-            } else {
-                productList = await paginateService({}, { limit: 4, page: page });
-            }
+            const productList = await paginateService(query, { limit: 4, page: page });
+
+            const queryString = category ? `category=${category}&` : "";
 
             return res.render("products-paginated",
                 {
@@ -28,7 +28,8 @@ class ProductsViewController {
                     data: productList,
                     page: page,
                     prevPage: JSON.parse(page) - 1,
-                    nextPage: JSON.parse(page) + 1
+                    nextPage: JSON.parse(page) + 1,
+                    queryString
                 });
 
         } catch (error) {
@@ -43,13 +44,13 @@ class ProductsViewController {
 
             const { role, _id } = getTokenFromReq(req,res)
 
-            let productList
+            let query = {}
+            if (category) { query.category = category }
+            if (role === 2) { query.supplier_id = _id }
 
-            if (role === 2) {
-                productList = await paginateService({ supplier_id: _id }, { limit: 4, page: page });
-            } else {
-                productList = await paginateService({}, { limit: 4, page: page });
-            }
+            const productList = await paginateService(query, { limit: 4, page: page });
+
+            const queryString = category ? `category=${category}&` : "";
 
             return res.render("products-paginated",
                 {
@@ -58,7 +59,8 @@ class ProductsViewController {
                     data: productList,
                     page: page,
                     prevPage: JSON.parse(page) - 1,
-                    nextPage: JSON.parse(page) + 1
+                    nextPage: JSON.parse(page) + 1,
+                    queryString
                 });
 
         } catch (error) {

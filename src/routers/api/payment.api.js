@@ -1,11 +1,11 @@
 import CustomRouter from "../customRouter.js";
 import { createPayment } from "../../controllers/payment.controller.js";
 
-//TODO: Only allow verified users here
+import isVerified from '../../middlewares/isVerified.mid.js'
 
 class PaymentRouterClass extends CustomRouter {
   init() {
-    this.create("/checkout", ["REGISTERED"], createPayment);
+    this.create("/checkout", ["REGISTERED"], isVerified, createPayment);
   }
 }
 

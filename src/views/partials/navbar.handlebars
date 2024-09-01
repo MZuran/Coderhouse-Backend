@@ -20,11 +20,12 @@
     <ul class='navbar-nav mr-auto'>
       <li class='nav-item'> <a class='nav-link' href='/'> Home </a> </li>
       <li class='nav-item'> <a class='nav-link' href='/products'> Products </a> </li>
-      {{#ifEquals localUser.role 1}}<li class='nav-item'> <a class='nav-link' href='/products/new'> Add product </a> </li>{{/ifEquals}}
-      {{#ifEquals localUser.role 2}}<li class='nav-item'> <a class='nav-link' href='/products/new'> Add product </a> </li>{{/ifEquals}}
+      {{#ifEquals localUser.role 1}}<li class='nav-item'> <a class='nav-link' href='/products/new'> Publish Product </a> </li>{{/ifEquals}}
+      {{#ifEquals localUser.role 2}}<li class='nav-item'> <a class='nav-link' href='/products/new'> Publish Product </a> </li>{{/ifEquals}}
       {{#ifEquals localUser.role 2}}<li class='nav-item'> <a class='nav-link' href='/products/me'> My Products </a> </li>{{/ifEquals}}
       {{#ifEquals localUser.role 1}}<li class='nav-item'> <a class='nav-link' href='/products/me'> My Products </a> </li>{{/ifEquals}}
       {{#if localUser.online}}<li class='nav-item'> <a class='nav-link' href='/users'> Profile </a> </li>{{/if}}
+      {{#if localUser.online}}<li class='nav-item'> <a class='nav-link' href='/cart'> Cart </a> </li>{{/if}}
       {{#ifEquals localUser.online false}}<li class='nav-item'> <a class='nav-link' href='/users/register'> Register </a> </li>{{/ifEquals}}
     </ul>
 

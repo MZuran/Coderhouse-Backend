@@ -33,7 +33,7 @@ async function addProduct() {
         icon: 'success',
         confirmButtonText: 'OK'
       });
-      window.location.replace("/");
+      window.location.replace("/products/me");
     } else {
       // Handle non-200 status codes
       const errorMessage = Array.isArray(data.message) 
