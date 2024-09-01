@@ -70,3 +70,6 @@
 [33mERROR[39m: GET /products?page=1 undefined - 9:18:52 - Cannot set properties of undefined (setting 'supplier_id')
 [33mERROR[39m: GET /products?page=2?category=fruit undefined - 9:19:09 - Unexpected token ? in JSON at position 1
 [33mERROR[39m: GET / undefined - 10:24:53 - Cannot read properties of undefined (reading 'name')
+[33mERROR[39m: POST /register 400 - 10:29:45 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string
+[33mERROR[39m: POST /register 400 - 10:29:50 - Name cannot be an empty string,Email cannot be an empty string,Password cannot be an empty string
+[33mERROR[39m: GET /products/me undefined - 10:35:26 - category is not defined

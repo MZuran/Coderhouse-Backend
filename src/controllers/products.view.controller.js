@@ -39,7 +39,7 @@ class ProductsViewController {
 
     async productsViewMine(req, res, next) {
         try {
-            let { page } = req.query;
+            let { page, category } = req.query;
             if (!page) { page = 1 }
 
             const { role, _id } = getTokenFromReq(req,res)
